@@ -150,7 +150,7 @@ export default function Header({ onOpenSearch }: HeaderProps) {
             {/* ── Logo ── */}
             <Link
               href="/"
-              className="flex items-center gap-2.5 shrink-0 group py-1"
+              className="hidden sm:flex items-center gap-2.5 shrink-0 group py-1"
               aria-label="Braxvio Home"
             >
               <div className="relative w-7 h-9 sm:w-8 sm:h-10 shrink-0 transition-transform duration-300 group-hover:scale-105 drop-shadow-sm">
@@ -242,7 +242,7 @@ export default function Header({ onOpenSearch }: HeaderProps) {
             </div>
 
             {/* ── Mobile Actions ── */}
-            <div className="flex lg:hidden items-center gap-2">
+            <div className="flex lg:hidden items-center gap-2 ml-auto">
               <button
                 onClick={onOpenSearch}
                 className="p-2 rounded-xl text-[#687A86] hover:text-[#002F5B] hover:bg-[#F2FAFC] transition-all"
