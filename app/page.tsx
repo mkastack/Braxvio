@@ -22,6 +22,7 @@ import {
   Check,
   BookOpen,
 } from 'lucide-react';
+import BraxvioEcosystemRadial from '@/components/system/BraxvioEcosystemRadial';
 import KampusMockup from '@/components/mockups/KampusMockup';
 import PharmoraMockup from '@/components/mockups/PharmoraMockup';
 import EcoliftMockup from '@/components/mockups/EcoliftMockup';
@@ -203,99 +204,96 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 01 — CINEMATIC HERO */}
       {/* ============================================================ */}
-      <section className="relative min-h-screen flex flex-col justify-between pt-28 pb-0 overflow-hidden bg-white">
+      <section className="relative min-h-screen flex flex-col justify-between pt-24 lg:pt-20 pb-0 overflow-hidden bg-white">
         {/* Layered Background System */}
         <div className="absolute inset-0 braxvio-grid-light opacity-60 pointer-events-none" />
 
         {/* Ambient Atmospheric Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[900px] h-[500px] rounded-full bg-gradient-radial from-[#11AFC1]/12 via-[#006EAA]/6 to-transparent blur-[130px] pointer-events-none" />
-        <div className="absolute top-10 right-10 w-[400px] h-[400px] rounded-full bg-gradient-radial from-[#42D6C5]/10 to-transparent blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-radial from-[#11AFC1]/12 via-[#006EAA]/5 to-transparent blur-[130px] pointer-events-none" />
+        <div className="absolute top-10 left-10 w-[450px] h-[450px] rounded-full bg-gradient-radial from-[#42D6C5]/8 to-transparent blur-[110px] pointer-events-none" />
 
-        <div className="relative z-10 max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 text-center pt-6 pb-12 flex-1 flex flex-col justify-center items-center">
-          {/* Logo mark + Parent Badge */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#F2FAFC] border border-[#DDE8EC] shadow-sm mb-8 animate-fade-in-up">
-            <div className="relative w-5 h-6 shrink-0">
-              <Image
-                src="/braxvio-mark.png"
-                alt="Braxvio Logo"
-                fill
-                className="object-contain"
-                priority
-                sizes="24px"
-              />
-            </div>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#11AFC1] animate-pulse" />
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest font-bold text-[#006EAA]">
-              BRAXVIO / BUILD. INNOVATE. ELEVATE.
-            </span>
-          </div>
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-16 flex-1 flex flex-col justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
-          {/* Main Monumental Headline with Cool Liquid Metallic Text Effects */}
-          <div className="space-y-1 sm:space-y-2 mb-8 animate-fade-in-up delay-100">
-            <div className="text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-black tracking-tight text-[#002F5B] leading-[0.98] select-none">
-              WE BUILD
-            </div>
-            <div className="text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-black tracking-tight leading-[0.98] braxvio-hero-gradient braxvio-hero-glow select-none transition-transform duration-500 hover:scale-[1.01]">
-              TECHNOLOGY
-            </div>
-            <div className="text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-black tracking-tight text-[#002F5B] leading-[0.98] select-none">
-              FOR LIFE.
-            </div>
-          </div>
+            {/* Left — Hero Copy & Actions */}
+            <div className="lg:col-span-6 space-y-7 text-left">
+              {/* Logo mark + Parent Badge */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#F2FAFC] border border-[#DDE8EC] shadow-sm animate-fade-in-up">
+                <div className="relative w-5 h-6 shrink-0">
+                  <Image
+                    src="/braxvio-mark.png"
+                    alt="Braxvio Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                    sizes="24px"
+                  />
+                </div>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#11AFC1] animate-pulse" />
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest font-bold text-[#006EAA]">
+                  BRAXVIO / BUILD. INNOVATE. ELEVATE.
+                </span>
+              </div>
 
-          {/* Supporting Narrative */}
-          <p className="text-base sm:text-xl text-[#687A86] max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-in-up delay-200 font-normal">
-            Braxvio is the parent technology company creating digital products, platforms, and sovereign infrastructure designed around meaningful human needs across Africa and global markets.
-          </p>
+              {/* Main Headline with Cool Liquid Metallic Text Effects */}
+              <div className="space-y-1 animate-fade-in-up delay-100">
+                <div className="text-5xl sm:text-6xl lg:text-[72px] xl:text-[80px] font-black tracking-tight text-[#002F5B] leading-[1.0] select-none">
+                  WE BUILD
+                </div>
+                <div className="text-5xl sm:text-6xl lg:text-[72px] xl:text-[80px] font-black tracking-tight leading-[1.0] braxvio-hero-gradient braxvio-hero-glow select-none transition-transform duration-500 hover:scale-[1.01]">
+                  TECHNOLOGY
+                </div>
+                <div className="text-5xl sm:text-6xl lg:text-[72px] xl:text-[80px] font-black tracking-tight text-[#002F5B] leading-[1.0] select-none">
+                  FOR LIFE.
+                </div>
+              </div>
 
-          {/* CTAs — Clean Explore Button (No AI Star Icon) */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-14 animate-fade-in-up delay-300">
-            <Link
-              href="/products"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#003E72] via-[#006EAA] to-[#11AFC1] text-white text-sm font-bold shadow-lg shadow-[#003E72]/15 hover:shadow-xl hover:shadow-[#11AFC1]/20 hover:-translate-y-0.5 transition-all duration-300 group"
-            >
-              <span>EXPLORE OUR PRODUCTS</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-            </Link>
-            <Link
-              href="/company"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-[#DDE8EC] bg-white/80 hover:bg-white hover:border-[#11AFC1] text-sm font-semibold text-[#002F5B] transition-all duration-300 backdrop-blur-sm hover:-translate-y-0.5 shadow-sm"
-            >
-              DISCOVER BRAXVIO
-            </Link>
-          </div>
+              {/* Supporting Narrative */}
+              <p className="text-base sm:text-lg text-[#687A86] max-w-xl leading-relaxed animate-fade-in-up delay-200">
+                Braxvio is the parent technology company creating digital products, platforms, and sovereign infrastructure designed around meaningful human needs across Africa and global markets.
+              </p>
 
-          {/* ── Open Borderless Ecosystem Track (NO CARD) ── */}
-          <div className="w-full max-w-4xl mx-auto pt-8 border-t border-[#DDE8EC]/70 animate-fade-in-up delay-400">
-            <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-[#006EAA] font-bold mb-4">
-              <span>PARENT ECOSYSTEM SUBSIDIARIES</span>
-              <span className="text-[#11AFC1] hidden sm:inline-block">4 OPERATIONAL VERTICALS</span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
-              {BRAXVIO_PRODUCTS.map((prod, idx) => (
+              {/* CTAs — Clean Explore Button (No AI Star Icon) */}
+              <div className="flex flex-wrap items-center gap-3.5 pt-1 animate-fade-in-up delay-300">
                 <Link
-                  key={prod.id}
-                  href={`/products/${prod.slug}`}
-                  className="p-3.5 rounded-2xl hover:bg-[#F2FAFC] border border-transparent hover:border-[#DDE8EC] transition-all duration-300 group flex flex-col justify-between space-y-2"
+                  href="/products"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#003E72] via-[#006EAA] to-[#11AFC1] text-white text-sm font-bold shadow-md hover:shadow-lg hover:shadow-[#11AFC1]/20 hover:-translate-y-0.5 transition-all duration-300 group"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-[#11AFC1]">0{idx + 1}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#687A86] group-hover:text-[#006EAA] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                  </div>
-                  <div>
-                    <div className="text-base font-black text-[#002F5B] group-hover:text-[#006EAA] transition-colors">
-                      {prod.name}
-                    </div>
-                    <div className="text-[11px] text-[#687A86] line-clamp-1 mt-0.5">
-                      {prod.category}
-                    </div>
-                  </div>
-                  <div className="text-[10px] font-mono text-[#006EAA] font-semibold flex items-center gap-1.5 pt-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#11AFC1]" />
-                    <span>{prod.status}</span>
-                  </div>
+                  <span>EXPLORE OUR PRODUCTS</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </Link>
-              ))}
+                <Link
+                  href="/company"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-[#DDE8EC] bg-white/80 hover:bg-white hover:border-[#11AFC1] text-sm font-semibold text-[#002F5B] transition-all duration-300 backdrop-blur-sm hover:-translate-y-0.5 shadow-sm"
+                >
+                  DISCOVER BRAXVIO
+                </Link>
+              </div>
+
+              {/* Institutional Micro Stats */}
+              <div className="pt-6 border-t border-[#DDE8EC] grid grid-cols-3 gap-4 animate-fade-in-up delay-400">
+                {[
+                  { label: 'ECOSYSTEM NODES', value: '4', suffix: '', sub: 'Active Platforms' },
+                  { label: 'HQ', value: '', suffix: 'Accra', sub: 'Ghana, West Africa' },
+                  { label: 'REACH', value: '', suffix: 'Global', sub: 'Pan-African & Beyond' },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <div className="text-[9px] font-mono uppercase tracking-widest text-[#687A86] mb-1">
+                      {stat.label}
+                    </div>
+                    <div className="text-sm font-extrabold text-[#002F5B] tracking-tight">
+                      {stat.value && <AnimatedCounter target={parseInt(stat.value)} />}
+                      {stat.suffix}
+                    </div>
+                    <div className="text-[10px] text-[#687A86]">{stat.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right — Radial Parent Ecosystem Visualizer (Matching see.jpeg structure) */}
+            <div className="lg:col-span-6 flex items-center justify-center animate-fade-in-scale delay-200">
+              <BraxvioEcosystemRadial />
             </div>
           </div>
         </div>
