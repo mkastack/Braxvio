@@ -10,7 +10,6 @@ import {
   Truck,
   Landmark,
   Check,
-  Sparkles,
 } from 'lucide-react';
 import { BRAXVIO_PRODUCTS } from '@/data/ecosystem';
 
@@ -93,7 +92,7 @@ export default function ProductsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
             {BRAXVIO_PRODUCTS.map((product) => {
               const gradient = PRODUCT_GRADIENTS[product.slug] ?? 'from-[#003E72] to-[#11AFC1]';
-              const iconEl = PRODUCT_ICONS[product.slug] ?? <Sparkles className="w-5 h-5 text-white" />;
+              const iconEl = PRODUCT_ICONS[product.slug] ?? <Layers className="w-5 h-5 text-white" />;
               const statusClass = STATUS_STYLES[product.status] ?? STATUS_STYLES['IN DEVELOPMENT'];
 
               return (

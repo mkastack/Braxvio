@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, ShieldCheck, Users, Briefcase, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, Users, Briefcase } from 'lucide-react';
 
 export default function CareersPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Play, CheckCircle2, ArrowRight, Activity, Sparkles, Building2, Pill, Truck, Landmark, RefreshCw } from 'lucide-react';
+import { Play, CheckCircle2, ArrowRight, Activity, Building2, Pill, Truck, Landmark, RefreshCw } from 'lucide-react';
 import BraxvioLogo from '@/components/ui/BraxvioLogo';
 
 interface SimulationScenario {

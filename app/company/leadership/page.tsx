@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { ArrowLeft, ArrowUpRight, Sparkles, Users, Award, Code2 } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Users, Award, Code2 } from 'lucide-react';
 import { LEADERSHIP_PROFILES } from '@/data/ecosystem';
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export default function LeadershipPage() {
               <div className="lg:col-span-8 space-y-6">
                 <div className="flex flex-wrap items-center gap-3">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#11AFC1]/20 border border-[#11AFC1]/40 text-[#42D6C5] text-xs font-mono font-bold tracking-wider uppercase">
-                    <Sparkles className="w-3 h-3" />
+                    <Award className="w-3.5 h-3.5" />
                     FOUNDER & CHIEF EXECUTIVE OFFICER
                   </div>
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-mono">

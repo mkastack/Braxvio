@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Building2, ShoppingBag, Calendar, ShieldCheck, MapPin, Search, ArrowRight, UserCheck, Check, Sparkles, QrCode } from 'lucide-react';
+import { Building2, ShoppingBag, Calendar, ShieldCheck, MapPin, Search, ArrowRight, UserCheck, Check, QrCode } from 'lucide-react';
 
 export default function KampusMockup() {
   const [activeTab, setActiveTab] = useState<'housing' | 'marketplace' | 'id'>('housing');

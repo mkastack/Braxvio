@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { Sparkles, Terminal, Activity, ArrowRight, Cpu, Radio, Network } from 'lucide-react';
+import { Terminal, Activity, ArrowRight, Cpu, Radio, Network } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Braxvio Labs — Emerging Research & Explorations',
@@ -42,7 +42,7 @@ export default function LabsPage() {
         {/* Hero */}
         <div className="max-w-4xl space-y-6 border-b border-[#DDE8EC] pb-16">
           <div className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#006EAA] font-semibold">
-            <Sparkles className="w-4 h-4" />
+            <Cpu className="w-4 h-4" />
             <span>R&D HORIZON & EXPERIMENTS</span>
           </div>
 

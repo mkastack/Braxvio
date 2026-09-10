@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { Cpu, ShieldCheck, Database, Layers, Radio, Sparkles, Terminal, Activity, ArrowRight } from 'lucide-react';
+import { Cpu, ShieldCheck, Database, Layers, Radio, Terminal, Activity, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Technology — Engineering Architecture & Philosophy',
@@ -23,7 +23,7 @@ export default function TechnologyPage() {
       description: 'Using PostgreSQL, TimescaleDB, and ClickHouse for high-throughput sensor telemetry, cold-chain temperature logs, and geospatial routing algorithms.'
     },
     {
-      icon: <Sparkles className="w-6 h-6 text-[#42D6C5]" />,
+      icon: <Cpu className="w-6 h-6 text-[#42D6C5]" />,
       title: 'Applied Artificial Intelligence',
       tagline: 'Pragmatic, problem-specific intelligence',
       description: 'We reject speculative AI hype. Our models focus on concrete mathematical optimizations: dynamic vehicle routing for Ecolift, optical prescription parsing for Pharmora, and fraud anomaly detection for DevPay.'

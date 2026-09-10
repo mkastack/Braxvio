@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { Sparkles, HeartPulse, GraduationCap, Leaf, Banknote, ShieldAlert, ArrowRight } from 'lucide-react';
+import { Globe2, HeartPulse, GraduationCap, Leaf, Banknote, ShieldAlert, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Impact — Technology That Leaves Something Better',
@@ -46,7 +46,7 @@ export default function ImpactPage() {
         {/* Page Hero */}
         <div className="max-w-4xl space-y-6 border-b border-[#DDE8EC] pb-16">
           <div className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#006EAA] font-semibold">
-            <Sparkles className="w-4 h-4" />
+            <Globe2 className="w-4 h-4" />
             <span>MEASURED VALUE CREATION</span>
           </div>
 

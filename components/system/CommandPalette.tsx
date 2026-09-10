@@ -6,7 +6,6 @@ import {
   Search,
   ArrowRight,
   X,
-  Sparkles,
   Building2,
   Pill,
   Truck,

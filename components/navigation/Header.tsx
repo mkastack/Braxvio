@@ -19,7 +19,7 @@ import {
   Users,
   Phone,
   ArrowUpRight,
-  Sparkles,
+  Layers,
   Globe2,
   Zap,
 } from 'lucide-react';
@@ -236,7 +236,6 @@ export default function Header({ onOpenSearch }: HeaderProps) {
                 href="/products"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-[#003E72] via-[#006EAA] to-[#11AFC1] text-white text-sm font-semibold shadow-sm hover:shadow-md hover:opacity-95 transition-all duration-300 group"
               >
-                <Sparkles className="w-3.5 h-3.5" />
                 <span>Explore</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
@@ -400,7 +399,7 @@ export default function Header({ onOpenSearch }: HeaderProps) {
                     className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-[#002F5B] hover:bg-[#F2FAFC] transition-all"
                   >
                     <div className="flex items-center gap-3">
-                      <Sparkles className="w-4.5 h-4.5 text-[#11AFC1]" />
+                      <Layers className="w-4.5 h-4.5 text-[#11AFC1]" />
                       Products
                     </div>
                     <ChevronDown
@@ -508,7 +507,6 @@ export default function Header({ onOpenSearch }: HeaderProps) {
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-[#003E72] via-[#006EAA] to-[#11AFC1] text-white text-sm font-bold shadow-md transition-all hover:opacity-95"
               >
-                <Sparkles className="w-4 h-4" />
                 <span>Explore Braxvio</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>

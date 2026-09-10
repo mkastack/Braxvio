@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { ArrowRight, Compass, ShieldCheck, Sparkles, Target, Users } from 'lucide-react';
+import { ArrowRight, Compass, ShieldCheck, Target, Users } from 'lucide-react';
 import { BRAXVIO_PRINCIPLES, COMPANY_FACTS } from '@/data/ecosystem';
 
 export const metadata: Metadata = {
