@@ -150,27 +150,27 @@ export default function Header({ onOpenSearch }: HeaderProps) {
             {/* ── Logo ── */}
             <Link
               href="/"
-              className="flex items-center gap-3 shrink-0 group py-1"
+              className="flex items-center gap-2.5 shrink-0 group py-1"
               aria-label="Braxvio Home"
             >
-              <div className="relative w-9 h-11 sm:w-10 sm:h-12 shrink-0 transition-transform duration-300 group-hover:scale-105 drop-shadow-sm">
+              <div className="relative w-7 h-9 sm:w-8 sm:h-10 shrink-0 transition-transform duration-300 group-hover:scale-105 drop-shadow-sm">
                 <Image
                   src="/braxvio-mark.png"
                   alt="Braxvio Logo"
                   fill
                   className="object-contain object-left"
                   priority
-                  sizes="(max-width: 640px) 36px, 44px"
+                  sizes="(max-width: 640px) 28px, 32px"
                 />
               </div>
               <div className="flex flex-col justify-center select-none">
                 <span
-                  className="font-black text-[#002F5B] text-xl sm:text-2xl tracking-tight leading-none transition-colors duration-200 group-hover:text-[#006EAA]"
+                  className="font-black text-[#002F5B] text-lg sm:text-xl tracking-tight leading-none transition-colors duration-200 group-hover:text-[#006EAA]"
                   style={{ fontFamily: 'var(--font-manrope), sans-serif' }}
                 >
                   Braxvio
                 </span>
-                <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.18em] font-bold text-[#006EAA] mt-0.5">
+                <span className="text-[7.5px] sm:text-[8.5px] font-mono uppercase tracking-[0.16em] font-bold text-[#006EAA] mt-0.5">
                   Build. Innovate. Elevate.
                 </span>
               </div>
@@ -356,18 +356,18 @@ export default function Header({ onOpenSearch }: HeaderProps) {
           <div className="absolute top-0 right-0 bottom-0 w-[85vw] max-w-sm bg-white flex flex-col shadow-2xl mobile-menu-in">
             {/* Drawer Header */}
             <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-[#DDE8EC]">
-              <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-3">
-                <div className="relative w-9 h-11 shrink-0">
-                  <Image src="/braxvio-mark.png" alt="Braxvio Logo" fill className="object-contain" sizes="36px" />
+              <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2.5">
+                <div className="relative w-7 h-9 shrink-0">
+                  <Image src="/braxvio-mark.png" alt="Braxvio Logo" fill className="object-contain" sizes="30px" />
                 </div>
                 <div className="flex flex-col select-none">
                   <span
-                    className="font-black text-[#002F5B] text-xl tracking-tight leading-none"
+                    className="font-black text-[#002F5B] text-lg tracking-tight leading-none"
                     style={{ fontFamily: 'var(--font-manrope), sans-serif' }}
                   >
                     Braxvio
                   </span>
-                  <span className="text-[8px] font-mono uppercase tracking-[0.16em] font-bold text-[#006EAA] mt-0.5">
+                  <span className="text-[7.5px] font-mono uppercase tracking-[0.16em] font-bold text-[#006EAA] mt-0.5">
                     Build. Innovate. Elevate.
                   </span>
                 </div>

@@ -278,7 +278,32 @@ body {
 
 .animate-gradient-shift {
   animation: gradientShift 6s ease infinite;
-  background-size: 200% 200%;
+}
+
+@keyframes textFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.braxvio-hero-glow {
+  text-shadow: 0 0 50px rgba(17, 175, 193, 0.32), 0 0 100px rgba(0, 110, 170, 0.16);
+}
+
+.braxvio-hero-gradient {
+  background: linear-gradient(120deg, #002F5B 0%, #006EAA 22%, #11AFC1 48%, #42D6C5 74%, #003E72 100%);
+  background-size: 250% auto;
+  animation: textFlow 5.5s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.braxvio-hero-gradient-subtle {
+  background: linear-gradient(120deg, #002F5B 0%, #003E72 35%, #006EAA 70%, #11AFC1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .animate-halo {
