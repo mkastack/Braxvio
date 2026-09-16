@@ -61,9 +61,12 @@ export default function Footer() {
               <Zap className="w-3 h-3 text-[#11AFC1]" />
             </div>
 
-            <div className="text-[10px] font-mono text-slate-500 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-500 inline-block" />
-              HEADQUARTERS: ACCRA, GHANA
+            <div className="flex items-center gap-4 pt-1 text-slate-400">
+              <a href="https://linkedin.com/company/braxvio" target="_blank" rel="noreferrer" className="hover:text-[#42D6C5] transition-colors text-xs font-mono">LinkedIn</a>
+              <span>•</span>
+              <a href="https://x.com/braxvio" target="_blank" rel="noreferrer" className="hover:text-[#42D6C5] transition-colors text-xs font-mono">X / Twitter</a>
+              <span>•</span>
+              <a href="https://github.com/braxvio" target="_blank" rel="noreferrer" className="hover:text-[#42D6C5] transition-colors text-xs font-mono">GitHub</a>
             </div>
           </div>
 
@@ -95,6 +98,28 @@ export default function Footer() {
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </li>
+              </ul>
+            </div>
+
+            {/* Partner */}
+            <div className="space-y-4">
+              <div className="font-mono uppercase text-[10px] tracking-widest text-[#11AFC1] font-bold border-b border-white/8 pb-2">
+                PARTNER
+              </div>
+              <ul className="space-y-2.5 text-slate-300 text-[13px]">
+                {[
+                  { label: 'Partnerships', href: '/partners' },
+                  { label: 'Investment Interest', href: '/partners/investment-interest' },
+                  { label: 'Project Collaboration', href: '/partners/projects' },
+                  { label: 'Technology Partners', href: '/partners/propose?type=technology' },
+                  { label: 'Institutional Partnerships', href: '/partners/propose?type=institutional' },
+                ].map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="hover:text-[#42D6C5] transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -137,33 +162,6 @@ export default function Footer() {
                     <Link href={link.href} className="hover:text-white transition-colors">
                       {link.label}
                     </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Connect */}
-            <div className="space-y-4">
-              <div className="font-mono uppercase text-[10px] tracking-widest text-[#11AFC1] font-bold border-b border-white/8 pb-2">
-                CONNECT
-              </div>
-              <ul className="space-y-2.5 text-slate-300 font-mono text-[12px]">
-                {[
-                  { label: 'LinkedIn', href: 'https://linkedin.com/company/braxvio' },
-                  { label: 'X / Twitter', href: 'https://x.com/braxvio' },
-                  { label: 'GitHub', href: 'https://github.com/braxvio' },
-                  { label: 'Instagram', href: 'https://instagram.com/braxvio' },
-                ].map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hover:text-white transition-colors flex items-center gap-1 group"
-                    >
-                      <span>{link.label}</span>
-                      <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </a>
                   </li>
                 ))}
               </ul>

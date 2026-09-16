@@ -1,11 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { ArrowRight, CheckCircle2, ShieldCheck, Users, Briefcase } from 'lucide-react';
+import { Users, Briefcase } from 'lucide-react';
 
 export default function CareersPage() {
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,7 +17,24 @@ export default function CareersPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+
+    const whatsappMessage = [
+      'New Braxvio Talent Network submission',
+      '',
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Location: ${formData.location}`,
+      `Primary discipline: ${formData.discipline}`,
+      `Portfolio / website: ${formData.portfolio || 'Not provided'}`,
+      `LinkedIn: ${formData.linkedin || 'Not provided'}`,
+      `GitHub: ${formData.github || 'Not provided'}`,
+      '',
+      'Message:',
+      formData.message,
+    ].join('\n');
+
+    const whatsappUrl = `https://wa.me/233202212590?text=${encodeURIComponent(whatsappMessage)}`;
+    window.location.assign(whatsappUrl);
   };
 
   const culturePillars = [
@@ -130,16 +145,7 @@ export default function CareersPage() {
             </p>
           </div>
 
-          {formSubmitted ? (
-            <div className="p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3">
-              <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-              <h4 className="text-lg font-bold text-emerald-900">Submission Received</h4>
-              <p className="text-xs text-emerald-700 max-w-md mx-auto">
-                Thank you for your interest in Braxvio. Your profile has been logged in our talent archive. If a matching architectural need emerges, we will reach out directly.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-mono text-[#06131D] font-medium">FULL NAME *</label>
@@ -245,10 +251,9 @@ export default function CareersPage() {
                 type="submit"
                 className="w-full py-3 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-colors shadow-md"
               >
-                Submit to Talent Network →
+                Send via WhatsApp →
               </button>
-            </form>
-          )}
+          </form>
         </div>
       </div>
     </div>

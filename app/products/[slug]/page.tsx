@@ -203,7 +203,50 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* 05: RELATED BRAXVIO PRODUCTS */}
+        {/* 05: PARTNER WITH THIS PRODUCT */}
+        <section className="p-8 sm:p-12 rounded-3xl bg-[#F7FAFC] border border-[#DDE8EC] space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#006EAA] font-bold">
+                PARTNER WITH THIS PRODUCT
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#002F5B] tracking-tight">
+                INTERESTED IN HELPING {product.name.toUpperCase()} GROW?
+              </h2>
+              <p className="text-sm text-[#687A86] leading-relaxed">
+                Whether through technical integrations, institutional distribution, or operational deployment, we collaborate with partners who share our commitment to elevate everyday life.
+              </p>
+            </div>
+
+            <Link
+              href={`/partners/propose?target=${product.slug}`}
+              className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#003E72] via-[#006EAA] to-[#11AFC1] text-white text-xs font-mono font-bold tracking-wider uppercase hover:opacity-95 shadow-md transition-all shrink-0 inline-flex items-center gap-2"
+            >
+              <span>DISCUSS A PARTNERSHIP</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {product.partnershipAreas && product.partnershipAreas.length > 0 && (
+            <div className="pt-4 border-t border-[#DDE8EC] space-y-2.5">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#06131D] font-bold block">
+                ACTIVE COLLABORATION OPPORTUNITIES FOR {product.name.toUpperCase()}:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {product.partnershipAreas.map((area) => (
+                  <span
+                    key={area}
+                    className="px-3 py-1.5 rounded-lg bg-white border border-[#11AFC1]/30 text-xs font-mono text-[#002F5B] font-medium shadow-2xs"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* 06: RELATED BRAXVIO PRODUCTS */}
         <section className="space-y-8">
           <div className="flex items-center justify-between">
             <div className="text-xs font-mono uppercase tracking-widest text-[#687A86] font-semibold">

@@ -22,6 +22,7 @@ import {
   Layers,
   Globe2,
   Zap,
+  Handshake,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -81,6 +82,7 @@ const navLinks = [
   { label: 'Technology', href: '/technology', Icon: Cpu },
   { label: 'Impact', href: '/impact', Icon: Globe2 },
   { label: 'Insights', href: '/insights', Icon: BookOpen },
+  { label: 'Partners', href: '/partners', Icon: Handshake },
 ];
 
 export default function Header({ onOpenSearch }: HeaderProps) {
@@ -460,6 +462,15 @@ export default function Header({ onOpenSearch }: HeaderProps) {
                 >
                   <BookOpen className="w-4.5 h-4.5 text-[#11AFC1]" />
                   Insights
+                </Link>
+
+                <Link
+                  href="/partners"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-[#002F5B] hover:bg-[#F2FAFC] transition-all"
+                >
+                  <Handshake className="w-4.5 h-4.5 text-[#11AFC1]" />
+                  Partners
                 </Link>
               </div>
 

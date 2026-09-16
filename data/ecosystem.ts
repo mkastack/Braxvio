@@ -23,6 +23,7 @@ export interface Product {
     label: string;
     value: string;
   }[];
+  partnershipAreas?: string[];
 }
 
 export interface InsightArticle {
@@ -84,7 +85,13 @@ export const BRAXVIO_PRODUCTS: Product[] = [
       }
     ],
     technologyStack: ['Next.js', 'React Native', 'Node.js', 'PostgreSQL', 'Redis', 'WebSockets'],
-    impactStatement: 'Eliminating housing scams, reducing daily living friction, and connecting over 45,000 university students across flagship campuses.'
+    impactStatement: 'Eliminating housing scams, reducing daily living friction, and connecting over 45,000 university students across flagship campuses.',
+    partnershipAreas: [
+      'University Administrations',
+      'Student Housing Operators',
+      'Campus Retail Brands',
+      'Academic & Identity APIs'
+    ]
   },
   {
     id: 'pharmora',
@@ -120,7 +127,13 @@ export const BRAXVIO_PRODUCTS: Product[] = [
       }
     ],
     technologyStack: ['TypeScript', 'GraphQL', 'FastAPI', 'PostgreSQL', 'TimescaleDB', 'Encrypted FHIR Layer'],
-    impactStatement: 'Protecting patient safety, reducing prescription search latency from hours to seconds, and expanding retail pharmacy distribution.'
+    impactStatement: 'Protecting patient safety, reducing prescription search latency from hours to seconds, and expanding retail pharmacy distribution.',
+    partnershipAreas: [
+      'Licensed Pharmacy Chains',
+      'Pharmaceutical Distributors',
+      'Healthcare Regulators',
+      'Cold-Chain Logistics'
+    ]
   },
   {
     id: 'ecolift',
@@ -156,7 +169,13 @@ export const BRAXVIO_PRODUCTS: Product[] = [
       }
     ],
     technologyStack: ['Go', 'React', 'OpenStreetMap / Valhalla', 'MQTT IoT Gateway', 'ClickHouse', 'PostGIS'],
-    impactStatement: 'Targeting a 35% reduction in municipal collection route transit times and accelerating household recyclable segregation.'
+    impactStatement: 'Targeting a 35% reduction in municipal collection route transit times and accelerating household recyclable segregation.',
+    partnershipAreas: [
+      'Municipal Assemblies',
+      'Private Hauler Networks',
+      'Recycling Facilities',
+      'Fleet Telemetry Providers'
+    ]
   },
   {
     id: 'devpay-africa',
@@ -192,7 +211,13 @@ export const BRAXVIO_PRODUCTS: Product[] = [
       }
     ],
     technologyStack: ['Next.js', 'Rust Engine', 'PostgreSQL', 'Stripe / Banking APIs', 'Audit Log Trail'],
-    impactStatement: 'Empowering African technological professionals to compete globally without arbitrary banking and geographic boundaries.'
+    impactStatement: 'Empowering African technological professionals to compete globally without arbitrary banking and geographic boundaries.',
+    partnershipAreas: [
+      'Fintech Banking Rails',
+      'Pan-African Mobile Money Operators',
+      'Developer Communities',
+      'Tax & Compliance Partners'
+    ]
   }
 ];
 

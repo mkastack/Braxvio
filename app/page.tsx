@@ -28,6 +28,7 @@ import PharmoraMockup from '@/components/mockups/PharmoraMockup';
 import EcoliftMockup from '@/components/mockups/EcoliftMockup';
 import DevPayMockup from '@/components/mockups/DevPayMockup';
 import EcosystemSimulator from '@/components/system/EcosystemSimulator';
+import BraxvioEcosystemVisual from '@/components/partners/BraxvioEcosystemVisual';
 import { BRAXVIO_PRODUCTS, SECTORS, INSIGHTS_ARTICLES } from '@/data/ecosystem';
 
 // ─── Animated Counter ────────────────────────────────────────────────────────
@@ -924,29 +925,49 @@ export default function HomePage() {
       {/* 11 — BUILD WITH BRAXVIO / PARTNERSHIPS */}
       {/* ============================================================ */}
       <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#F7FAFC]">
-        <div className="max-w-7xl mx-auto rounded-3xl p-8 sm:p-14 bg-gradient-to-br from-[#002F5B] via-[#003E72] to-[#071C2B] text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
-          <div className="absolute inset-0 braxvio-grid-dark opacity-30 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#11AFC1]/10 blur-[80px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="rounded-3xl p-8 sm:p-14 bg-gradient-to-br from-[#002F5B] via-[#003E72] to-[#071C2B] text-white shadow-2xl relative overflow-hidden space-y-8">
+            <div className="absolute inset-0 braxvio-grid-dark opacity-35 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#11AFC1]/15 blur-[100px] pointer-events-none" />
 
-          <div className="relative z-10 space-y-4 max-w-2xl">
-            <span className="text-xs font-mono tracking-widest uppercase text-[#42D6C5]">
-              STRATEGIC COLLABORATION
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-              BUILD WITH BRAXVIO.
-            </h2>
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
-              We partner with academic universities, healthcare networks, municipal operators, and enterprise engineering teams to deploy technology that solves systemic challenges.
-            </p>
+            <div className="relative z-10 max-w-3xl space-y-5">
+              <span className="text-xs font-mono tracking-widest uppercase text-[#42D6C5] font-bold">
+                PARTNER WITH BRAXVIO
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                GREAT TECHNOLOGY <br />
+                <span className="text-[#42D6C5]">ISN&apos;T BUILT ALONE.</span>
+              </h2>
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
+                We&apos;re open to conversations with organizations, institutions, technology
+                partners and potential financial partners interested in building meaningful
+                systems with Braxvio.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 pt-4">
+                <Link
+                  href="/partners"
+                  className="px-7 py-4 rounded-xl bg-gradient-to-r from-[#11AFC1] to-[#42D6C5] text-[#002F5B] text-xs font-mono font-bold tracking-wider uppercase hover:opacity-95 shadow-md transition-all flex items-center gap-2 group"
+                >
+                  <span>EXPLORE PARTNERSHIPS</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+
+                <Link
+                  href="/partners/investment-interest"
+                  className="px-7 py-4 rounded-xl bg-white/10 border border-white/20 text-white text-xs font-mono font-bold tracking-wider uppercase hover:bg-white/20 transition-all flex items-center gap-2 group"
+                >
+                  <span>INVESTMENT INTEREST</span>
+                  <ArrowRight className="w-4 h-4 text-[#42D6C5] group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Embedded Braxvio ecosystem network visual */}
+            <div className="relative z-10 pt-4">
+              <BraxvioEcosystemVisual />
+            </div>
           </div>
-
-          <Link
-            href="/contact"
-            className="relative z-10 px-7 py-4 rounded-xl bg-gradient-to-r from-[#11AFC1] to-[#42D6C5] text-[#002F5B] text-xs font-mono font-bold tracking-wider uppercase hover:opacity-95 shadow-md transition-all shrink-0 flex items-center gap-2"
-          >
-            <span>START A CONVERSATION</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
       </section>
 
