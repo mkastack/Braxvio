@@ -76,6 +76,9 @@ export const metadata: Metadata = {
     description: "Technology with purpose, designed for real life.",
     creator: "@braxvio",
     images: ["/og-braxvio.png"]
+  },
+  verification: {
+    google: ["googlec9d63a6d5b65a320", "googlec9d63a6d5b65a320.html"]
   }
 };
 
