@@ -6,7 +6,7 @@ import { LEADERSHIP_PROFILES } from '@/data/ecosystem';
 
 export const metadata: Metadata = {
   title: 'Leadership — Governance & Stewardship | Braxvio',
-  description: 'Meet Michael Kwesi Annor and the engineers, clinicians, and systems architects steering Braxvio Technologies.'
+  description: 'Meet Michael Kwesi Annor, Seth Boadu, Alex Nyanteng, Nirvana, and the engineering leadership steering Braxvio Technologies.'
 };
 
 export default function LeadershipPage() {
@@ -112,7 +112,7 @@ export default function LeadershipPage() {
         {/* ── Directorate Grid ── */}
         <div className="space-y-6">
           <div className="text-xs font-mono uppercase tracking-widest text-[#006EAA] font-bold">
-            SENIOR DIRECTORATE & ADVISORY
+            CO-FOUNDER & FULLSTACK ENGINEERING LEADERSHIP
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

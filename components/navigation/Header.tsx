@@ -152,7 +152,7 @@ export default function Header({ onOpenSearch }: HeaderProps) {
             {/* ── Logo ── */}
             <Link
               href="/"
-              className="hidden sm:flex items-center gap-2.5 shrink-0 group py-1"
+              className="flex items-center gap-2 sm:gap-2.5 shrink-0 group py-1"
               aria-label="Braxvio Home"
             >
               <div className="relative w-7 h-9 sm:w-8 sm:h-10 shrink-0 transition-transform duration-300 group-hover:scale-105 drop-shadow-sm">

@@ -359,27 +359,27 @@ export const LEADERSHIP_PROFILES: LeadershipMember[] = [
     linkedin: 'https://gh.linkedin.com/in/michael-annor-412012300'
   },
   {
-    id: 'kofi-adams',
-    name: 'Kofi Adams',
-    role: 'Co-Founder & Chief Technology Officer',
-    bio: 'Systems architect and distributed engineering lead. Formerly engineered scalable payment and data routing platforms across West Africa. Passionate about resilient software primitives and high-availability systems.',
-    focus: 'Core Platform Architecture & Security',
+    id: 'seth-boadu',
+    name: 'Seth Boadu',
+    role: 'Co-Founder & Fullstack Developer',
+    bio: 'Co-founder and fullstack developer steering Braxvio’s core technological foundations. Specializes in scalable system architecture, resilient backend infrastructure, and high-performance cross-platform applications.',
+    focus: 'Core Platform Architecture & Fullstack Engineering',
     linkedin: 'https://linkedin.com/company/braxvio'
   },
   {
-    id: 'elizabeth-asare',
-    name: 'Dr. Elizabeth Asare',
-    role: 'Head of Product & Healthcare Systems',
-    bio: 'Product strategist and health informatics specialist with a background spanning public health logistics, regulatory compliance, and community pharmacy networks.',
-    focus: 'Pharmora & Regulated Ecosystems',
+    id: 'alex-nyanteng',
+    name: 'Alex Nyanteng',
+    role: 'Fullstack Developer & Systems Engineer',
+    bio: 'Fullstack developer dedicated to building durable digital systems. Crafts end-to-end web architectures, secure database protocols, and seamless interfaces across the Braxvio product suite.',
+    focus: 'Fullstack Systems & Application Performance',
     linkedin: 'https://linkedin.com/company/braxvio'
   },
   {
-    id: 'marcus-owusu',
-    name: 'Marcus Owusu',
-    role: 'Head of Design & Human Experience',
-    bio: 'Design systems lead focused on typography, human-computer interaction, and interface clarity across varying literacy and device contexts.',
-    focus: 'Braxvio Design System & Brand Identity',
+    id: 'nirvana',
+    name: 'Nirvana',
+    role: 'Fullstack Developer & Core Engineer',
+    bio: 'Fullstack developer and systems engineer at Braxvio. Champions clean architecture, real-time distributed data pipelines, and responsive frontend systems engineered for high-growth digital environments.',
+    focus: 'Fullstack Engineering & Distributed Web Infrastructure',
     linkedin: 'https://linkedin.com/company/braxvio'
   }
 ];

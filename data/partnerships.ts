@@ -342,10 +342,10 @@ export const ADMIN_USERS: AdminUser[] = [
   },
   {
     id: 'user-3',
-    name: 'Kofi Adams',
-    email: 'kofi.a@braxvio.com',
+    name: 'Seth Boadu',
+    email: 'seth.b@braxvio.com',
     role: 'PRODUCT_LEAD',
-    title: 'Chief Technology Officer',
+    title: 'Co-Founder & Fullstack Developer',
   },
   {
     id: 'user-4',
@@ -428,8 +428,8 @@ export const INITIAL_PARTNERSHIP_INQUIRIES: PartnershipInquiry[] = [
     notes: [
       {
         id: 'n-2',
-        authorName: 'Kofi Adams',
-        authorRole: 'CTO',
+        authorName: 'Seth Boadu',
+        authorRole: 'Co-Founder & Fullstack Developer',
         content: 'Reviewing their Bluetooth low-energy telemetry payload specs. Architecture looks clean.',
         createdAt: '2026-09-14T11:00:00Z',
       },
