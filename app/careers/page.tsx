@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Users, Briefcase, CheckCircle2, Copy, Check, ExternalLink, ArrowRight } from 'lucide-react';
-import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK } from '@/components/ui/WhatsAppIcon';
+import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK, getWhatsAppSendUrl } from '@/components/ui/WhatsAppIcon';
 
 export default function CareersPage() {
   const [formData, setFormData] = useState({
@@ -40,7 +40,7 @@ export default function CareersPage() {
     e.preventDefault();
 
     const message = generateMessage();
-    const whatsappUrl = `${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = getWhatsAppSendUrl(message);
     setLastWhatsAppUrl(whatsappUrl);
     setIsSubmitted(true);
 
@@ -48,8 +48,9 @@ export default function CareersPage() {
       navigator.clipboard.writeText(message).catch(() => {});
     }
 
+    // Direct navigation reliably opens WhatsApp without popup blockers
     if (typeof window !== 'undefined') {
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      window.location.href = whatsappUrl;
     }
   };
 

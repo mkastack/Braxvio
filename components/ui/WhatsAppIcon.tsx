@@ -1,6 +1,21 @@
 import React from 'react';
 
+export const BRAXVIO_WHATSAPP_PHONE = '233202212590';
+export const BRAXVIO_WHATSAPP_QR_LINK = 'https://wa.me/qr/V2VVDKVB7J7WL1';
 export const BRAXVIO_WHATSAPP_LINK = 'https://wa.me/qr/V2VVDKVB7J7WL1';
+
+/**
+ * Builds a 100% reliable WhatsApp URL.
+ * When a message is provided, routes to the direct phone send endpoint so that
+ * WhatsApp pre-fills the message text in the chat input on all devices.
+ * When no message is provided, routes to the official QR contact link.
+ */
+export function getWhatsAppSendUrl(message?: string): string {
+  if (!message) {
+    return BRAXVIO_WHATSAPP_QR_LINK;
+  }
+  return `https://api.whatsapp.com/send?phone=${BRAXVIO_WHATSAPP_PHONE}&text=${encodeURIComponent(message)}`;
+}
 
 export function WhatsAppIcon({ className = 'w-4 h-4' }: { className?: string }) {
   return (

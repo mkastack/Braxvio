@@ -24,12 +24,13 @@ import {
   PartnershipDocument,
 } from '@/data/partnerships';
 import { trackPartnershipEvent } from '@/lib/analytics';
-import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK } from '@/components/ui/WhatsAppIcon';
+import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK, getWhatsAppSendUrl } from '@/components/ui/WhatsAppIcon';
 
 export default function InvestmentInterestPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [submittedData, setSubmittedData] = useState<{ reference: string } | null>(null);
+  const [whatsappRedirectUrl, setWhatsappRedirectUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [uploadingDoc, setUploadingDoc] = useState(false);
   const [documents, setDocuments] = useState<PartnershipDocument[]>([]);
@@ -124,9 +125,41 @@ export default function InvestmentInterestPage() {
       const json = await res.json();
 
       if (res.ok && json.success) {
-        setSubmittedData({ reference: json.reference });
-        trackPartnershipEvent('investment_interest_submitted', { reference: json.reference });
+        const refCode = json.reference || 'INV-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+        setSubmittedData({ reference: refCode });
+        trackPartnershipEvent('investment_interest_submitted', { reference: refCode });
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        const investorMessage = [
+          '💼 New Braxvio Investment Expression',
+          '──────────────────────────────',
+          `Reference: ${refCode}`,
+          `Name: ${formData.firstName} ${formData.lastName}`,
+          `Email: ${formData.email}`,
+          `Phone: ${formData.phone || 'Not provided'}`,
+          `Organization: ${formData.organization || 'Individual'}`,
+          `Investor Type: ${formData.investorType}`,
+          `Area of Interest: ${formData.interestType}`,
+          `Indicative Range: ${formData.indicativeRange}`,
+          `Timeline: ${formData.timeline}`,
+          '──────────────────────────────',
+          'Inquiry / Strategic Thesis:',
+          formData.message,
+        ].filter(Boolean).join('\n');
+
+        const waUrl = getWhatsAppSendUrl(investorMessage);
+        setWhatsappRedirectUrl(waUrl);
+
+        if (typeof navigator !== 'undefined' && navigator.clipboard) {
+          navigator.clipboard.writeText(investorMessage).catch(() => {});
+        }
+
+        // Reliably forward to WhatsApp
+        if (typeof window !== 'undefined') {
+          setTimeout(() => {
+            window.location.href = waUrl;
+          }, 400);
+        }
       } else {
         setErrorMessage(json.error || 'Failed to submit expression of interest.');
       }
@@ -302,15 +335,11 @@ export default function InvestmentInterestPage() {
                   For immediate, confidential follow-up with executive leadership, message us on WhatsApp with reference <strong className="text-[#002F5B] font-mono">#{submittedData.reference}</strong>.
                 </p>
                 <a
-                  href={`${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(
-                    `Hello Braxvio Executive Team,\n\nI submitted an investment expression of interest.\nName: ${formData.firstName} ${formData.lastName}\nOrganization: ${formData.organization || 'Individual'}\nReference: ${submittedData.reference}\nInterest: ${formData.interestType}\n\nI would like to initiate direct discussion.`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm"
+                  href={whatsappRedirectUrl || getWhatsAppSendUrl(`Hello Braxvio Executive Team,\n\nI submitted an investment expression of interest.\nName: ${formData.firstName} ${formData.lastName}\nOrganization: ${formData.organization || 'Individual'}\nReference: ${submittedData.reference}\nInterest: ${formData.interestType}\n\nI would like to initiate direct discussion.`)}
+                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md"
                 >
                   <WhatsAppIcon className="w-4 h-4 fill-white" />
-                  <span>Connect with Founders on WhatsApp</span>
+                  <span>Open in WhatsApp Now →</span>
                 </a>
               </div>
 
@@ -761,9 +790,9 @@ export default function InvestmentInterestPage() {
                         Prefer confidential direct dialogue with Braxvio leadership?
                       </span>
                       <a
-                        href={`${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(
+                        href={getWhatsAppSendUrl(
                           `Hello Braxvio Team,\n\nI am interested in learning more about investment opportunities with Braxvio (${formData.interestType}).\nName: ${formData.firstName || ''} ${formData.lastName || ''}\nOrganization: ${formData.organization || 'Individual'}\n\nLooking forward to a confidential conversation.`
-                        )}`}
+                        )}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[#25D366] text-[#128C7E] hover:bg-[#25D366]/10 font-mono text-xs font-bold transition-all shrink-0"

@@ -19,7 +19,7 @@ import {
   PartnershipDocument,
 } from '@/data/partnerships';
 import { trackPartnershipEvent } from '@/lib/analytics';
-import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK } from '@/components/ui/WhatsAppIcon';
+import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK, getWhatsAppSendUrl } from '@/components/ui/WhatsAppIcon';
 
 const PARTNERSHIP_TYPES = [
   'Strategic Partnership',
@@ -41,6 +41,7 @@ function ProposeFormContent() {
   const [currentStep, setCurrentStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [submittedData, setSubmittedData] = useState<{ reference: string } | null>(null);
+  const [whatsappRedirectUrl, setWhatsappRedirectUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [uploadingDoc, setUploadingDoc] = useState(false);
   const [documents, setDocuments] = useState<PartnershipDocument[]>([]);
@@ -154,9 +155,46 @@ function ProposeFormContent() {
       const json = await res.json();
 
       if (res.ok && json.success) {
-        setSubmittedData({ reference: json.reference });
-        trackPartnershipEvent('partnership_submitted', { reference: json.reference });
+        const refCode = json.reference || 'PRT-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+        setSubmittedData({ reference: refCode });
+        trackPartnershipEvent('partnership_submitted', { reference: refCode });
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        const targetProduct = BRAXVIO_PRODUCTS.find((p) => p.id === formData.targetProductId)?.name || 'Braxvio Parent Company';
+        const partnerMessage = [
+          '🤝 New Braxvio Partnership Proposal',
+          '──────────────────────────────',
+          `Reference: ${refCode}`,
+          `Organization: ${formData.organization}`,
+          `Contact Person: ${formData.contactName}`,
+          `Email: ${formData.email}`,
+          `Phone: ${formData.phone || 'Not provided'}`,
+          `Country: ${formData.country || 'Not provided'}`,
+          `Industry: ${formData.industry || 'Not provided'}`,
+          `Partnership Discipline: ${formData.type}`,
+          `Target: ${targetProduct}`,
+          `Proposal Title: ${formData.proposalTitle}`,
+          `Timeline: ${formData.timeline}`,
+          '──────────────────────────────',
+          'Proposal Summary:',
+          formData.proposal,
+          formData.organizationContribution ? `\nPartner Contribution: ${formData.organizationContribution}` : '',
+          formData.braxvioContribution ? `\nBraxvio Role: ${formData.braxvioContribution}` : '',
+        ].filter(Boolean).join('\n');
+
+        const waUrl = getWhatsAppSendUrl(partnerMessage);
+        setWhatsappRedirectUrl(waUrl);
+
+        if (typeof navigator !== 'undefined' && navigator.clipboard) {
+          navigator.clipboard.writeText(partnerMessage).catch(() => {});
+        }
+
+        // Reliably forward to WhatsApp
+        if (typeof window !== 'undefined') {
+          setTimeout(() => {
+            window.location.href = waUrl;
+          }, 400);
+        }
       } else {
         setErrorMessage(json.error || 'Failed to submit partnership proposal.');
       }
@@ -252,24 +290,20 @@ function ProposeFormContent() {
           </div>
 
           {/* Fast-Track Review via WhatsApp Card */}
-          <div className="p-5 rounded-2xl bg-white border border-[#25D366]/40 shadow-sm max-w-lg mx-auto space-y-3 text-center">
+          <div className="p-6 rounded-2xl bg-white border-2 border-[#25D366] shadow-lg max-w-lg mx-auto space-y-3 text-center">
             <div className="flex items-center justify-center gap-2 text-xs font-mono font-bold text-[#002F5B] uppercase tracking-wider">
-              <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
-              <span>Fast-Track Proposal Evaluation</span>
+              <WhatsAppIcon className="w-5 h-5 fill-[#25D366]" />
+              <span>Forwarding Proposal to WhatsApp</span>
             </div>
             <p className="text-xs text-[#687A86] leading-relaxed">
-              Message our leadership team directly on WhatsApp with reference <strong className="text-[#002F5B] font-mono">#{submittedData.reference}</strong> for prioritized review.
+              We have recorded your proposal and are connecting you to Braxvio Leadership on WhatsApp with your details and reference <strong className="text-[#002F5B] font-mono">#{submittedData.reference}</strong>.
             </p>
             <a
-              href={`${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(
-                `Hello Braxvio Team,\n\nI just submitted a partnership proposal on behalf of ${formData.organization || 'our organization'}.\nReference Code: ${submittedData.reference}\nPartnership Type: ${formData.type}\n\nWe look forward to connecting directly.`
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm"
+              href={whatsappRedirectUrl || getWhatsAppSendUrl(`Hello Braxvio Team,\n\nI just submitted a partnership proposal on behalf of ${formData.organization || 'our organization'}.\nReference Code: ${submittedData.reference}\nPartnership Type: ${formData.type}\n\nWe look forward to connecting directly.`)}
+              className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md"
             >
               <WhatsAppIcon className="w-4 h-4 fill-white" />
-              <span>Connect on WhatsApp with Ref #{submittedData.reference}</span>
+              <span>Open in WhatsApp Now →</span>
             </a>
           </div>
 
@@ -734,9 +768,9 @@ function ProposeFormContent() {
                     Need instant executive consultation or want to send your proposal brief directly?
                   </span>
                   <a
-                    href={`${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(
+                    href={getWhatsAppSendUrl(
                       `Hello Braxvio Partnerships Team,\n\nI am preparing a ${formData.type} proposal on behalf of ${formData.organization || 'my organization'}.\nProposal Title: ${formData.proposalTitle || 'Partnership Inquiry'}\nContact Name: ${formData.contactName || 'Representative'}\n\nWe would like to connect on WhatsApp.`
-                    )}`}
+                    )}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[#25D366] text-[#128C7E] hover:bg-[#25D366]/10 font-mono text-xs font-bold transition-all shrink-0"
