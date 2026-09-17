@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Users, Briefcase } from 'lucide-react';
+import { Users, Briefcase, CheckCircle2, Copy, Check, ExternalLink, ArrowRight } from 'lucide-react';
+import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK } from '@/components/ui/WhatsAppIcon';
 
 export default function CareersPage() {
   const [formData, setFormData] = useState({
@@ -14,27 +15,52 @@ export default function CareersPage() {
     github: '',
     message: ''
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [lastWhatsAppUrl, setLastWhatsAppUrl] = useState('');
+
+  const generateMessage = () => {
+    return [
+      '👋 New Braxvio Talent Network Submission',
+      '──────────────────────────────',
+      `Full Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Location: ${formData.location}`,
+      `Discipline: ${formData.discipline}`,
+      `Portfolio / Website: ${formData.portfolio || 'Not provided'}`,
+      `LinkedIn: ${formData.linkedin || 'Not provided'}`,
+      `GitHub: ${formData.github || 'Not provided'}`,
+      '──────────────────────────────',
+      'Candidate Message:',
+      formData.message,
+    ].join('\n');
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const whatsappMessage = [
-      'New Braxvio Talent Network submission',
-      '',
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      `Location: ${formData.location}`,
-      `Primary discipline: ${formData.discipline}`,
-      `Portfolio / website: ${formData.portfolio || 'Not provided'}`,
-      `LinkedIn: ${formData.linkedin || 'Not provided'}`,
-      `GitHub: ${formData.github || 'Not provided'}`,
-      '',
-      'Message:',
-      formData.message,
-    ].join('\n');
+    const message = generateMessage();
+    const whatsappUrl = `${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(message)}`;
+    setLastWhatsAppUrl(whatsappUrl);
+    setIsSubmitted(true);
 
-    const whatsappUrl = `https://wa.me/233202212590?text=${encodeURIComponent(whatsappMessage)}`;
-    window.location.assign(whatsappUrl);
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(message).catch(() => {});
+    }
+
+    if (typeof window !== 'undefined') {
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleCopy = () => {
+    const message = generateMessage();
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(message).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      });
+    }
   };
 
   const culturePillars = [
@@ -133,19 +159,127 @@ export default function CareersPage() {
 
         {/* Join Talent Network Interactive Form */}
         <div className="rounded-3xl p-8 sm:p-12 border border-[#DDE8EC] bg-white shadow-xl max-w-3xl mx-auto space-y-8">
-          <div className="space-y-2 border-b border-[#DDE8EC] pb-6">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#006EAA] font-semibold">
-              EXPRESS INTEREST
-            </span>
-            <h3 className="text-2xl font-bold text-[#002F5B]">
-              Join the Braxvio Talent Network
-            </h3>
-            <p className="text-xs text-[#687A86]">
-              Submit your portfolio and links. Our engineering leads review submissions directly.
-            </p>
+          <div className="space-y-4 border-b border-[#DDE8EC] pb-6">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#006EAA] font-semibold">
+                EXPRESS INTEREST
+              </span>
+              <a
+                href={BRAXVIO_WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[#128C7E] hover:text-[#075E54] transition-colors"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5 fill-[#25D366]" />
+                <span className="font-bold">wa.me/qr/V2VVDKVB7J7WL1</span>
+                <ExternalLink className="w-3 h-3 text-[#687A86]" />
+              </a>
+            </div>
+
+            <div className="space-y-1">
+              <h3 className="text-2xl font-bold text-[#002F5B]">
+                Join the Braxvio Talent Network
+              </h3>
+              <p className="text-xs text-[#687A86]">
+                Submit your portfolio and links. Our engineering leads review submissions directly via our official WhatsApp channel.
+              </p>
+            </div>
+
+            {/* Direct WhatsApp fast-track banner */}
+            <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#25D366] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <WhatsAppIcon className="w-5 h-5 fill-white" />
+                </div>
+                <div>
+                  <div className="text-xs font-mono font-bold text-[#002F5B] uppercase tracking-wider">
+                    Fast Track: Direct WhatsApp Dialogue
+                  </div>
+                  <div className="text-[11px] text-[#687A86]">
+                    Prefer chatting directly with our team? Connect on WhatsApp without filling the full form.
+                  </div>
+                </div>
+              </div>
+              <a
+                href={BRAXVIO_WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-xs shrink-0"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5 fill-white" />
+                <span>Chat on WhatsApp</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          {isSubmitted ? (
+            /* Post-submit confirmation screen */
+            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-[#F2FAFC] to-white border border-[#25D366]/30 text-center space-y-6">
+              <div className="w-14 h-14 rounded-full bg-[#25D366]/15 border border-[#25D366]/40 text-[#128C7E] flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-8 h-8 text-[#25D366]" />
+              </div>
+
+              <div className="space-y-2 max-w-md mx-auto">
+                <h4 className="text-xl font-extrabold text-[#002F5B]">
+                  Your Profile is Ready for WhatsApp
+                </h4>
+                <p className="text-xs text-[#687A86] leading-relaxed">
+                  We opened WhatsApp in a new tab with your pre-filled candidate profile. If it didn&apos;t open automatically, use the buttons below:
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={lastWhatsAppUrl || BRAXVIO_WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-md inline-flex items-center gap-2"
+                >
+                  <WhatsAppIcon className="w-4 h-4 fill-white" />
+                  <span>Launch WhatsApp Chat</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="px-4 py-3 rounded-xl bg-white border border-[#DDE8EC] hover:bg-[#F7FAFC] text-[#002F5B] text-xs font-mono font-bold transition-all inline-flex items-center gap-2"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <span className="text-emerald-600">Copied to Clipboard</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5 text-[#687A86]" />
+                      <span>Copy Details</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              <div className="pt-4 border-t border-[#DDE8EC] flex items-center justify-between text-xs font-mono">
+                <a
+                  href={BRAXVIO_WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#128C7E] hover:underline"
+                >
+                  Direct link: {BRAXVIO_WHATSAPP_LINK}
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setIsSubmitted(false)}
+                  className="text-[#687A86] hover:text-[#002F5B] underline"
+                >
+                  Edit profile
+                </button>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-mono text-[#06131D] font-medium">FULL NAME *</label>
@@ -249,11 +383,13 @@ export default function CareersPage() {
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-colors shadow-md"
+                className="w-full py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md inline-flex items-center justify-center gap-2"
               >
-                Send via WhatsApp →
+                <WhatsAppIcon className="w-4 h-4 fill-white" />
+                <span>Submit Profile via WhatsApp →</span>
               </button>
-          </form>
+            </form>
+          )}
         </div>
       </div>
     </div>

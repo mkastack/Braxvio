@@ -19,6 +19,7 @@ import {
   PartnershipDocument,
 } from '@/data/partnerships';
 import { trackPartnershipEvent } from '@/lib/analytics';
+import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK } from '@/components/ui/WhatsAppIcon';
 
 const PARTNERSHIP_TYPES = [
   'Strategic Partnership',
@@ -197,6 +198,33 @@ function ProposeFormContent() {
           Propose a strategic alliance, technical integration, distribution channel,
           or institutional deployment with Braxvio or an ecosystem product.
         </p>
+
+        {/* Direct WhatsApp Partnerships Hotline */}
+        <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30">
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-[#25D366] text-white flex items-center justify-center shrink-0 shadow-xs">
+              <WhatsAppIcon className="w-5 h-5 fill-white" />
+            </div>
+            <div>
+              <div className="text-xs font-mono font-bold text-[#002F5B] uppercase tracking-wider flex items-center gap-2">
+                <span>Direct Partnerships Line</span>
+                <span className="px-2 py-0.5 rounded-full bg-[#25D366]/20 text-[#128C7E] text-[10px] font-bold">WHATSAPP</span>
+              </div>
+              <p className="text-xs text-[#687A86]">
+                Prefer real-time dialogue with our leadership? Connect directly on WhatsApp.
+              </p>
+            </div>
+          </div>
+          <a
+            href={BRAXVIO_WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm shrink-0"
+          >
+            <WhatsAppIcon className="w-3.5 h-3.5 fill-white" />
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
       </div>
 
       {submittedData ? (
@@ -221,6 +249,28 @@ function ProposeFormContent() {
           <div className="p-4 rounded-xl bg-white border border-[#DDE8EC] inline-block font-mono text-xs text-[#002F5B]">
             <span className="text-[#687A86]">Reference Code: </span>
             <span className="font-bold text-[#006EAA]">{submittedData.reference}</span>
+          </div>
+
+          {/* Fast-Track Review via WhatsApp Card */}
+          <div className="p-5 rounded-2xl bg-white border border-[#25D366]/40 shadow-sm max-w-lg mx-auto space-y-3 text-center">
+            <div className="flex items-center justify-center gap-2 text-xs font-mono font-bold text-[#002F5B] uppercase tracking-wider">
+              <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
+              <span>Fast-Track Proposal Evaluation</span>
+            </div>
+            <p className="text-xs text-[#687A86] leading-relaxed">
+              Message our leadership team directly on WhatsApp with reference <strong className="text-[#002F5B] font-mono">#{submittedData.reference}</strong> for prioritized review.
+            </p>
+            <a
+              href={`${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(
+                `Hello Braxvio Team,\n\nI just submitted a partnership proposal on behalf of ${formData.organization || 'our organization'}.\nReference Code: ${submittedData.reference}\nPartnership Type: ${formData.type}\n\nWe look forward to connecting directly.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-white" />
+              <span>Connect on WhatsApp with Ref #{submittedData.reference}</span>
+            </a>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
@@ -676,6 +726,24 @@ function ProposeFormContent() {
                     <span>{submitting ? 'DISPATCHING PROPOSAL...' : 'SUBMIT PROPOSAL'}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
+                </div>
+
+                {/* Direct WhatsApp Proposal Channel */}
+                <div className="pt-4 border-t border-[#DDE8EC] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                  <span className="text-[#687A86] font-mono text-center sm:text-left">
+                    Need instant executive consultation or want to send your proposal brief directly?
+                  </span>
+                  <a
+                    href={`${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(
+                      `Hello Braxvio Partnerships Team,\n\nI am preparing a ${formData.type} proposal on behalf of ${formData.organization || 'my organization'}.\nProposal Title: ${formData.proposalTitle || 'Partnership Inquiry'}\nContact Name: ${formData.contactName || 'Representative'}\n\nWe would like to connect on WhatsApp.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[#25D366] text-[#128C7E] hover:bg-[#25D366]/10 font-mono text-xs font-bold transition-all shrink-0"
+                  >
+                    <WhatsAppIcon className="w-3.5 h-3.5 fill-[#25D366]" />
+                    <span>Discuss Proposal on WhatsApp</span>
+                  </a>
                 </div>
               </div>
             )}

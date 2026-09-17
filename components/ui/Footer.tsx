@@ -67,6 +67,8 @@ export default function Footer() {
               <a href="https://x.com/braxvio" target="_blank" rel="noreferrer" className="hover:text-[#42D6C5] transition-colors text-xs font-mono">X / Twitter</a>
               <span>•</span>
               <a href="https://github.com/braxvio" target="_blank" rel="noreferrer" className="hover:text-[#42D6C5] transition-colors text-xs font-mono">GitHub</a>
+              <span>•</span>
+              <a href="https://wa.me/qr/V2VVDKVB7J7WL1" target="_blank" rel="noreferrer" className="hover:text-[#42D6C5] transition-colors text-xs font-mono">WhatsApp</a>
             </div>
           </div>
 

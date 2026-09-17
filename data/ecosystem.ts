@@ -395,6 +395,7 @@ export const COMPANY_FACTS = {
   socials: {
     linkedin: 'https://linkedin.com/company/braxvio',
     x: 'https://x.com/braxvio',
-    github: 'https://github.com/braxvio'
+    github: 'https://github.com/braxvio',
+    whatsapp: 'https://wa.me/qr/V2VVDKVB7J7WL1'
   }
 };

@@ -24,6 +24,7 @@ import {
   PartnershipDocument,
 } from '@/data/partnerships';
 import { trackPartnershipEvent } from '@/lib/analytics';
+import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK } from '@/components/ui/WhatsAppIcon';
 
 export default function InvestmentInterestPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -177,7 +178,7 @@ export default function InvestmentInterestPage() {
             whether there is a suitable basis for further discussion.
           </p>
 
-          <div className="pt-2">
+          <div className="pt-2 flex flex-wrap items-center gap-3">
             <button
               onClick={scrollToForm}
               className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#003E72] to-[#11AFC1] text-white text-xs font-mono font-bold tracking-wider uppercase hover:opacity-95 shadow-sm transition-all inline-flex items-center gap-2"
@@ -185,6 +186,15 @@ export default function InvestmentInterestPage() {
               <span>EXPRESS INTEREST</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
+            <a
+              href={BRAXVIO_WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-sm inline-flex items-center gap-2"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-white" />
+              <span>DIRECT WHATSAPP INQUIRY</span>
+            </a>
           </div>
         </div>
 
@@ -280,6 +290,28 @@ export default function InvestmentInterestPage() {
               <div className="p-4 rounded-xl bg-white border border-[#DDE8EC] inline-block font-mono text-xs text-[#002F5B]">
                 <span className="text-[#687A86]">Reference Code: </span>
                 <span className="font-bold text-[#006EAA]">{submittedData.reference}</span>
+              </div>
+
+              {/* Direct WhatsApp Investor Dialogue Card */}
+              <div className="p-5 rounded-2xl bg-white border border-[#25D366]/40 shadow-sm max-w-lg mx-auto space-y-3 text-center">
+                <div className="flex items-center justify-center gap-2 text-xs font-mono font-bold text-[#002F5B] uppercase tracking-wider">
+                  <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
+                  <span>Direct WhatsApp Investor Desk</span>
+                </div>
+                <p className="text-xs text-[#687A86] leading-relaxed">
+                  For immediate, confidential follow-up with executive leadership, message us on WhatsApp with reference <strong className="text-[#002F5B] font-mono">#{submittedData.reference}</strong>.
+                </p>
+                <a
+                  href={`${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(
+                    `Hello Braxvio Executive Team,\n\nI submitted an investment expression of interest.\nName: ${formData.firstName} ${formData.lastName}\nOrganization: ${formData.organization || 'Individual'}\nReference: ${submittedData.reference}\nInterest: ${formData.interestType}\n\nI would like to initiate direct discussion.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm"
+                >
+                  <WhatsAppIcon className="w-4 h-4 fill-white" />
+                  <span>Connect with Founders on WhatsApp</span>
+                </a>
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
@@ -721,6 +753,24 @@ export default function InvestmentInterestPage() {
                         <span>{submitting ? 'RECORDING...' : 'EXPRESS INTEREST'}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
+                    </div>
+
+                    {/* Direct WhatsApp Channel for Investors */}
+                    <div className="pt-4 border-t border-[#DDE8EC] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                      <span className="text-[#687A86] font-mono text-center sm:text-left">
+                        Prefer confidential direct dialogue with Braxvio leadership?
+                      </span>
+                      <a
+                        href={`${BRAXVIO_WHATSAPP_LINK}?text=${encodeURIComponent(
+                          `Hello Braxvio Team,\n\nI am interested in learning more about investment opportunities with Braxvio (${formData.interestType}).\nName: ${formData.firstName || ''} ${formData.lastName || ''}\nOrganization: ${formData.organization || 'Individual'}\n\nLooking forward to a confidential conversation.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[#25D366] text-[#128C7E] hover:bg-[#25D366]/10 font-mono text-xs font-bold transition-all shrink-0"
+                      >
+                        <WhatsAppIcon className="w-3.5 h-3.5 fill-[#25D366]" />
+                        <span>Discuss via WhatsApp</span>
+                      </a>
                     </div>
                   </div>
                 )}

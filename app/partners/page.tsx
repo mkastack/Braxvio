@@ -20,6 +20,7 @@ import {
   PARTNERSHIP_CATEGORIES,
   PARTNERSHIP_PROCESS_STEPS,
 } from '@/data/partnerships';
+import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK } from '@/components/ui/WhatsAppIcon';
 
 export const metadata: Metadata = {
   title: 'Partner With Braxvio | Strategic Partnerships & Collaboration',
@@ -419,6 +420,15 @@ export default function PartnersPage() {
               <span>INVESTMENT INTEREST</span>
               <ArrowRight className="w-4 h-4 text-[#11AFC1]" />
             </Link>
+            <a
+              href={BRAXVIO_WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-7 py-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-md flex items-center gap-2"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-white" />
+              <span>CHAT ON WHATSAPP</span>
+            </a>
           </div>
         </section>
 
