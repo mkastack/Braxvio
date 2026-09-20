@@ -1,0 +1,157 @@
+[
+  {
+    "type": "Strategic Partnership",
+    "organization": "KANE",
+    "contactName": "KANE",
+    "email": "kwameinvestor@gmail.com",
+    "country": "Ghana",
+    "industry": "Health",
+    "organizationType": "Corporation",
+    "targetProductId": "braxvio-parent",
+    "proposalTitle": "investment",
+    "proposal": "a whole lot",
+    "contributionTypes": [],
+    "timeline": "3–6 months",
+    "documents": [],
+    "id": "part-1789913504997",
+    "reference": "BX-PART-2026-60382",
+    "status": "NEW",
+    "createdAt": "2026-09-20T14:11:44.997Z",
+    "updatedAt": "2026-09-20T14:15:32.440Z",
+    "notes": [],
+    "activities": [
+      {
+        "id": "act-1789913732441",
+        "action": "ASSIGNMENT",
+        "actor": "Executive Admin",
+        "details": "Assigned to Michael Kwesi Annor",
+        "timestamp": "2026-09-20T14:15:32.440Z"
+      },
+      {
+        "id": "act-1789913504998",
+        "action": "SUBMISSION",
+        "actor": "Applicant",
+        "details": "Partnership inquiry submitted for KANE",
+        "timestamp": "2026-09-20T14:11:44.997Z"
+      }
+    ],
+    "assignedTo": "Michael Kwesi Annor"
+  },
+  {
+    "id": "part-001",
+    "reference": "BX-PART-2026-88102",
+    "type": "Institutional Partnership",
+    "organization": "University of Ghana Technology Directorate",
+    "contactName": "Prof. Eric Boateng",
+    "email": "eboateng@ug.edu.gh",
+    "phone": "+233 24 411 9021",
+    "country": "Ghana",
+    "website": "https://ug.edu.gh",
+    "industry": "Higher Education",
+    "organizationType": "University",
+    "targetProductId": "kampus",
+    "proposalTitle": "Official Campus Housing Verification & Academic Portal Federation",
+    "proposal": "We seek an official collaboration with Kampus to integrate our student identity registry with the Kampus student housing verification rails across 6 university hostels.",
+    "organizationContribution": "Official student API federation and approved hostel manager directory.",
+    "braxvioContribution": "Kampus verification portal deployment and student support desk.",
+    "contributionTypes": [
+      "Infrastructure",
+      "Data",
+      "Operations"
+    ],
+    "timeline": "Within 3 months",
+    "status": "MEETING",
+    "assignedTo": "Strategic Partnerships Lead",
+    "followUpDate": "2026-09-24",
+    "notes": [
+      {
+        "id": "n-1",
+        "authorName": "Sarah Mensah",
+        "authorRole": "Head of Global Partnerships",
+        "content": "Met with dean of student affairs. Strong interest in pilot rollout before next semester intake.",
+        "createdAt": "2026-09-12T14:30:00Z"
+      }
+    ],
+    "activities": [
+      {
+        "id": "act-1",
+        "action": "STATUS_CHANGE",
+        "actor": "Sarah Mensah",
+        "details": "Moved from UNDER_REVIEW to MEETING",
+        "timestamp": "2026-09-12T14:32:00Z"
+      }
+    ],
+    "createdAt": "2026-09-08T09:15:00Z",
+    "updatedAt": "2026-09-12T14:32:00Z"
+  },
+  {
+    "id": "part-002",
+    "reference": "BX-PART-2026-44219",
+    "type": "Technology Partnership",
+    "organization": "Helios Cold-Chain Telemetry",
+    "contactName": "Julian Meyer",
+    "email": "j.meyer@heliostelemetry.com",
+    "phone": "+44 20 7946 0912",
+    "country": "United Kingdom",
+    "website": "https://heliostelemetry.com",
+    "industry": "Logistics IoT & Healthcare",
+    "organizationType": "Technology Provider",
+    "targetProductId": "pharmora",
+    "proposalTitle": "Bluetooth IoT Temperature Sensor Bridge for Medicine Dispatch",
+    "proposal": "Integration of our certified temperature logging BLE beacons into the Pharmora cold-chain courier dispatch app to ensure automated temperature breach alerting for vaccine deliveries.",
+    "organizationContribution": "API SDK access, discounted sensor hardware for pharmacy riders.",
+    "braxvioContribution": "Mobile integration into Pharmora courier application.",
+    "contributionTypes": [
+      "Technology",
+      "Hardware",
+      "Data"
+    ],
+    "timeline": "3–6 months",
+    "status": "UNDER_REVIEW",
+    "assignedTo": "Product Engineering Lead",
+    "followUpDate": "2026-09-28",
+    "notes": [
+      {
+        "id": "n-2",
+        "authorName": "Seth Boadu",
+        "authorRole": "Co-Founder & Fullstack Developer",
+        "content": "Reviewing their Bluetooth low-energy telemetry payload specs. Architecture looks clean.",
+        "createdAt": "2026-09-14T11:00:00Z"
+      }
+    ],
+    "activities": [
+      {
+        "id": "act-2",
+        "action": "SUBMISSION",
+        "actor": "System",
+        "details": "Initial submission received",
+        "timestamp": "2026-09-14T10:45:00Z"
+      }
+    ],
+    "createdAt": "2026-09-14T10:45:00Z",
+    "updatedAt": "2026-09-14T11:00:00Z"
+  },
+  {
+    "id": "part-003",
+    "reference": "BX-PART-2026-11930",
+    "type": "Distribution & Market Partnership",
+    "organization": "Ecofleet Municipal Logistics",
+    "contactName": "Nadia Larbi",
+    "email": "n.larbi@ecofleet.ci",
+    "country": "Côte d’Ivoire",
+    "industry": "Urban Sanitation",
+    "targetProductId": "ecolift",
+    "proposalTitle": "Francophone West Africa Municipal Waste Routing Expansion",
+    "proposal": "We operate 45 private sanitation vehicles in Abidjan and wish to deploy Ecolift route optimization and citizen collection booking across 3 districts.",
+    "contributionTypes": [
+      "Distribution",
+      "Operations",
+      "Network / Market Access"
+    ],
+    "timeline": "6–12 months",
+    "status": "SCREENING",
+    "assignedTo": "Strategic Partnerships Lead",
+    "createdAt": "2026-09-15T16:20:00Z",
+    "updatedAt": "2026-09-15T16:20:00Z"
+  }
+]

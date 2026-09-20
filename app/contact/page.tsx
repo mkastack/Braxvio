@@ -1,23 +1,64 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, CheckCircle2, Phone, MapPin, Building, MessageSquare, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { Mail, MapPin, Loader2 } from 'lucide-react';
 import { COMPANY_FACTS } from '@/data/ecosystem';
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
   const [category, setCategory] = useState('Partnerships');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     organization: '',
     subject: '',
-    message: ''
+    message: '',
+    _hp_check: '',
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [submittedData, setSubmittedData] = useState<{ reference: string } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorMessage('');
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
+      setErrorMessage('Please fill in all required fields (Name, Work Email, Subject, Message).');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          organization: formData.organization.trim(),
+          category,
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          _hp_check: formData._hp_check,
+        }),
+      });
+
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        const refCode = json.reference || ('BX-CNT-2026-' + Math.random().toString(36).substring(2, 8).toUpperCase());
+        setSubmittedData({ reference: refCode });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setErrorMessage(json.error || 'Failed to transmit inquiry. Please try again.');
+      }
+    } catch {
+      setErrorMessage('An unexpected connection error occurred. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -64,17 +105,41 @@ export default function ContactPage() {
                 DIRECT INBOXES
               </span>
               <ul className="space-y-3 text-xs font-mono text-[#002F5B]">
-                <li className="flex items-center justify-between p-3 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC]">
-                  <span className="text-[#687A86]">PARTNERSHIPS:</span>
-                  <span className="font-bold">partnerships@braxvio.com</span>
+                <li>
+                  <a
+                    href="mailto:partnerships@braxvio.com"
+                    className="flex items-center justify-between p-3 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] hover:border-[#11AFC1] transition-colors"
+                  >
+                    <span className="text-[#687A86]">PARTNERSHIPS:</span>
+                    <span className="font-bold text-[#002F5B]">partnerships@braxvio.com</span>
+                  </a>
                 </li>
-                <li className="flex items-center justify-between p-3 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC]">
-                  <span className="text-[#687A86]">PRESS & MEDIA:</span>
-                  <span className="font-bold">press@braxvio.com</span>
+                <li>
+                  <a
+                    href="mailto:press@braxvio.com"
+                    className="flex items-center justify-between p-3 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] hover:border-[#11AFC1] transition-colors"
+                  >
+                    <span className="text-[#687A86]">PRESS & MEDIA:</span>
+                    <span className="font-bold text-[#002F5B]">press@braxvio.com</span>
+                  </a>
                 </li>
-                <li className="flex items-center justify-between p-3 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC]">
-                  <span className="text-[#687A86]">GENERAL:</span>
-                  <span className="font-bold">hello@braxvio.com</span>
+                <li>
+                  <a
+                    href="mailto:hello@braxvio.com"
+                    className="flex items-center justify-between p-3 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] hover:border-[#11AFC1] transition-colors"
+                  >
+                    <span className="text-[#687A86]">GENERAL:</span>
+                    <span className="font-bold text-[#002F5B]">hello@braxvio.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:admin@braxvio.com"
+                    className="flex items-center justify-between p-3 rounded-xl bg-[#002F5B]/5 border border-[#002F5B]/20 hover:border-[#002F5B] transition-colors"
+                  >
+                    <span className="text-[#002F5B] font-semibold">VERIFIED DESK:</span>
+                    <span className="font-bold text-[#002F5B]">admin@braxvio.com</span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -91,16 +156,119 @@ export default function ContactPage() {
               </h2>
             </div>
 
-            {submitted ? (
-              <div className="p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3">
-                <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-                <h3 className="text-lg font-bold text-emerald-900">Message Dispatched</h3>
-                <p className="text-xs text-emerald-700 max-w-md mx-auto">
-                  Thank you for reaching out. Your inquiry has been routed to the {category} team. We will review and respond promptly.
-                </p>
+            {/* Direct Email Contact Desk Banner */}
+            <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl bg-white border border-[#002F5B]/15">
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-[#002F5B] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <Mail className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <div className="text-xs font-mono font-bold text-[#002F5B] uppercase tracking-wider">
+                    Official Communications Desk · Verified Email
+                  </div>
+                  <p className="text-xs text-[#687A86]">
+                    Inquiries are processed via secure email pipeline and reviewed directly by Braxvio leadership.
+                  </p>
+                </div>
+              </div>
+              <a
+                href="mailto:admin@braxvio.com?subject=Braxvio%20Direct%20Inquiry"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm shrink-0"
+              >
+                <Mail className="w-3.5 h-3.5 text-white" />
+                <span>admin@braxvio.com</span>
+              </a>
+            </div>
+
+            {submittedData ? (
+              /* Success Screen */
+              <div className="p-8 sm:p-12 rounded-2xl bg-gradient-to-b from-[#F2FAFC] to-white border border-[#11AFC1]/30 text-center space-y-6">
+                <div className="space-y-3 max-w-lg mx-auto">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002F5B] tracking-tight">
+                    MESSAGE DISPATCHED
+                  </h2>
+                  <p className="text-sm text-[#687A86] leading-relaxed">
+                    Thank you for reaching out. Your inquiry has been routed to our communications desk and queued for leadership review.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white border border-[#DDE8EC] inline-block font-mono text-xs text-[#002F5B]">
+                  <span className="text-[#687A86]">Inquiry Reference: </span>
+                  <span className="font-bold text-[#006EAA]">#{submittedData.reference}</span>
+                </div>
+
+                {/* Email Confirmation & Dispatch Card */}
+                <div className="p-6 rounded-2xl bg-white border border-[#006EAA]/30 shadow-lg max-w-lg mx-auto space-y-4 text-center">
+                  <p className="text-sm font-semibold text-[#002F5B]">Email Confirmation Dispatched</p>
+                  <p className="text-xs sm:text-sm text-[#687A86] leading-relaxed">
+                    An acknowledgment receipt and tracking reference <strong className="text-[#002F5B] font-mono">#{submittedData.reference}</strong> have been sent to <strong className="text-[#002F5B]">{formData.email}</strong>.
+                  </p>
+                  <div className="p-4 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] text-left text-xs space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#687A86] font-medium">To Sender:</span>
+                      <span className="text-[#002F5B] font-semibold">{formData.email}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#687A86] font-medium">Category:</span>
+                      <span className="text-[#002F5B] font-semibold">{category}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#687A86] font-medium">Communications Desk:</span>
+                      <span className="text-[#002F5B] font-semibold">admin@braxvio.com</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#687A86] font-medium">Expected Response:</span>
+                      <span className="text-emerald-700 font-bold">2–3 Business Days</span>
+                    </div>
+                  </div>
+                  <a
+                    href={`mailto:admin@braxvio.com?subject=Inquiry%20Update%20-%20Reference%20${submittedData.reference}`}
+                    className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-white" />
+                    <span>Contact Communications Desk via Email</span>
+                  </a>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmittedData(null);
+                      setFormData({
+                        name: '',
+                        email: '',
+                        organization: '',
+                        subject: '',
+                        message: '',
+                        _hp_check: '',
+                      });
+                    }}
+                    className="px-6 py-3 rounded-xl bg-white border border-[#DDE8EC] text-[#002F5B] text-xs font-mono font-bold hover:bg-[#F7FAFC] transition-colors"
+                  >
+                    SEND ANOTHER INQUIRY
+                  </button>
+                  <Link
+                    href="/"
+                    className="px-6 py-3 rounded-xl bg-[#002F5B] text-white text-xs font-mono font-bold hover:bg-[#003E72] transition-colors"
+                  >
+                    RETURN TO BRAXVIO
+                  </Link>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot field */}
+                <input
+                  type="text"
+                  name="_hp_check"
+                  value={formData._hp_check}
+                  onChange={(e) => setFormData({ ...formData, _hp_check: e.target.value })}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
                 {/* Category Selection */}
                 <div className="space-y-2">
                   <label className="text-xs font-mono text-[#06131D] font-medium">INQUIRY CATEGORY</label>
@@ -185,11 +353,28 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {errorMessage && (
+                  <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-mono">
+                    {errorMessage}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-colors shadow-md"
+                  disabled={submitting}
+                  className="w-full py-3.5 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Transmit Message →
+                  {submitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>TRANSMITTING MESSAGE...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Mail className="w-4 h-4 text-white" />
+                      <span>TRANSMIT MESSAGE VIA EMAIL →</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}

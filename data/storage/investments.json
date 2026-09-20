@@ -1,0 +1,95 @@
+[
+  {
+    "investorType": "Angel Investor",
+    "firstName": "Boadu",
+    "lastName": "Seth",
+    "email": "support.jingwie@gmail.com",
+    "organization": "TEST",
+    "country": "Ghana",
+    "interestType": "Braxvio Parent Company",
+    "indicativeRange": "$50K–$250K",
+    "timeline": "Exploring",
+    "message": "HHSI IZIUSMC FUHFUISD  FJOSNCISNKSD DFJDNDSDSK",
+    "consentAgreed": true,
+    "documents": [],
+    "id": "inv-1789917943664",
+    "reference": "BXI-2026-29796",
+    "status": "NEW",
+    "createdAt": "2026-09-20T15:25:43.664Z",
+    "updatedAt": "2026-09-20T15:25:43.664Z",
+    "notes": [],
+    "activities": [
+      {
+        "id": "act-1789917943665",
+        "action": "SUBMISSION",
+        "actor": "Investor",
+        "details": "Investment interest registered by Boadu Seth",
+        "timestamp": "2026-09-20T15:25:43.664Z"
+      }
+    ]
+  },
+  {
+    "id": "inv-001",
+    "reference": "BXI-2026-90412",
+    "investorType": "Venture Capital Firm",
+    "firstName": "Marcus",
+    "lastName": "Vanderbilt",
+    "email": "marcus@africafutureventures.com",
+    "phone": "+1 415 890 2200",
+    "organization": "Africa Future Ventures",
+    "jobTitle": "Partner",
+    "country": "United States",
+    "website": "https://africafutureventures.com",
+    "interestType": "Braxvio Parent Company",
+    "indicativeRange": "$250K–$1M",
+    "timeline": "3–6 months",
+    "message": "We have followed Braxvio’s multi-product systems approach and engineering rigor across Kampus and DevPay Africa. We would like to initiate an introductory briefing on the corporate roadmap and future capitalization.",
+    "consentAgreed": true,
+    "status": "UNDER_REVIEW",
+    "assignedTo": "Michael Kwesi Annor",
+    "followUpDate": "2026-09-22",
+    "notes": [
+      {
+        "id": "n-inv-1",
+        "authorName": "Michael Kwesi Annor",
+        "authorRole": "CEO",
+        "content": "Credible fund with active fintech and logistics portfolio. Preparing introductory overview deck.",
+        "createdAt": "2026-09-11T18:00:00Z"
+      }
+    ],
+    "activities": [
+      {
+        "id": "act-inv-1",
+        "action": "STATUS_CHANGE",
+        "actor": "Michael Kwesi Annor",
+        "details": "Assigned to CEO, marked Under Review",
+        "timestamp": "2026-09-11T18:05:00Z"
+      }
+    ],
+    "createdAt": "2026-09-10T14:10:00Z",
+    "updatedAt": "2026-09-11T18:05:00Z"
+  },
+  {
+    "id": "inv-002",
+    "reference": "BXI-2026-31804",
+    "investorType": "Angel Investor",
+    "firstName": "Amara",
+    "lastName": "Okonkwo",
+    "email": "amara.o@alumnipartners.ng",
+    "phone": "+234 803 129 4410",
+    "organization": "Okonkwo Family Office",
+    "jobTitle": "Principal",
+    "country": "Nigeria",
+    "interestType": "Specific Braxvio Product",
+    "productId": "devpay-africa",
+    "indicativeRange": "$50K–$250K",
+    "timeline": "Within 3 months",
+    "message": "We have high conviction around cross-border freelance infrastructure and would value discussing early participation specifically around DevPay Africa liquidity rails.",
+    "consentAgreed": true,
+    "status": "MEETING",
+    "assignedTo": "Kwame Osei",
+    "followUpDate": "2026-09-25",
+    "createdAt": "2026-09-13T08:30:00Z",
+    "updatedAt": "2026-09-13T08:30:00Z"
+  }
+]

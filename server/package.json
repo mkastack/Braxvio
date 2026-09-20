@@ -1,0 +1,27 @@
+{
+  "name": "braxvio-backend",
+  "version": "1.0.0",
+  "description": "Form submission and background email processing system for Braxvio",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "server": "node src/server.js --only-api",
+    "worker": "node src/workers/emailWorker.js",
+    "dev": "node --watch src/server.js",
+    "test": "node scripts/test-system.js"
+  },
+  "dependencies": {
+    "bullmq": "^5.41.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "ioredis": "^5.5.0",
+    "mongoose": "^8.10.1",
+    "nodemailer": "^6.10.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

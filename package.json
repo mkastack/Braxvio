@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "server": "npm --prefix server start",
+    "server:dev": "npm --prefix server run dev",
+    "worker": "npm --prefix server run worker"
   },
   "dependencies": {
     "lucide-react": "^1.43.0",

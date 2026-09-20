@@ -1,0 +1,28 @@
+[
+  {
+    "id": "proj-001",
+    "reference": "BX-PROJ-2026-77319",
+    "projectName": "Accra Municipal Smart Sanitation Dispatch",
+    "organization": "Greater Accra Environmental Health Coalition",
+    "contactName": "Emmanuel Darko",
+    "email": "e.darko@gaehealth.org",
+    "country": "Ghana",
+    "industry": "Municipal & Public Services",
+    "description": "Co-development of an algorithmic truck dispatch and community complaint tracking system linked to the Ecolift routing engine.",
+    "problem": "Informal waste cart operators and municipal trucks overlap in the same zones while peri-urban neighborhoods remain unserviced for up to 3 weeks.",
+    "targetUsers": "Municipal sanitary inspectors, dispatch supervisors, and 250,000 households.",
+    "stage": "MVP",
+    "needs": [
+      "Software Development",
+      "Technical Partnership",
+      "Mobile Application",
+      "Infrastructure"
+    ],
+    "timeline": "3–6 months",
+    "budgetRange": "$25,000 - $75,000",
+    "status": "UNDER_REVIEW",
+    "assignedTo": "Product Engineering Lead",
+    "createdAt": "2026-09-14T15:20:00Z",
+    "updatedAt": "2026-09-14T15:20:00Z"
+  }
+]

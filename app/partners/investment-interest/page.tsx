@@ -24,13 +24,12 @@ import {
   PartnershipDocument,
 } from '@/data/partnerships';
 import { trackPartnershipEvent } from '@/lib/analytics';
-import { WhatsAppIcon, BRAXVIO_WHATSAPP_LINK, getWhatsAppSendUrl } from '@/components/ui/WhatsAppIcon';
+import { Mail } from 'lucide-react';
 
 export default function InvestmentInterestPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [submittedData, setSubmittedData] = useState<{ reference: string } | null>(null);
-  const [whatsappRedirectUrl, setWhatsappRedirectUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [uploadingDoc, setUploadingDoc] = useState(false);
   const [documents, setDocuments] = useState<PartnershipDocument[]>([]);
@@ -113,7 +112,7 @@ export default function InvestmentInterestPage() {
     setSubmitting(true);
 
     try {
-      const res = await fetch('/api/partnerships/investments', {
+      const res = await fetch('/api/partners/invest', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -125,41 +124,10 @@ export default function InvestmentInterestPage() {
       const json = await res.json();
 
       if (res.ok && json.success) {
-        const refCode = json.reference || 'INV-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+        const refCode = json.reference || 'BX-INV-' + Math.random().toString(36).substring(2, 8).toUpperCase();
         setSubmittedData({ reference: refCode });
         trackPartnershipEvent('investment_interest_submitted', { reference: refCode });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        const investorMessage = [
-          '💼 New Braxvio Investment Expression',
-          '──────────────────────────────',
-          `Reference: ${refCode}`,
-          `Name: ${formData.firstName} ${formData.lastName}`,
-          `Email: ${formData.email}`,
-          `Phone: ${formData.phone || 'Not provided'}`,
-          `Organization: ${formData.organization || 'Individual'}`,
-          `Investor Type: ${formData.investorType}`,
-          `Area of Interest: ${formData.interestType}`,
-          `Indicative Range: ${formData.indicativeRange}`,
-          `Timeline: ${formData.timeline}`,
-          '──────────────────────────────',
-          'Inquiry / Strategic Thesis:',
-          formData.message,
-        ].filter(Boolean).join('\n');
-
-        const waUrl = getWhatsAppSendUrl(investorMessage);
-        setWhatsappRedirectUrl(waUrl);
-
-        if (typeof navigator !== 'undefined' && navigator.clipboard) {
-          navigator.clipboard.writeText(investorMessage).catch(() => {});
-        }
-
-        // Reliably forward to WhatsApp
-        if (typeof window !== 'undefined') {
-          setTimeout(() => {
-            window.location.href = waUrl;
-          }, 400);
-        }
       } else {
         setErrorMessage(json.error || 'Failed to submit expression of interest.');
       }
@@ -220,13 +188,11 @@ export default function InvestmentInterestPage() {
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <a
-              href={BRAXVIO_WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-sm inline-flex items-center gap-2"
+              href="mailto:admin@braxvio.com?subject=Investment%20Interest%20Inquiry"
+              className="px-6 py-3.5 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-sm inline-flex items-center gap-2"
             >
-              <WhatsAppIcon className="w-4 h-4 fill-white" />
-              <span>DIRECT WHATSAPP INQUIRY</span>
+              <Mail className="w-4 h-4 text-white" />
+              <span>DIRECT EMAIL INQUIRY</span>
             </a>
           </div>
         </div>
@@ -301,22 +267,14 @@ export default function InvestmentInterestPage() {
         {/* ============================================================ */}
         <div ref={formRef} className="pt-4">
           {submittedData ? (
-            /* Submission Success Screen (Item 21) */
+            /* Submission Success Screen */
             <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-b from-[#F2FAFC] to-white border border-[#11AFC1]/30 shadow-xl text-center space-y-6">
-              <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
-                <CheckCircle2 className="w-8 h-8" />
-              </div>
-
               <div className="space-y-3 max-w-lg mx-auto">
-                <span className="text-xs font-mono uppercase tracking-widest text-[#006EAA] font-bold">
-                  EXPRESSION RECORDED
-                </span>
                 <h2 className="text-2xl sm:text-4xl font-extrabold text-[#002F5B] tracking-tight">
                   THANK YOU FOR YOUR INTEREST IN BRAXVIO.
                 </h2>
                 <p className="text-sm text-[#687A86] leading-relaxed">
-                  We&apos;ve received your information. If there appears to be a relevant opportunity
-                  for discussion, a member of the Braxvio team may contact you.
+                  Your expression of interest has been submitted through our secure email processing system.
                 </p>
               </div>
 
@@ -325,21 +283,32 @@ export default function InvestmentInterestPage() {
                 <span className="font-bold text-[#006EAA]">{submittedData.reference}</span>
               </div>
 
-              {/* Direct WhatsApp Investor Dialogue Card */}
-              <div className="p-5 rounded-2xl bg-white border border-[#25D366]/40 shadow-sm max-w-lg mx-auto space-y-3 text-center">
-                <div className="flex items-center justify-center gap-2 text-xs font-mono font-bold text-[#002F5B] uppercase tracking-wider">
-                  <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
-                  <span>Direct WhatsApp Investor Desk</span>
-                </div>
-                <p className="text-xs text-[#687A86] leading-relaxed">
-                  For immediate, confidential follow-up with executive leadership, message us on WhatsApp with reference <strong className="text-[#002F5B] font-mono">#{submittedData.reference}</strong>.
+              {/* Email Confirmation Card */}
+              <div className="p-6 rounded-2xl bg-white border border-[#006EAA]/30 shadow-lg max-w-lg mx-auto space-y-4 text-center">
+                <p className="text-sm font-semibold text-[#002F5B]">Email Confirmation Dispatched</p>
+                <p className="text-xs sm:text-sm text-[#687A86] leading-relaxed">
+                  An acknowledgment receipt and reference <strong className="text-[#002F5B] font-mono">#{submittedData.reference}</strong> have been sent to <strong className="text-[#002F5B]">{formData.email}</strong>.
                 </p>
+                <div className="p-4 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] text-left text-xs space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#687A86] font-medium">To Submitter:</span>
+                    <span className="text-[#002F5B] font-semibold">{formData.email}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#687A86] font-medium">Internal Review Desk:</span>
+                    <span className="text-[#002F5B] font-semibold">admin@braxvio.com</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#687A86] font-medium">Expected Response:</span>
+                    <span className="text-emerald-700 font-bold">2–3 Business Days</span>
+                  </div>
+                </div>
                 <a
-                  href={whatsappRedirectUrl || getWhatsAppSendUrl(`Hello Braxvio Executive Team,\n\nI submitted an investment expression of interest.\nName: ${formData.firstName} ${formData.lastName}\nOrganization: ${formData.organization || 'Individual'}\nReference: ${submittedData.reference}\nInterest: ${formData.interestType}\n\nI would like to initiate direct discussion.`)}
-                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md"
+                  href={`mailto:admin@braxvio.com?subject=Investment%20Inquiry%20Update%20-%20Reference%20${submittedData.reference}`}
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm"
                 >
-                  <WhatsAppIcon className="w-4 h-4 fill-white" />
-                  <span>Open in WhatsApp Now →</span>
+                  <Mail className="w-3.5 h-3.5 text-white" />
+                  <span>Contact Investor Relations via Email</span>
                 </a>
               </div>
 
@@ -784,21 +753,17 @@ export default function InvestmentInterestPage() {
                       </button>
                     </div>
 
-                    {/* Direct WhatsApp Channel for Investors */}
+                    {/* Direct Email Channel for Investors */}
                     <div className="pt-4 border-t border-[#DDE8EC] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
                       <span className="text-[#687A86] font-mono text-center sm:text-left">
-                        Prefer confidential direct dialogue with Braxvio leadership?
+                        Prefer direct executive correspondence? Reach our investor relations desk:
                       </span>
                       <a
-                        href={getWhatsAppSendUrl(
-                          `Hello Braxvio Team,\n\nI am interested in learning more about investment opportunities with Braxvio (${formData.interestType}).\nName: ${formData.firstName || ''} ${formData.lastName || ''}\nOrganization: ${formData.organization || 'Individual'}\n\nLooking forward to a confidential conversation.`
-                        )}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[#25D366] text-[#128C7E] hover:bg-[#25D366]/10 font-mono text-xs font-bold transition-all shrink-0"
+                        href="mailto:admin@braxvio.com?subject=Investment%20Interest%20Inquiry"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[#002F5B]/30 text-[#002F5B] hover:bg-[#002F5B]/5 font-mono text-xs font-bold transition-all shrink-0"
                       >
-                        <WhatsAppIcon className="w-3.5 h-3.5 fill-[#25D366]" />
-                        <span>Discuss via WhatsApp</span>
+                        <Mail className="w-3.5 h-3.5 text-[#002F5B]" />
+                        <span>admin@braxvio.com</span>
                       </a>
                     </div>
                   </div>

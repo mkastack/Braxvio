@@ -15,7 +15,7 @@ export default function DevPayMockup() {
   };
 
   const usdAmount = 8450;
-  const converted = (usdAmount * rates[currency].rate).toLocaleString();
+  const converted = new Intl.NumberFormat('en-US').format(usdAmount * rates[currency].rate);
 
   const handleReleaseEscrow = () => {
     setIsProcessing(true);
@@ -64,7 +64,7 @@ export default function DevPayMockup() {
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
               <div className="text-3xl font-extrabold font-mono tracking-tight">$8,450.00 <span className="text-xs font-sans text-slate-300 font-normal">USD virtual</span></div>
-              <div className="text-xs text-slate-200 mt-0.5 font-mono">
+              <div suppressHydrationWarning className="text-xs text-slate-200 mt-0.5 font-mono">
                 ≈ {rates[currency].symbol} {converted} ({rates[currency].label})
               </div>
             </div>
