@@ -8,10 +8,7 @@ try {
   // Ignore in restricted environments
 }
 
-const DEFAULT_MONGODB_URI =
-  'mongodb+srv://admin_db_user:pa5ox7CGGtPo1ur2@cluster0.utee9iw.mongodb.net/braxvio_proposals?retryWrites=true&w=majority';
-
-const MONGODB_URI = process.env.MONGODB_URI || DEFAULT_MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 interface MongooseCache {
   conn: typeof mongoose | null;
@@ -32,6 +29,10 @@ if (!global.mongooseCache) {
 export async function connectDB(): Promise<typeof mongoose> {
   if (cached.conn && cached.conn.connection.readyState === 1) {
     return cached.conn;
+  }
+
+  if (!MONGODB_URI) {
+    throw new Error('MONGODB_URI environment variable is not defined.');
   }
 
   if (!cached.promise) {

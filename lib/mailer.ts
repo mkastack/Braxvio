@@ -4,7 +4,7 @@ const SMTP_HOST = process.env.SMTP_HOST || 'smtp.hostinger.com';
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || '465', 10);
 const SMTP_SECURE = process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : true;
 const SMTP_USER = process.env.SMTP_USER || 'admin@braxvio.com';
-const SMTP_PASS = process.env.SMTP_PASS || 'wtsh-zlc7-sbtu-itc4';
+const SMTP_PASS = process.env.SMTP_PASS;
 const DEFAULT_FROM = process.env.EMAIL_FROM || '"Braxvio Global" <admin@braxvio.com>';
 export const INTERNAL_NOTIFICATION_EMAIL = process.env.INTERNAL_NOTIFICATION_EMAIL || 'admin@braxvio.com';
 
