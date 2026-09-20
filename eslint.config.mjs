@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Backend is CommonJS Node.js — not subject to Next.js TS rules
+    "server/**",
   ]),
 ]);
 
