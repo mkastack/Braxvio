@@ -8,6 +8,14 @@ function escapeHtml(string) {
     .replace(/'/g, '&#039;');
 }
 
+function safeUrl(url) {
+  if (!url) return '';
+  const trimmed = String(url).trim();
+  if (!trimmed) return '';
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 function getTalentInternalNotificationTemplate(app) {
   const reference = app.referenceCode || (app._id ? `BX-TLT-${app._id.toString().slice(-6).toUpperCase()}` : 'N/A');
   const subject = `[New Talent Application] ${app.name} (${app.discipline || 'Engineering'}) - ${reference}`;
@@ -24,9 +32,9 @@ Full Name:  ${app.name}
 Email:      ${app.email}
 Location:   ${app.location || 'Not provided'}
 Discipline: ${app.discipline || 'Not specified'}
-Portfolio:  ${app.portfolio || 'Not provided'}
-LinkedIn:   ${app.linkedin || 'Not provided'}
-GitHub:     ${app.github || 'Not provided'}
+Portfolio:  ${app.portfolio ? safeUrl(app.portfolio) : 'Not provided'}
+LinkedIn:   ${app.linkedin ? safeUrl(app.linkedin) : 'Not provided'}
+GitHub:     ${app.github ? safeUrl(app.github) : 'Not provided'}
 
 CANDIDATE MESSAGE / WHAT THEY WANT TO BUILD:
 ---------------------------------------------
@@ -73,9 +81,9 @@ Braxvio Automated Talent Processing System
         <tr><td class="label">Email:</td><td class="value"><a href="mailto:${escapeHtml(app.email)}" style="color:#38bdf8;text-decoration:none;">${escapeHtml(app.email)}</a></td></tr>
         <tr><td class="label">Location:</td><td class="value">${escapeHtml(app.location || 'Not provided')}</td></tr>
         <tr><td class="label">Discipline:</td><td class="value">${escapeHtml(app.discipline || 'Not specified')}</td></tr>
-        ${app.portfolio ? `<tr><td class="label">Portfolio:</td><td class="value"><a href="${escapeHtml(app.portfolio)}" style="color:#38bdf8;" target="_blank">${escapeHtml(app.portfolio)}</a></td></tr>` : ''}
-        ${app.linkedin ? `<tr><td class="label">LinkedIn:</td><td class="value"><a href="${escapeHtml(app.linkedin)}" style="color:#38bdf8;" target="_blank">${escapeHtml(app.linkedin)}</a></td></tr>` : ''}
-        ${app.github ? `<tr><td class="label">GitHub:</td><td class="value"><a href="${escapeHtml(app.github)}" style="color:#38bdf8;" target="_blank">${escapeHtml(app.github)}</a></td></tr>` : ''}
+        ${app.portfolio ? `<tr><td class="label">Portfolio / Website:</td><td class="value"><a href="${escapeHtml(safeUrl(app.portfolio))}" style="color:#38bdf8;text-decoration:underline;" target="_blank">${escapeHtml(app.portfolio)}</a></td></tr>` : ''}
+        ${app.linkedin ? `<tr><td class="label">LinkedIn:</td><td class="value"><a href="${escapeHtml(safeUrl(app.linkedin))}" style="color:#38bdf8;text-decoration:underline;" target="_blank">${escapeHtml(app.linkedin)}</a></td></tr>` : ''}
+        ${app.github ? `<tr><td class="label">GitHub:</td><td class="value"><a href="${escapeHtml(safeUrl(app.github))}" style="color:#38bdf8;text-decoration:underline;" target="_blank">${escapeHtml(app.github)}</a></td></tr>` : ''}
       </table>
 
       <div class="section-title">Message / What They Want to Build</div>
@@ -98,6 +106,12 @@ function getTalentConfirmationTemplate(app) {
   const reference = app.referenceCode || (app._id ? `BX-TLT-${app._id.toString().slice(-6).toUpperCase()}` : 'N/A');
   const subject = `Talent Application Received - ${reference} | Braxvio`;
 
+  const linksText = [
+    app.portfolio ? `- Portfolio / Website: ${safeUrl(app.portfolio)}` : '',
+    app.linkedin ? `- LinkedIn: ${safeUrl(app.linkedin)}` : '',
+    app.github ? `- GitHub: ${safeUrl(app.github)}` : '',
+  ].filter(Boolean).join('\n');
+
   const text = `
 Dear ${app.name},
 
@@ -109,7 +123,7 @@ Your submission:
 - Name: ${app.name}
 - Discipline: ${app.discipline || 'Not specified'}
 - Location: ${app.location || 'Not provided'}
-
+${linksText ? `${linksText}\n` : ''}
 Our engineering leads review all talent submissions carefully. We will reach out at ${app.email} if there is a relevant opportunity or if we would like to learn more about your work.
 
 If you have additional portfolio links or context you would like to share, simply reply to this email referencing ${reference}.
@@ -168,12 +182,16 @@ https://www.braxvio.com
             <td style="color:#64748b;padding:4px 0;">Location:</td>
             <td style="color:#0f172a;font-weight:600;text-align:right;">${escapeHtml(app.location || 'Not provided')}</td>
           </tr>
+          ${app.portfolio ? `<tr><td style="color:#64748b;padding:4px 0;">Portfolio / Website:</td><td style="text-align:right;"><a href="${escapeHtml(safeUrl(app.portfolio))}" style="color:#0284c7;text-decoration:underline;" target="_blank">${escapeHtml(app.portfolio)}</a></td></tr>` : ''}
+          ${app.linkedin ? `<tr><td style="color:#64748b;padding:4px 0;">LinkedIn:</td><td style="text-align:right;"><a href="${escapeHtml(safeUrl(app.linkedin))}" style="color:#0284c7;text-decoration:underline;" target="_blank">${escapeHtml(app.linkedin)}</a></td></tr>` : ''}
+          ${app.github ? `<tr><td style="color:#64748b;padding:4px 0;">GitHub:</td><td style="text-align:right;"><a href="${escapeHtml(safeUrl(app.github))}" style="color:#0284c7;text-decoration:underline;" target="_blank">${escapeHtml(app.github)}</a></td></tr>` : ''}
           <tr>
             <td style="color:#64748b;padding:4px 0;">Status:</td>
             <td style="color:#059669;font-weight:600;text-align:right;">Received &amp; Under Review</td>
           </tr>
         </table>
       </div>
+
 
       <div style="font-weight:600;color:#0f172a;margin-top:24px;">What happens next?</div>
       <ul class="steps-box">

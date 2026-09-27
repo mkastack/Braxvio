@@ -40,6 +40,39 @@ function createTransporter() {
 
 const mailer = createTransporter();
 
+let talentMailer = null;
+
+function getTalentMailer() {
+  if (talentMailer) return talentMailer;
+
+  const host = process.env.SMTP_HOST || 'smtp.hostinger.com';
+  const port = parseInt(process.env.SMTP_PORT || '465', 10);
+  const secure = process.env.SMTP_SECURE !== undefined
+    ? process.env.SMTP_SECURE === 'true'
+    : port === 465;
+
+  const user = process.env.CAREERS_SMTP_USER || process.env.SMTP_USER || 'jobs@braxvio.com';
+  const pass = process.env.CAREERS_SMTP_PASS || process.env.SMTP_PASS;
+
+  talentMailer = nodemailer.createTransport({
+    host,
+    port,
+    secure,
+    auth: {
+      user,
+      pass,
+    },
+    pool: true,
+    maxConnections: 5,
+    maxMessages: 100,
+    tls: {
+      rejectUnauthorized: process.env.NODE_ENV === 'production',
+    },
+  });
+
+  return talentMailer;
+}
+
 /**
  * Verifies SMTP connection and authentication.
  */
@@ -56,6 +89,8 @@ async function verifyTransporter() {
 
 module.exports = {
   mailer,
+  getTalentMailer,
   createTransporter,
   verifyTransporter,
 };
+

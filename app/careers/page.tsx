@@ -166,11 +166,11 @@ export default function CareersPage() {
                 EXPRESS INTEREST
               </span>
               <a
-                href="mailto:admin@braxvio.com?subject=Braxvio%20Talent%20Inquiry"
+                href="mailto:jobs@braxvio.com?subject=Braxvio%20Talent%20Inquiry"
                 className="inline-flex items-center gap-1.5 text-xs font-mono text-[#006EAA] hover:text-[#002F5B] transition-colors"
               >
                 <Mail className="w-3.5 h-3.5 text-[#006EAA]" />
-                <span className="font-bold">admin@braxvio.com</span>
+                <span className="font-bold">jobs@braxvio.com</span>
               </a>
             </div>
 
@@ -199,11 +199,11 @@ export default function CareersPage() {
                 </div>
               </div>
               <a
-                href="mailto:admin@braxvio.com?subject=Braxvio%20Talent%20Inquiry"
+                href="mailto:jobs@braxvio.com?subject=Braxvio%20Talent%20Inquiry"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm shrink-0"
               >
                 <Mail className="w-3.5 h-3.5 text-white" />
-                <span>admin@braxvio.com</span>
+                <span>jobs@braxvio.com</span>
               </a>
             </div>
           </div>
@@ -238,7 +238,7 @@ export default function CareersPage() {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[#687A86] font-medium">Talent Review Desk:</span>
-                    <span className="text-[#002F5B] font-semibold">admin@braxvio.com</span>
+                    <span className="text-[#002F5B] font-semibold">jobs@braxvio.com</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[#687A86] font-medium">Expected Turnaround:</span>
@@ -246,7 +246,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <a
-                  href={`mailto:admin@braxvio.com?subject=Talent%20Application%20-%20Reference%20${submittedData.reference}`}
+                  href={`mailto:jobs@braxvio.com?subject=Talent%20Application%20-%20Reference%20${submittedData.reference}`}
                   className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#002F5B] hover:bg-[#003E72] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm"
                 >
                   <Mail className="w-3.5 h-3.5 text-white" />

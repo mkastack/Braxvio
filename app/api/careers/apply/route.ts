@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/db';
 import TalentApplication from '@/lib/models/TalentApplication';
-import { sendMail, INTERNAL_NOTIFICATION_EMAIL } from '@/lib/mailer';
+import { sendTalentMail, CAREERS_NOTIFICATION_EMAIL } from '@/lib/mailer';
 import {
   getTalentInternalTemplate,
   getTalentConfirmationTemplate,
@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
       console.error('[API Careers DB Error] Failed to persist talent application:', dbError);
     }
 
-    // Dispatch emails via Hostinger SMTP
+    // Dispatch emails via Hostinger SMTP (Careers Desk: jobs@braxvio.com)
     const internalTemplate = getTalentInternalTemplate({
       name,
       email,
@@ -108,23 +108,29 @@ export async function POST(req: NextRequest) {
     const userTemplate = getTalentConfirmationTemplate({
       name,
       email,
+      discipline,
+      location,
+      portfolio,
+      linkedin,
+      github,
       referenceCode,
       _id: savedApp?._id?.toString(),
     });
 
     Promise.allSettled([
-      sendMail({
-        to: INTERNAL_NOTIFICATION_EMAIL,
+      sendTalentMail({
+        to: CAREERS_NOTIFICATION_EMAIL,
         subject: internalTemplate.subject,
         text: internalTemplate.text,
         html: internalTemplate.html,
         replyTo: email,
       }),
-      sendMail({
+      sendTalentMail({
         to: email,
         subject: userTemplate.subject,
         text: userTemplate.text,
         html: userTemplate.html,
+        replyTo: CAREERS_NOTIFICATION_EMAIL,
       }),
     ]).catch((err) => {
       console.error('[API Careers Mailer Error] Email dispatch failed:', err);

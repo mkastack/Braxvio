@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Worker } = require('bullmq');
 const { TALENT_QUEUE_NAME } = require('../queues/talentQueue');
 const { getRedisConnectionOptions } = require('../config/redis');
-const { mailer } = require('../config/mailer');
+const { mailer, getTalentMailer } = require('../config/mailer');
 const TalentApplication = require('../models/TalentApplication');
 const {
   getTalentInternalNotificationTemplate,
@@ -30,16 +30,17 @@ async function processTalentEmailJob(job) {
     throw new Error(`Talent application not found for ID: ${applicationId}.`);
   }
 
-  const fromAddress = process.env.EMAIL_FROM || `Braxvio Talent Team <${process.env.SMTP_USER || 'admin@braxvio.com'}>`;
-  const internalRecipient = process.env.INTERNAL_NOTIFICATION_EMAIL || 'admin@braxvio.com';
+  const fromAddress = process.env.CAREERS_EMAIL_FROM || `Braxvio Talent Team <${process.env.CAREERS_SMTP_USER || 'jobs@braxvio.com'}>`;
+  const internalRecipient = process.env.CAREERS_NOTIFICATION_EMAIL || 'jobs@braxvio.com';
   const submitterEmail = application.email;
+  const activeMailer = (process.env.CAREERS_SMTP_USER || process.env.CAREERS_SMTP_PASS) ? getTalentMailer() : mailer;
 
   const emailResults = { internalSent: false, confirmationSent: false };
 
   // 1. Internal notification
   const internalTemplate = getTalentInternalNotificationTemplate(application);
   try {
-    const info = await mailer.sendMail({
+    const info = await activeMailer.sendMail({
       from: fromAddress,
       to: internalRecipient,
       replyTo: submitterEmail,
@@ -57,7 +58,7 @@ async function processTalentEmailJob(job) {
   // 2. Candidate confirmation
   const confirmationTemplate = getTalentConfirmationTemplate(application);
   try {
-    const info = await mailer.sendMail({
+    const info = await activeMailer.sendMail({
       from: fromAddress,
       to: submitterEmail,
       replyTo: internalRecipient,

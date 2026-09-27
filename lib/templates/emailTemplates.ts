@@ -305,6 +305,14 @@ https://www.braxvio.com
    3. TALENT & CAREERS
    ========================================================================== */
 
+export function safeUrl(url: unknown): string {
+  if (!url) return '';
+  const trimmed = String(url).trim();
+  if (!trimmed) return '';
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 export function getTalentInternalTemplate(data: {
   name: string;
   email: string;
@@ -316,6 +324,7 @@ export function getTalentInternalTemplate(data: {
   message: string;
   referenceCode?: string;
   _id?: string;
+  createdAt?: Date;
 }) {
   const reference = data.referenceCode || (data._id ? `BX-TLT-${data._id.toString().slice(-6).toUpperCase()}` : 'N/A');
   const subject = `[Career Application] ${data.name} - ${data.discipline || 'Engineering'} (${reference})`;
@@ -324,30 +333,84 @@ export function getTalentInternalTemplate(data: {
 NEW CAREER APPLICATION RECEIVED
 ================================
 Reference: ${reference}
-Applicant: ${data.name}
-Email: ${data.email}
-Discipline: ${data.discipline || 'General'}
-Location: ${data.location || 'Not provided'}
-Portfolio: ${data.portfolio || 'Not provided'}
-LinkedIn: ${data.linkedin || 'Not provided'}
-GitHub: ${data.github || 'Not provided'}
+Submission Date: ${new Date(data.createdAt || Date.now()).toUTCString()}
 
-Cover Letter / Intro:
+CANDIDATE DETAILS:
+------------------
+Full Name:  ${data.name}
+Email:      ${data.email}
+Location:   ${data.location || 'Not provided'}
+Discipline: ${data.discipline || 'General'}
+Portfolio:  ${data.portfolio ? safeUrl(data.portfolio) : 'Not provided'}
+LinkedIn:   ${data.linkedin ? safeUrl(data.linkedin) : 'Not provided'}
+GitHub:     ${data.github ? safeUrl(data.github) : 'Not provided'}
+
+COVER LETTER / CANDIDATE MESSAGE:
+----------------------------------
 ${data.message}
+
+--
+Braxvio Talent Review Desk
+https://www.braxvio.com
   `.trim();
+
+  const portfolioRow = data.portfolio
+    ? `<tr><td style="padding: 8px 0; color: #94a3b8; font-weight: 500; width: 38%; vertical-align: top;">Portfolio / Website:</td><td style="padding: 8px 0; color: #f1f5f9; font-weight: 600;"><a href="${escapeHtml(safeUrl(data.portfolio))}" target="_blank" style="color: #38bdf8; text-decoration: underline; word-break: break-all;">${escapeHtml(data.portfolio)}</a></td></tr>`
+    : '';
+
+  const linkedinRow = data.linkedin
+    ? `<tr><td style="padding: 8px 0; color: #94a3b8; font-weight: 500; width: 38%; vertical-align: top;">LinkedIn:</td><td style="padding: 8px 0; color: #f1f5f9; font-weight: 600;"><a href="${escapeHtml(safeUrl(data.linkedin))}" target="_blank" style="color: #38bdf8; text-decoration: underline; word-break: break-all;">${escapeHtml(data.linkedin)}</a></td></tr>`
+    : '';
+
+  const githubRow = data.github
+    ? `<tr><td style="padding: 8px 0; color: #94a3b8; font-weight: 500; width: 38%; vertical-align: top;">GitHub:</td><td style="padding: 8px 0; color: #f1f5f9; font-weight: 600;"><a href="${escapeHtml(safeUrl(data.github))}" target="_blank" style="color: #38bdf8; text-decoration: underline; word-break: break-all;">${escapeHtml(data.github)}</a></td></tr>`
+    : '';
 
   const html = `
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
-<body style="font-family: sans-serif; background: #0c0f17; color: #e2e8f0; padding: 24px;">
-  <div style="max-width: 600px; margin: 0 auto; background: #131826; border: 1px solid #243048; border-radius: 12px; padding: 32px;">
-    <h2 style="color: #38bdf8; margin-top: 0;">Career Application: ${escapeHtml(reference)}</h2>
-    <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
-    <p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}" style="color: #38bdf8;">${escapeHtml(data.email)}</a></p>
-    <p><strong>Discipline:</strong> ${escapeHtml(data.discipline || 'General')}</p>
-    <p><strong>Location:</strong> ${escapeHtml(data.location || 'Remote')}</p>
-    <div style="background: #0a0d14; border: 1px solid #1e293b; padding: 16px; border-radius: 8px; margin-top: 16px; white-space: pre-wrap;">${escapeHtml(data.message)}</div>
+<head>
+  <meta charset="utf-8">
+  <title>${escapeHtml(subject)}</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0c0f17; color: #e2e8f0; margin: 0; padding: 24px; line-height: 1.6;">
+  <div style="max-width: 640px; margin: 0 auto; background: #131826; border: 1px solid #243048; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 24px 32px; border-bottom: 1px solid #2d3b55;">
+      <h1 style="margin: 0; font-size: 20px; color: #f8fafc; font-weight: 700;">New Career Application</h1>
+      <span style="display: inline-block; margin-top: 8px; font-size: 12px; font-family: monospace; background: #0284c7; color: #ffffff; padding: 4px 10px; border-radius: 4px; font-weight: 600;">REF: ${escapeHtml(reference)}</span>
+    </div>
+    <div style="padding: 32px;">
+      <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 0 0 12px 0; border-bottom: 1px solid #1e293b; padding-bottom: 6px;">Candidate Details</div>
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <tr>
+          <td style="padding: 8px 0; color: #94a3b8; font-weight: 500; width: 38%;">Full Name:</td>
+          <td style="padding: 8px 0; color: #f1f5f9; font-weight: 600;">${escapeHtml(data.name)}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; color: #94a3b8; font-weight: 500; width: 38%;">Email:</td>
+          <td style="padding: 8px 0; color: #f1f5f9; font-weight: 600;"><a href="mailto:${escapeHtml(data.email)}" style="color: #38bdf8; text-decoration: none;">${escapeHtml(data.email)}</a></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; color: #94a3b8; font-weight: 500; width: 38%;">Discipline:</td>
+          <td style="padding: 8px 0; color: #f1f5f9; font-weight: 600;">${escapeHtml(data.discipline || 'General')}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; color: #94a3b8; font-weight: 500; width: 38%;">Location:</td>
+          <td style="padding: 8px 0; color: #f1f5f9; font-weight: 600;">${escapeHtml(data.location || 'Remote')}</td>
+        </tr>
+        ${portfolioRow}
+        ${linkedinRow}
+        ${githubRow}
+      </table>
+
+      <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 24px 0 12px 0; border-bottom: 1px solid #1e293b; padding-bottom: 6px;">Message / What They Want to Build</div>
+      <div style="background: #0a0d14; border: 1px solid #1e293b; border-radius: 8px; padding: 18px; font-size: 14px; white-space: pre-wrap; color: #e2e8f0; line-height: 1.7;">${escapeHtml(data.message)}</div>
+
+      <div style="text-align: center; margin-top: 24px;">
+        <a href="mailto:${escapeHtml(data.email)}?subject=Re: Braxvio Talent Application - ${escapeHtml(reference)}" style="display: inline-block; background: #2563eb; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600;">Reply to Candidate</a>
+      </div>
+    </div>
+    <div style="background: #0c0f17; padding: 18px 32px; font-size: 12px; color: #64748b; text-align: center; border-top: 1px solid #1e293b;">Braxvio Careers Desk &bull; Internal Notification</div>
   </div>
 </body>
 </html>
@@ -359,11 +422,22 @@ ${data.message}
 export function getTalentConfirmationTemplate(data: {
   name: string;
   email: string;
+  discipline?: string;
+  location?: string;
+  portfolio?: string;
+  linkedin?: string;
+  github?: string;
   referenceCode?: string;
   _id?: string;
 }) {
   const reference = data.referenceCode || (data._id ? `BX-TLT-${data._id.toString().slice(-6).toUpperCase()}` : 'N/A');
   const subject = `Application Received: ${reference} - Braxvio Careers`;
+
+  const linksText = [
+    data.portfolio ? `- Portfolio / Website: ${safeUrl(data.portfolio)}` : '',
+    data.linkedin ? `- LinkedIn: ${safeUrl(data.linkedin)}` : '',
+    data.github ? `- GitHub: ${safeUrl(data.github)}` : '',
+  ].filter(Boolean).join('\n');
 
   const text = `
 Dear ${data.name},
@@ -372,6 +446,11 @@ Thank you for your interest in joining the Braxvio ecosystem. We have safely rec
 
 Reference: ${reference}
 
+Application Details:
+- Name: ${data.name}
+- Discipline: ${data.discipline || 'Engineering'}
+- Location: ${data.location || 'Remote'}
+${linksText ? `${linksText}\n` : ''}
 Our engineering and talent team reviews all incoming profiles. If there is an active match for your background, we will reach out directly.
 
 Warm regards,
@@ -379,17 +458,74 @@ Braxvio Talent Team
 https://www.braxvio.com
   `.trim();
 
+  const portfolioRow = data.portfolio
+    ? `<tr><td style="color: #64748b; padding: 4px 0;">Portfolio / Website:</td><td style="text-align: right;"><a href="${escapeHtml(safeUrl(data.portfolio))}" target="_blank" style="color: #0284c7; text-decoration: underline; word-break: break-all;">${escapeHtml(data.portfolio)}</a></td></tr>`
+    : '';
+
+  const linkedinRow = data.linkedin
+    ? `<tr><td style="color: #64748b; padding: 4px 0;">LinkedIn:</td><td style="text-align: right;"><a href="${escapeHtml(safeUrl(data.linkedin))}" target="_blank" style="color: #0284c7; text-decoration: underline; word-break: break-all;">${escapeHtml(data.linkedin)}</a></td></tr>`
+    : '';
+
+  const githubRow = data.github
+    ? `<tr><td style="color: #64748b; padding: 4px 0;">GitHub:</td><td style="text-align: right;"><a href="${escapeHtml(safeUrl(data.github))}" target="_blank" style="color: #0284c7; text-decoration: underline; word-break: break-all;">${escapeHtml(data.github)}</a></td></tr>`
+    : '';
+
   const html = `
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
-<body style="font-family: sans-serif; background: #0b0f19; color: #334155; padding: 24px;">
-  <div style="max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 12px; padding: 32px; border: 1px solid #e2e8f0;">
-    <h2 style="color: #0f172a; margin-top: 0;">BRAXVIO CAREERS</h2>
-    <p>Dear ${escapeHtml(data.name)},</p>
-    <p>Thank you for submitting your application to Braxvio. Your profile has been filed under reference <strong style="color: #0284c7;">${escapeHtml(reference)}</strong>.</p>
-    <p>Our team evaluates engineering and product applications on a rolling basis.</p>
-    <p style="margin-bottom: 0;">Warm regards,<br><strong>Braxvio Talent Operations</strong></p>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0b0f19; color: #334155; padding: 24px; line-height: 1.6;">
+  <div style="max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 12px; padding: 32px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+    <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 16px; margin-bottom: 24px;">
+      <h2 style="color: #0f172a; margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.03em;">BRAXVIO CAREERS</h2>
+      <div style="font-size: 12px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;">Talent &amp; Engineering Desk</div>
+    </div>
+
+    <p style="font-size: 15px; color: #1e293b; margin-top: 0;">Dear ${escapeHtml(data.name)},</p>
+    <p style="font-size: 14px; color: #475569;">
+      Thank you for submitting your profile to the Braxvio Talent Network. Your application has been logged under reference <strong style="color: #0284c7; font-family: monospace;">${escapeHtml(reference)}</strong>.
+    </p>
+
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin: 20px 0;">
+      <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; font-weight: 700; margin-bottom: 8px;">Submission Summary</div>
+      <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+        <tr>
+          <td style="color: #64748b; padding: 4px 0; width: 36%;">Reference:</td>
+          <td style="color: #0284c7; font-weight: 700; font-family: monospace; text-align: right;">${escapeHtml(reference)}</td>
+        </tr>
+        <tr>
+          <td style="color: #64748b; padding: 4px 0;">Discipline:</td>
+          <td style="color: #0f172a; font-weight: 600; text-align: right;">${escapeHtml(data.discipline || 'Engineering')}</td>
+        </tr>
+        <tr>
+          <td style="color: #64748b; padding: 4px 0;">Location:</td>
+          <td style="color: #0f172a; font-weight: 600; text-align: right;">${escapeHtml(data.location || 'Remote')}</td>
+        </tr>
+        ${portfolioRow}
+        ${linkedinRow}
+        ${githubRow}
+        <tr>
+          <td style="color: #64748b; padding: 4px 0;">Status:</td>
+          <td style="color: #059669; font-weight: 700; text-align: right;">Received &amp; Under Review</td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 20px;">What happens next?</div>
+    <ul style="padding-left: 20px; font-size: 13px; color: #475569; margin: 8px 0 20px 0;">
+      <li style="margin-bottom: 6px;">Our engineering leads review candidate submissions on a rolling basis.</li>
+      <li>We will reach out to <strong>${escapeHtml(data.email)}</strong> if there is a match for your expertise.</li>
+    </ul>
+
+    <p style="font-size: 13px; color: #64748b; margin-top: 20px;">
+      If you have additional portfolio links or context to share, feel free to reply directly to this email.
+    </p>
+
+    <p style="margin-bottom: 0; font-size: 14px; color: #1e293b;">
+      Warm regards,<br>
+      <strong>Braxvio Talent Operations</strong><br>
+      <a href="https://www.braxvio.com" style="color: #0284c7; text-decoration: none; font-size: 12px;">www.braxvio.com</a>
+    </p>
   </div>
 </body>
 </html>
