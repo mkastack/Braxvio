@@ -14,7 +14,7 @@ export default function LeadershipPage() {
   const directorate = LEADERSHIP_PROFILES.slice(1);
 
   return (
-    <div className="pt-28 sm:pt-32 pb-24 sm:pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
+    <div className="pt-20 sm:pt-28 lg:pt-32 pb-24 sm:pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Navigation Breadcrumb */}
         <div>

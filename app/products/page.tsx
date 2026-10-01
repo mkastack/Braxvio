@@ -45,7 +45,7 @@ export default function ProductsPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ── Hero ── */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 border-b border-[#DDE8EC] overflow-hidden">
+      <section className="relative pt-20 sm:pt-28 lg:pt-32 pb-20 px-4 sm:px-6 lg:px-8 border-b border-[#DDE8EC] overflow-hidden">
         <div className="absolute inset-0 braxvio-grid-light opacity-50 pointer-events-none" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#11AFC1]/5 blur-[100px] pointer-events-none" />
 

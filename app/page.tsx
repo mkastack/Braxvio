@@ -231,11 +231,11 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 01 — HERO */}
       {/* ============================================================ */}
-      <section className="relative min-h-screen flex flex-col justify-between pt-28 lg:pt-24 pb-0 overflow-hidden bg-white">
+      <section className="relative min-h-0 lg:min-h-screen flex flex-col justify-between pt-20 sm:pt-24 lg:pt-24 pb-0 overflow-hidden bg-white">
         {/* Subtle Background Layer */}
         <div className="absolute inset-0 braxvio-grid-light opacity-50 pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-16 flex-1 flex flex-col justify-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-2 pb-10 sm:py-10 lg:py-16 flex-1 flex flex-col justify-start lg:justify-center">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
             {/* Left — Hero Copy & Actions */}

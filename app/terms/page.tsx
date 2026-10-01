@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="pt-28 sm:pt-32 pb-24 sm:pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
+    <div className="pt-20 sm:pt-28 lg:pt-32 pb-24 sm:pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
       <div className="max-w-4xl mx-auto space-y-12">
         <Link href="/" className="inline-flex items-center gap-2 text-xs font-mono text-[#687A86] hover:text-[#002F5B]">
           <ArrowLeft className="w-3.5 h-3.5" />
