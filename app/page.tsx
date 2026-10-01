@@ -21,13 +21,15 @@ import {
   BarChart3,
   Check,
   BookOpen,
+  GraduationCap,
+  HeartPulse,
+  Leaf,
 } from 'lucide-react';
 import BraxvioEcosystemRadial from '@/components/system/BraxvioEcosystemRadial';
 import KampusMockup from '@/components/mockups/KampusMockup';
 import PharmoraMockup from '@/components/mockups/PharmoraMockup';
 import EcoliftMockup from '@/components/mockups/EcoliftMockup';
 import DevPayMockup from '@/components/mockups/DevPayMockup';
-import EcosystemSimulator from '@/components/system/EcosystemSimulator';
 import BraxvioEcosystemVisual from '@/components/partners/BraxvioEcosystemVisual';
 import { BRAXVIO_PRODUCTS, SECTORS, INSIGHTS_ARTICLES } from '@/data/ecosystem';
 
@@ -71,96 +73,120 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
   );
 }
 
-// ─── Ticker Bar ───────────────────────────────────────────────────────────────
-const TICKER_ITEMS = [
-  '⬡ KAMPUS — University Ecosystem',
-  '◆ PHARMORA — Healthcare Access',
-  '◈ ECOLIFT — Smart Waste Logistics',
-  '◉ DEVPAY AFRICA — Digital Economy',
-  '◇ BRAXVIO LABS — R&D Horizon',
-  '▣ BUILT IN AFRICA. BUILT FOR THE WORLD.',
-  '⬡ KAMPUS — University Ecosystem',
-  '◆ PHARMORA — Healthcare Access',
-  '◈ ECOLIFT — Smart Waste Logistics',
-  '◉ DEVPAY AFRICA — Digital Economy',
-  '◇ BRAXVIO LABS — R&D Horizon',
-  '▣ BUILT IN AFRICA. BUILT FOR THE WORLD.',
-];
-
 const products = [
   {
     id: 'kampus',
     num: '01',
-    name: 'KAMPUS',
-    category: 'Education',
-    tagline: 'University life. One connected experience.',
+    name: 'Kampus',
+    category: 'Education & Student Life',
+    tagline: 'University life, simplified.',
     description:
-      'A digital ecosystem around university students — unifying verified student housing, peer marketplaces, and essential campus life tools.',
-    features: ['Verified Housing', 'Peer Marketplace', 'Student ID Rails', 'Academic Feeds'],
-    status: 'PUBLIC BETA',
+      'Unifies verified off-campus student accommodation, peer-to-peer textbook and gadget trade, and digital student identity verification.',
+    metrics: [
+      { label: 'Hostel Beds', value: '1,400+' },
+      { label: 'Broker Fee', value: '0%' },
+      { label: 'Campuses', value: 'Legon & KNUST' },
+    ],
+    highlights: [
+      { title: 'Direct Manager Booking', desc: 'Connect straight to verified hostel managers with no agent commission fees.' },
+      { title: 'Deposit Escrow Protection', desc: 'Reservation funds remain locked safely until you inspect your room in person.' },
+      { title: 'Campus Trade Network', desc: 'Buy and sell textbooks, calculators, and essentials within verified student handoff zones.' },
+    ],
+    status: 'Public Beta',
     statusColor: '#11AFC1',
     Icon: Building2,
     href: '/products/kampus',
     accentColor: '#11AFC1',
-    bgClass: 'bg-[#F2FAFC]',
-    borderClass: 'border-[#DDE8EC]',
+    badge: 'Higher Education',
+    bgClass: 'bg-white',
+    borderClass: 'border-[#E2E8F0]',
     mockup: KampusMockup,
     dark: false,
   },
   {
     id: 'pharmora',
     num: '02',
-    name: 'PHARMORA',
-    category: 'Healthcare',
-    tagline: 'Making healthcare access feel closer.',
+    name: 'Pharmora',
+    category: 'Healthcare & Pharmaceuticals',
+    tagline: 'Authentic medication, closer than ever.',
     description:
-      'A technology-enabled marketplace connecting patients directly with licensed community pharmacies, with live inventory and cold-chain dispatch.',
-    features: ['Live Stock Queries', 'Clinical Audit', 'Cold-Chain Guard', 'Prescription Sync'],
-    status: 'IN DEVELOPMENT',
+      'A digital dispensary network connecting patients directly to verified local pharmacies, guaranteeing genuine medication batches and temperature-monitored courier transit.',
+    metrics: [
+      { label: 'Partner Dispensaries', value: '42 Active' },
+      { label: 'Avg Dispatch', value: '24 mins' },
+      { label: 'Batch Counterfeits', value: 'Zero' },
+    ],
+    highlights: [
+      { title: 'Live Stock Visibility', desc: 'Instant inventory queries across licensed community dispensaries in Accra.' },
+      { title: 'Monitored Cold-Chain', desc: 'Real-time temperature logging (2°C – 8°C) for insulin, vaccines, and biologics.' },
+      { title: 'Clinical Prescription Sync', desc: 'Prescriptions reviewed and digitally signed by licensed pharmacists before dispatch.' },
+    ],
+    status: 'In Development',
     statusColor: '#008FC4',
     Icon: Pill,
     href: '/products/pharmora',
     accentColor: '#008FC4',
+    badge: 'Dispensary Infrastructure',
     bgClass: 'bg-white',
-    borderClass: 'border-[#DDE8EC]',
+    borderClass: 'border-[#E2E8F0]',
     mockup: PharmoraMockup,
     dark: false,
   },
   {
     id: 'ecolift',
     num: '03',
-    name: 'ECOLIFT',
-    category: 'Sustainability',
-    tagline: 'Smarter movement. Cleaner communities.',
+    name: 'Ecolift',
+    category: 'Sustainability & Civic Logistics',
+    tagline: 'Smarter collection for cleaner communities.',
     description:
-      'Algorithmic logistics dispatching for municipal sanitation, real-time IoT bin monitoring, and circular economy rewards for household waste segregation.',
-    features: ['Route Optimization', 'Telemetry Tracking', 'Circular Credits', 'Carbon Diversion'],
-    status: 'IN DEVELOPMENT',
+      'Turnkey route optimization for municipal and private waste operators, real-time collection tracking, and direct Mobile Money cashback for sorted household recyclables.',
+    metrics: [
+      { label: 'Transit Idle Cut', value: '-34%' },
+      { label: 'Weekly Tonnage', value: '28+ Tons' },
+      { label: 'Citizen Cashback', value: 'Instant MoMo' },
+    ],
+    highlights: [
+      { title: 'Dynamic Hauler Routing', desc: 'GPS waypoint clustering eliminates redundant transit runs and cuts fuel consumption.' },
+      { title: 'Smart Bin Telemetry', desc: 'Sensor-driven threshold alerts dispatch haulers before public commercial bins overflow.' },
+      { title: 'Household Plastic Incentives', desc: 'Weighed PET plastics trigger automated micro-cashback directly to residents’ mobile wallets.' },
+    ],
+    status: 'In Development',
     statusColor: '#42D6C5',
     Icon: Truck,
     href: '/products/ecolift',
     accentColor: '#42D6C5',
-    bgClass: 'bg-[#071C2B]',
-    borderClass: 'border-[#11AFC1]/30',
+    badge: 'Civic Telematics',
+    bgClass: 'bg-[#061826]',
+    borderClass: 'border-white/10',
     mockup: EcoliftMockup,
     dark: true,
   },
   {
     id: 'devpay',
     num: '04',
-    name: 'DEVPAY AFRICA',
-    category: 'Digital Economy',
-    tagline: 'African talent. Global opportunity.',
+    name: 'DevPay Africa',
+    category: 'Fintech & Digital Economy',
+    tagline: 'African tech talent, paid without boundaries.',
     description:
-      'A unified contract escrow and treasury rail allowing African engineers, designers, and creators to invoice global employers and receive instant multi-currency payouts.',
-    features: ['Virtual ACH / IBAN', 'Milestone Escrow', 'Instant Settlement', 'Auto Compliance'],
-    status: 'PRIVATE BETA',
+      'Cross-border invoicing and milestone-gated escrow built for African software developers, agency teams, and digital creators billing international clients with zero predatory currency spreads.',
+    metrics: [
+      { label: 'Settlement Speed', value: '< 60 sec' },
+      { label: 'FX Mark-up', value: '0% Mid-rate' },
+      { label: 'Payout Rails', value: 'MoMo & Banks' },
+    ],
+    highlights: [
+      { title: 'Multi-Currency Treasury', desc: 'Hold and convert USD, EUR, GBP, GHS, NGN, and KES in verified accounts.' },
+      { title: 'Milestone Escrow Protection', desc: 'Clients lock payments in escrow upfront; funds release automatically on deliverable sign-off.' },
+      { title: 'Direct Mobile Money Rails', desc: 'Instant one-click withdrawals to MTN MoMo, AirtelTigo, Vodafone Cash, or bank accounts.' },
+    ],
+    status: 'Private Beta',
     statusColor: '#006EAA',
     Icon: Landmark,
     href: '/products/devpay-africa',
     accentColor: '#006EAA',
+    badge: 'Developer Financial Rails',
     bgClass: 'bg-white',
-    borderClass: 'border-[#DDE8EC]',
+    borderClass: 'border-[#E2E8F0]',
     mockup: DevPayMockup,
     dark: false,
   },
@@ -203,113 +229,107 @@ export default function HomePage() {
 
       {/* ============================================================ */}
       {/* ============================================================ */}
-      {/* 01 — CINEMATIC HERO */}
+      {/* 01 — HERO */}
       {/* ============================================================ */}
-      <section className="relative min-h-screen flex flex-col justify-between pt-24 lg:pt-20 pb-0 overflow-hidden bg-white">
-        {/* Layered Background System */}
-        <div className="absolute inset-0 braxvio-grid-light opacity-60 pointer-events-none" />
-
-        {/* Ambient Atmospheric Glows */}
-        <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-radial from-[#11AFC1]/12 via-[#006EAA]/5 to-transparent blur-[130px] pointer-events-none" />
-        <div className="absolute top-10 left-10 w-[450px] h-[450px] rounded-full bg-gradient-radial from-[#42D6C5]/8 to-transparent blur-[110px] pointer-events-none" />
+      <section className="relative min-h-screen flex flex-col justify-between pt-28 lg:pt-24 pb-0 overflow-hidden bg-white">
+        {/* Subtle Background Layer */}
+        <div className="absolute inset-0 braxvio-grid-light opacity-50 pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-16 flex-1 flex flex-col justify-center">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
             {/* Left — Hero Copy & Actions */}
             <div className="lg:col-span-6 space-y-7 text-left">
-              {/* Logo mark + Parent Badge */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#F2FAFC] border border-[#DDE8EC] shadow-sm animate-fade-in-up">
-                <div className="relative w-5 h-6 shrink-0">
+              {/* Grounded Location Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F0F7FA] border border-[#D2E7EE] shadow-xs">
+                <div className="relative w-4 h-5 shrink-0">
                   <Image
                     src="/braxvio-mark.png"
                     alt="Braxvio Logo"
                     fill
                     className="object-contain"
                     priority
-                    sizes="24px"
+                    sizes="20px"
                   />
                 </div>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#11AFC1] animate-pulse" />
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest font-bold text-[#006EAA]">
-                  BRAXVIO / BUILD. INNOVATE. ELEVATE.
+                <span className="w-1.5 h-1.5 rounded-full bg-[#11AFC1]" />
+                <span className="text-xs font-semibold text-[#005B8C]">
+                  Parent Technology Company • Accra, Ghana
                 </span>
               </div>
 
-              {/* Main Headline with Cool Liquid Metallic Text Effects */}
-              <div className="space-y-1 animate-fade-in-up delay-100">
-                <div className="text-5xl sm:text-6xl lg:text-[72px] xl:text-[80px] font-black tracking-tight text-[#002F5B] leading-[1.0] select-none">
-                  WE BUILD
-                </div>
-                <div className="text-5xl sm:text-6xl lg:text-[72px] xl:text-[80px] font-black tracking-tight leading-[1.0] braxvio-hero-gradient braxvio-hero-glow select-none transition-transform duration-500 hover:scale-[1.01]">
-                  TECHNOLOGY
-                </div>
-                <div className="text-5xl sm:text-6xl lg:text-[72px] xl:text-[80px] font-black tracking-tight text-[#002F5B] leading-[1.0] select-none">
-                  FOR LIFE.
-                </div>
+              {/* Main Headline */}
+              <div className="space-y-2">
+                <h1 className="text-4xl sm:text-6xl lg:text-[66px] font-black text-[#002F5B] tracking-tight leading-[1.06]">
+                  Software built for <br />
+                  <span className="braxvio-gradient-text">real life</span> in Africa.
+                </h1>
               </div>
 
               {/* Supporting Narrative */}
-              <p className="text-base sm:text-lg text-[#687A86] max-w-xl leading-relaxed animate-fade-in-up delay-200">
-                Braxvio is the parent technology company creating digital products, platforms, and sovereign infrastructure designed around meaningful human needs across Africa and global markets.
+              <p className="text-base sm:text-lg text-[#687A86] max-w-xl leading-relaxed">
+                Braxvio creates focused digital products that remove daily friction — from university campus life and pharmacy access to smart city logistics and cross-border developer payments.
               </p>
 
-              {/* CTAs — Clean Explore Button (No AI Star Icon) */}
-              <div className="flex flex-wrap items-center gap-3.5 pt-1 animate-fade-in-up delay-300">
+              {/* CTAs */}
+              <div className="flex flex-wrap items-center gap-3.5 pt-1">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#003E72] via-[#006EAA] to-[#11AFC1] text-white text-sm font-bold shadow-md hover:shadow-lg hover:shadow-[#11AFC1]/20 hover:-translate-y-0.5 transition-all duration-300 group"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#003E72] via-[#006EAA] to-[#11AFC1] text-white text-sm font-semibold shadow-md hover:shadow-lg hover:shadow-[#11AFC1]/20 hover:-translate-y-0.5 transition-all duration-300 group"
                 >
-                  <span>EXPLORE OUR PRODUCTS</span>
+                  <span>Explore Products</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </Link>
                 <Link
                   href="/company"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-[#DDE8EC] bg-white/80 hover:bg-white hover:border-[#11AFC1] text-sm font-semibold text-[#002F5B] transition-all duration-300 backdrop-blur-sm hover:-translate-y-0.5 shadow-sm"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-[#DDE8EC] bg-white hover:bg-[#F7FAFC] hover:border-[#11AFC1] text-sm font-semibold text-[#002F5B] transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
                 >
-                  DISCOVER BRAXVIO
+                  Our Story
                 </Link>
               </div>
 
-              {/* Institutional Micro Stats */}
-              <div className="pt-6 border-t border-[#DDE8EC] grid grid-cols-3 gap-4 animate-fade-in-up delay-400">
+              {/* Grounded Micro Stats */}
+              <div className="pt-6 border-t border-[#DDE8EC] grid grid-cols-3 gap-4">
                 {[
-                  { label: 'ECOSYSTEM NODES', value: '4', suffix: '', sub: 'Active Platforms' },
-                  { label: 'HQ', value: '', suffix: 'Accra', sub: 'Ghana, West Africa' },
-                  { label: 'REACH', value: '', suffix: 'Global', sub: 'Pan-African & Beyond' },
+                  { label: 'HEADQUARTERS', value: 'Accra', sub: 'Ghana, West Africa' },
+                  { label: 'CORE SECTORS', value: '4', sub: 'Campus, Health, Logistics, Pay' },
+                  { label: 'FLAGSHIP IN BETA', value: 'Kampus', sub: 'Higher Education Ecosystem' },
                 ].map((stat) => (
                   <div key={stat.label}>
-                    <div className="text-[9px] font-mono uppercase tracking-widest text-[#687A86] mb-1">
+                    <div className="text-[10px] font-semibold tracking-wider text-[#687A86] uppercase mb-1">
                       {stat.label}
                     </div>
                     <div className="text-sm font-extrabold text-[#002F5B] tracking-tight">
-                      {stat.value && <AnimatedCounter target={parseInt(stat.value)} />}
-                      {stat.suffix}
+                      {stat.value}
                     </div>
-                    <div className="text-[10px] text-[#687A86]">{stat.sub}</div>
+                    <div className="text-[11px] text-[#687A86] leading-tight mt-0.5">{stat.sub}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right — Radial Parent Ecosystem Visualizer (Matching see.jpeg structure) */}
-            <div className="lg:col-span-6 flex items-center justify-center animate-fade-in-scale delay-200">
+            {/* Right — Radial Parent Ecosystem Visualizer (Maintained as requested) */}
+            <div className="lg:col-span-6 flex items-center justify-center animate-fade-in-scale">
               <BraxvioEcosystemRadial />
             </div>
           </div>
         </div>
 
-        {/* Bottom Ticker */}
-        <div className="relative z-10 mt-auto border-t border-[#DDE8EC] bg-[#F7FAFC]/90 backdrop-blur-sm py-3.5 overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap">
-            {TICKER_ITEMS.map((item, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center text-[10px] font-mono font-bold uppercase tracking-widest text-[#006EAA] px-8"
-              >
-                {item}
-              </span>
-            ))}
+        {/* Bottom Proof Strip */}
+        <div className="relative z-10 mt-auto border-t border-[#DDE8EC] bg-[#F7FAFC] py-3.5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3 text-xs text-[#687A86]">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-[#002F5B] font-semibold">Active Product Lines:</span>
+              <span className="text-[#485B67]">Kampus (Education) • Pharmora (Healthcare) • Ecolift (Sustainability) • DevPay Africa (Digital Work)</span>
+            </div>
+            <div className="hidden sm:flex items-center gap-4 text-[11px]">
+              <span>Engineered in Accra</span>
+              <span>•</span>
+              <Link href="/products" className="text-[#006EAA] font-semibold hover:underline">
+                View Product Roadmap →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -317,48 +337,53 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 02 — OPENING STATEMENT */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 px-4 sm:px-6 lg:px-8 bg-white border-y border-[#DDE8EC] overflow-hidden">
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white border-y border-[#DDE8EC] overflow-hidden">
         <div className="max-w-5xl mx-auto space-y-10">
-          <div className="text-[11px] font-mono tracking-widest uppercase text-[#006EAA] font-semibold animate-fade-in-up">
-            THE BRAXVIO BELIEF
+          <div className="text-xs font-semibold tracking-wider uppercase text-[#006EAA]">
+            Our Core Directive
           </div>
 
-          <div className="space-y-3 animate-fade-in-up delay-100">
+          <div className="space-y-3">
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-[#687A86] tracking-tight leading-tight">
-              WE DON&apos;T BUILD TECHNOLOGY{' '}
-              <span className="font-extrabold text-[#002F5B]">FOR THE SAKE OF TECHNOLOGY.</span>
+              We don&apos;t build technology{' '}
+              <span className="font-extrabold text-[#002F5B]">for the sake of technology.</span>
             </h2>
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-[#687A86] tracking-tight leading-tight">
-              WE BUILD IT TO MAKE{' '}
-              <span className="braxvio-gradient-text font-extrabold">LIFE WORK BETTER.</span>
+              We build it to make{' '}
+              <span className="braxvio-gradient-text font-extrabold">daily life work better.</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-[#DDE8EC] animate-fade-in-up delay-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-[#DDE8EC]">
             {[
               {
-                icon: '🎓',
+                Icon: GraduationCap,
                 label: 'Education',
-                text: 'University students deserve seamless campus ecosystems',
+                text: 'Higher education students deserve safe housing and connected campus tools.',
+                color: '#11AFC1',
               },
               {
-                icon: '💊',
+                Icon: HeartPulse,
                 label: 'Healthcare',
-                text: 'Access to authentic medication should never be a barrier',
+                text: 'Checking authentic medication stock should take seconds, not hours of physical travel.',
+                color: '#008FC4',
               },
               {
-                icon: '♻️',
+                Icon: Leaf,
                 label: 'Sustainability',
-                text: 'Clean communities need intelligent, incentivized logistics',
+                text: 'Modern cities need predictable sanitation logistics and practical recycling incentives.',
+                color: '#42D6C5',
               },
-            ].map((item) => (
-              <div key={item.label} className="flex gap-3">
-                <span className="text-2xl mt-0.5 shrink-0">{item.icon}</span>
+            ].map(({ Icon, label, text, color }) => (
+              <div key={label} className="p-5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-white border border-[#DDE8EC] flex items-center justify-center shadow-xs">
+                  <Icon className="w-5 h-5" style={{ color }} />
+                </div>
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-[#11AFC1] font-bold mb-1">
-                    {item.label}
+                  <div className="text-xs font-bold text-[#002F5B] mb-1">
+                    {label}
                   </div>
-                  <p className="text-sm text-[#687A86] leading-relaxed">{item.text}</p>
+                  <p className="text-xs sm:text-sm text-[#687A86] leading-relaxed">{text}</p>
                 </div>
               </div>
             ))}
@@ -369,20 +394,20 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 03 — PRODUCT ECOSYSTEM SHOWCASE */}
       {/* ============================================================ */}
-      <section className="relative py-28 sm:py-36 px-4 sm:px-6 lg:px-8 bg-[#F7FAFC]">
-        <div className="max-w-7xl mx-auto space-y-20">
+      <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#F7FAFC]">
+        <div className="max-w-7xl mx-auto space-y-16">
           {/* Section Header */}
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#11AFC1] font-semibold">
+          <div className="max-w-3xl space-y-3">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#11AFC1]">
               <Layers className="w-4 h-4" />
-              <span>THE BRAXVIO PRODUCT SYSTEM</span>
+              <span>The Product Ecosystem</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-[#002F5B] tracking-tight">
-              ONE COMPANY. <br />
-              MULTIPLE SYSTEMS.
+              One Company. <br />
+              Focused Everyday Systems.
             </h2>
             <p className="text-base sm:text-lg text-[#687A86]">
-              Braxvio products operate independently while sharing one vision — technology that improves everyday life.
+              Each Braxvio platform operates with focused autonomy while sharing our unified commitment to dependable engineering.
             </p>
           </div>
 
@@ -394,32 +419,49 @@ export default function HomePage() {
               return (
                 <div
                   key={product.id}
-                  className={`rounded-3xl p-6 sm:p-10 lg:p-14 ${product.bgClass} border ${product.borderClass} grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative overflow-hidden card-premium ${product.dark ? 'card-premium-dark shadow-2xl' : 'shadow-sm'}`}
+                  className={`rounded-3xl p-6 sm:p-10 lg:p-12 ${product.bgClass} border ${product.borderClass} grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative overflow-hidden transition-all duration-300 ${
+                    product.dark
+                      ? 'shadow-[0_20px_50px_rgba(6,24,38,0.5)]'
+                      : 'shadow-[0_8px_30px_rgba(0,47,91,0.04)] hover:shadow-[0_16px_40px_rgba(0,47,91,0.08)]'
+                  }`}
                 >
-                  {product.dark && (
-                    <>
-                      <div className="absolute inset-0 braxvio-grid-dark opacity-20 pointer-events-none" />
-                      <div
-                        className="absolute -top-32 -right-32 w-72 h-72 rounded-full blur-[80px] pointer-events-none"
-                        style={{ background: `radial-gradient(circle, ${product.accentColor}20 0%, transparent 70%)` }}
-                      />
-                    </>
-                  )}
-
                   {/* Info Column */}
                   <div
-                    className={`relative z-10 lg:col-span-5 space-y-5 ${
+                    className={`relative z-10 lg:col-span-5 space-y-6 ${
                       isReversed ? 'order-1 lg:order-2' : ''
                     }`}
                   >
-                    <div
-                      className="text-[10px] font-mono font-bold tracking-widest uppercase"
-                      style={{ color: product.accentColor }}
-                    >
-                      {product.num} / {product.category}
+                    {/* Header Pill & Index */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`text-xs font-bold px-2.5 py-1 rounded-lg ${
+                            product.dark ? 'bg-white/10 text-white' : 'bg-[#002F5B]/8 text-[#002F5B]'
+                          }`}
+                        >
+                          {product.category}
+                        </span>
+                        <span
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg"
+                          style={{
+                            color: product.accentColor,
+                            backgroundColor: `${product.accentColor}18`,
+                          }}
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full animate-pulse"
+                            style={{ backgroundColor: product.accentColor }}
+                          />
+                          {product.status}
+                        </span>
+                      </div>
+                      <span className={`font-mono text-xs font-bold ${product.dark ? 'text-slate-400' : 'text-[#687A86]'}`}>
+                        {product.num} / 04
+                      </span>
                     </div>
 
-                    <div>
+                    {/* Title & Tagline */}
+                    <div className="space-y-1">
                       <h3
                         className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
                           product.dark ? 'text-white' : 'text-[#002F5B]'
@@ -428,7 +470,7 @@ export default function HomePage() {
                         {product.name}
                       </h3>
                       <div
-                        className="text-base font-medium mt-1"
+                        className="text-sm sm:text-base font-semibold"
                         style={{ color: product.accentColor }}
                       >
                         {product.tagline}
@@ -443,53 +485,91 @@ export default function HomePage() {
                       {product.description}
                     </p>
 
-                    <div className="grid grid-cols-2 gap-2.5 pt-1">
-                      {product.features.map((f) => (
-                        <div
-                          key={f}
-                          className={`flex items-center gap-2 text-xs font-mono ${
-                            product.dark ? 'text-slate-200' : 'text-[#002F5B]'
-                          }`}
-                        >
-                          <Check
-                            className="w-3.5 h-3.5 shrink-0"
-                            style={{ color: product.accentColor }}
-                          />
-                          <span>{f}</span>
+                    {/* Operational Proof Metrics Strip */}
+                    <div
+                      className={`grid grid-cols-3 gap-3 py-3 px-4 rounded-xl border ${
+                        product.dark
+                          ? 'bg-black/30 border-white/10'
+                          : 'bg-[#F8FAFC] border-[#E2E8F0]'
+                      }`}
+                    >
+                      {product.metrics.map((m) => (
+                        <div key={m.label} className="space-y-0.5">
+                          <div
+                            className={`text-base font-extrabold font-mono tracking-tight ${
+                              product.dark ? 'text-white' : 'text-[#002F5B]'
+                            }`}
+                          >
+                            {m.value}
+                          </div>
+                          <div
+                            className={`text-[10px] font-medium uppercase tracking-wider ${
+                              product.dark ? 'text-slate-400' : 'text-[#687A86]'
+                            }`}
+                          >
+                            {m.label}
+                          </div>
                         </div>
                       ))}
                     </div>
 
-                    <div className="flex items-center justify-between pt-3">
+                    {/* Capability Highlights */}
+                    <div className="space-y-2.5">
+                      {product.highlights.map((h) => (
+                        <div key={h.title} className="flex items-start gap-2.5 text-xs">
+                          <div
+                            className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                            style={{
+                              backgroundColor: `${product.accentColor}20`,
+                              color: product.accentColor,
+                            }}
+                          >
+                            <Check className="w-2.5 h-2.5 stroke-[3]" />
+                          </div>
+                          <p
+                            className={`leading-snug ${
+                              product.dark ? 'text-slate-300' : 'text-[#687A86]'
+                            }`}
+                          >
+                            <strong
+                              className={`font-semibold ${
+                                product.dark ? 'text-white' : 'text-[#002F5B]'
+                              }`}
+                            >
+                              {h.title}:
+                            </strong>{' '}
+                            {h.desc}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Action CTA */}
+                    <div className="pt-2 flex flex-wrap items-center gap-4">
                       <Link
                         href={product.href}
-                        className={`inline-flex items-center gap-2 text-xs font-bold font-mono tracking-wider uppercase transition-colors group ${
+                        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-xs group ${
                           product.dark
-                            ? 'text-[#42D6C5] hover:text-white'
-                            : 'text-[#002F5B] hover:text-[#11AFC1]'
+                            ? 'bg-[#42D6C5] text-[#061826] hover:bg-white'
+                            : 'bg-[#002F5B] hover:bg-[#006EAA] text-white'
                         }`}
                       >
-                        <span>EXPLORE {product.name}</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <span>Explore {product.name}</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                       </Link>
-
                       <span
-                        className="text-[9px] font-mono font-bold px-2.5 py-1 rounded-full uppercase tracking-wider"
-                        style={{
-                          color: product.accentColor,
-                          borderColor: `${product.accentColor}40`,
-                          backgroundColor: `${product.accentColor}15`,
-                          border: `1px solid ${product.accentColor}40`,
-                        }}
+                        className={`text-xs ${
+                          product.dark ? 'text-slate-400' : 'text-[#687A86]'
+                        }`}
                       >
-                        {product.status}
+                        Interactive preview →
                       </span>
                     </div>
                   </div>
 
-                  {/* Mockup Column */}
+                  {/* Mockup Column — hidden on mobile, visible on desktop */}
                   <div
-                    className={`relative z-10 lg:col-span-7 ${
+                    className={`relative z-10 lg:col-span-7 hidden lg:block ${
                       isReversed ? 'order-2 lg:order-1' : ''
                     }`}
                   >
@@ -499,26 +579,21 @@ export default function HomePage() {
               );
             })}
           </div>
-
-          {/* Interactive Ecosystem Simulator */}
-          <div className="pt-8">
-            <EcosystemSimulator />
-          </div>
         </div>
       </section>
 
       {/* ============================================================ */}
       {/* 04 — WHAT WE BUILD (SECTOR MATRIX) */}
       {/* ============================================================ */}
-      <section className="py-28 sm:py-36 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#DDE8EC]">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#DDE8EC]">
+        <div className="max-w-7xl mx-auto space-y-14">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-[#11AFC1] font-semibold">
-                SYSTEM ARCHITECTURE / CORE DOMAINS
+            <div className="space-y-2">
+              <span className="text-xs font-semibold tracking-wider uppercase text-[#11AFC1]">
+                Core Focus Areas
               </span>
               <h2 className="text-3xl sm:text-5xl font-extrabold text-[#002F5B] tracking-tight">
-                WHAT WE BUILD
+                What We Build
               </h2>
             </div>
             <p className="text-sm text-[#687A86] max-w-md">
@@ -535,22 +610,22 @@ export default function HomePage() {
                   onMouseEnter={() => setActiveSector(sector.id)}
                   className={`p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between space-y-8 cursor-pointer card-premium ${
                     isSelected
-                      ? 'bg-[#002F5B] text-white border-[#11AFC1] shadow-xl scale-[1.02] glow-navy'
+                      ? 'bg-[#002F5B] text-white border-[#11AFC1] shadow-xl scale-[1.02]'
                       : 'bg-[#F7FAFC] text-[#06131D] border-[#DDE8EC] hover:bg-white hover:border-[#11AFC1]/50'
                   }`}
                 >
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <span
-                      className={`text-[10px] font-mono uppercase tracking-widest ${
-                        isSelected ? 'text-[#42D6C5]' : 'text-[#687A86]'
+                      className={`text-xs font-bold uppercase tracking-wider ${
+                        isSelected ? 'text-[#42D6C5]' : 'text-[#006EAA]'
                       }`}
                     >
-                      DOMAINS / {sector.name}
+                      {sector.name}
                     </span>
                     <h3 className="text-2xl font-bold tracking-tight">{sector.name}</h3>
                     <div
                       className={`text-xs font-medium ${
-                        isSelected ? 'text-slate-200' : 'text-[#006EAA]'
+                        isSelected ? 'text-slate-200' : 'text-[#687A86]'
                       }`}
                     >
                       {sector.tagline}
@@ -565,7 +640,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="pt-4 border-t border-current/10 flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold">Platform: {sector.productName}</span>
+                    <span className="text-xs font-semibold">Product: {sector.productName}</span>
                     <Link
                       href={`/products/${sector.productSlug}`}
                       className={`p-1.5 rounded-lg transition-all ${
@@ -587,58 +662,49 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 05 — BUILT FROM AFRICA */}
       {/* ============================================================ */}
-      <section className="relative py-28 sm:py-36 px-4 sm:px-6 lg:px-8 bg-[#06131D] text-white overflow-hidden">
-        <div className="absolute inset-0 braxvio-grid-dark opacity-35 pointer-events-none" />
-        {/* Animated globe pulse */}
-        <div className="absolute right-[5%] top-1/2 -translate-y-1/2 w-[400px] h-[400px] hidden lg:block pointer-events-none">
-          <div className="absolute inset-0 rounded-full border border-[#11AFC1]/10 animate-halo" style={{ animationDelay: '0s' }} />
-          <div className="absolute inset-8 rounded-full border border-[#11AFC1]/15 animate-halo" style={{ animationDelay: '0.8s' }} />
-          <div className="absolute inset-16 rounded-full border border-[#11AFC1]/20 animate-halo" style={{ animationDelay: '1.6s' }} />
-          <div className="absolute inset-24 rounded-full bg-[#11AFC1]/5 flex items-center justify-center">
-            <Globe2 className="w-16 h-16 text-[#11AFC1]/40 animate-rotate-slow" />
-          </div>
-        </div>
+      <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#06131D] text-white overflow-hidden">
+        <div className="absolute inset-0 braxvio-grid-dark opacity-20 pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto space-y-16">
-          <div className="max-w-3xl space-y-5">
-            <span className="text-[11px] font-mono tracking-widest uppercase text-[#42D6C5] font-semibold">
-              ORIGIN &amp; HORIZON
+        <div className="relative z-10 max-w-7xl mx-auto space-y-14">
+          <div className="max-w-3xl space-y-4">
+            <span className="text-xs font-semibold tracking-wider uppercase text-[#42D6C5]">
+              Origin &amp; Reach
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-              BUILT FROM AFRICA. <br />
-              DESIGNED WITHOUT BORDERS.
+              Built from Africa. <br />
+              Designed without borders.
             </h2>
             <p className="text-base text-slate-300 leading-relaxed max-w-lg">
-              Our perspective begins in Africa, but the problems we solve and the standards we build toward are global.
+              Our perspective begins in Ghana, but the problems we solve and the standards we build toward are global.
             </p>
           </div>
 
-          {/* Coordinate grid */}
-          <div className="relative rounded-3xl p-6 sm:p-10 bg-[#071C2B] border border-[#11AFC1]/25 overflow-hidden">
+          {/* Location Grid */}
+          <div className="relative rounded-3xl p-6 sm:p-10 bg-[#071C2B] border border-white/10 overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {[
                 {
-                  coord: '5.6037° N, 0.1870° W',
+                  coord: 'Headquarters',
                   city: 'Accra, Ghana',
-                  role: 'Headquarters, Engineering & Systems Design',
+                  role: 'Engineering, Systems Architecture & Core Operations',
                   color: '#11AFC1',
                 },
                 {
-                  coord: 'REGIONAL HUB',
+                  coord: 'Primary Deployments',
                   city: 'West Africa',
-                  role: 'Kampus higher education & Pharmora network',
+                  role: 'Kampus university network & Pharmora pharmacy pilots',
                   color: '#008FC4',
                 },
                 {
-                  coord: 'EXPANSION VECTORS',
+                  coord: 'Roadmap Corridors',
                   city: 'East & Southern Africa',
-                  role: 'DevPay Africa cross-border developer liquidity',
+                  role: 'DevPay Africa developer liquidity corridors',
                   color: '#42D6C5',
                 },
                 {
-                  coord: 'GLOBAL SETTLEMENT',
-                  city: 'International Rails',
-                  role: 'Compliant USD, GBP, EUR banking bridges',
+                  coord: 'Global Rails',
+                  city: 'International Settlement',
+                  role: 'Multi-currency USD, GBP, EUR banking partnerships',
                   color: '#006EAA',
                 },
               ].map((loc) => (
@@ -647,20 +713,20 @@ export default function HomePage() {
                   className="space-y-2 pl-4 border-l-2 transition-all duration-300 hover:pl-5"
                   style={{ borderColor: loc.color }}
                 >
-                  <div className="text-[10px] font-mono text-slate-400 uppercase">{loc.coord}</div>
+                  <div className="text-xs font-semibold text-slate-400">{loc.coord}</div>
                   <div className="text-base font-bold text-white">{loc.city}</div>
                   <div className="text-xs text-slate-400 leading-relaxed">{loc.role}</div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-slate-400">
+            <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-slate-400">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#42D6C5] animate-ping" />
-                <span>ACTIVE INFRASTRUCTURE NODES ACROSS CONTINENTAL CORRIDORS</span>
+                <span className="w-2 h-2 rounded-full bg-[#42D6C5]" />
+                <span>Headquartered in Accra with distributed engineering talent across Africa</span>
               </div>
-              <Link href="/company" className="text-[#42D6C5] hover:text-white transition-colors flex items-center gap-1">
-                <span>Read the Braxvio Story</span>
+              <Link href="/company" className="text-[#42D6C5] hover:text-white transition-colors flex items-center gap-1 font-medium">
+                <span>Read our company story</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -669,17 +735,17 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* 06 — ENGINEERING PHILOSOPHY */}
+      {/* 06 — ENGINEERING RIGOR */}
       {/* ============================================================ */}
-      <section className="py-28 sm:py-36 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#DDE8EC]">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="max-w-3xl space-y-4">
-            <span className="text-[11px] font-mono tracking-widest uppercase text-[#006EAA] font-semibold">
-              ENGINEERING RIGOR
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#DDE8EC]">
+        <div className="max-w-7xl mx-auto space-y-14">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs font-semibold tracking-wider uppercase text-[#006EAA]">
+              Engineering Discipline
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-[#002F5B] tracking-tight leading-tight">
-              WE DON&apos;T CHOOSE TECHNOLOGY BECAUSE IT&apos;S TRENDING.{' '}
-              <span className="braxvio-gradient-text">WE CHOOSE IT BECAUSE IT FITS THE PROBLEM.</span>
+              We don&apos;t pick tools for hype.{' '}
+              <span className="braxvio-gradient-text">We build for dependability.</span>
             </h2>
           </div>
 
@@ -690,7 +756,7 @@ export default function HomePage() {
                 className="p-8 rounded-2xl bg-[#F7FAFC] border border-[#DDE8EC] space-y-4 card-premium group hover:bg-white hover:border-[#DDE8EC]"
               >
                 <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
                   style={{ backgroundColor: `${color}15` }}
                 >
                   <Icon className="w-5.5 h-5.5" style={{ color }} />
@@ -704,9 +770,9 @@ export default function HomePage() {
           <div className="pt-2">
             <Link
               href="/technology"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#002F5B] text-white text-xs font-mono tracking-wider uppercase font-semibold hover:bg-[#003E72] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#002F5B] text-white text-xs font-semibold tracking-wide uppercase hover:bg-[#003E72] transition-colors shadow-xs"
             >
-              <span>EXPLORE TECHNOLOGY ARCHITECTURE</span>
+              <span>Explore Technology Architecture</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -714,27 +780,21 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* 07 — BRAXVIO PHILOSOPHY QUOTE MOMENT */}
+      {/* 07 — PHILOSOPHY STATEMENT */}
       {/* ============================================================ */}
-      <section className="relative py-32 sm:py-44 px-4 sm:px-6 lg:px-8 bg-[#002F5B] text-white text-center overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 braxvio-grid-dark opacity-20 pointer-events-none" />
-        <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#42D6C5]/40 to-transparent pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-[#11AFC1]/8 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-[#11AFC1]/5 pointer-events-none" />
-
-        <div className="relative z-10 max-w-4xl mx-auto space-y-8">
-          <div className="text-xs font-mono tracking-widest uppercase text-[#42D6C5]">
-            BRAXVIO BELIEVES
+      <section className="relative py-28 sm:py-36 px-4 sm:px-6 lg:px-8 bg-[#002F5B] text-white text-center overflow-hidden">
+        <div className="relative z-10 max-w-4xl mx-auto space-y-6">
+          <div className="text-xs font-semibold tracking-wider uppercase text-[#42D6C5]">
+            Our Conviction
           </div>
 
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.04]">
-            THE BEST TECHNOLOGY <br />
-            <span className="braxvio-gradient-text-light">DISAPPEARS</span> INTO LIFE.
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+            The best technology <br />
+            <span className="braxvio-gradient-text-light">disappears</span> into life.
           </h2>
 
           <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            It works quietly, naturally and reliably enough that people can focus on what matters.
+            It works quietly, naturally, and reliably enough that people can focus on what actually matters.
           </p>
         </div>
       </section>
@@ -745,50 +805,48 @@ export default function HomePage() {
       <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#071C2B] text-white border-t border-[#11AFC1]/20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-6">
-            <span className="text-[11px] font-mono tracking-widest uppercase text-[#42D6C5]">
-              WHAT&apos;S NEXT
+            <span className="text-xs font-semibold tracking-wider uppercase text-[#42D6C5]">
+              Future Explorations
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-              THE NEXT BRAXVIO PRODUCT <br />
-              MAY SOLVE A PROBLEM <br />
-              WE HAVEN&apos;T MET YET.
+              Studying where everyday systems break down next.
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              We continuously study changing behaviors, emerging technologies, and overlooked systemic failures to understand what deserves to be built next.
+              We continuously research changing consumer behaviors, emerging African infrastructure, and overlooked operational bottlenecks to understand what deserves to be built next.
             </p>
             <Link
               href="/labs"
-              className="inline-flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#42D6C5] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#42D6C5] hover:text-white transition-colors"
             >
               <span>Explore Braxvio Labs</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               {
-                stage: 'EXPLORING',
-                title: 'Applied Human-AI Workflows',
-                desc: 'Contextual assistance for micro-enterprises',
+                stage: 'Active R&D',
+                title: 'Applied AI for Micro-Enterprises',
+                desc: 'Context-aware inventory assistance for independent neighborhood retailers.',
                 color: '#42D6C5',
               },
               {
-                stage: 'EXPERIMENTING',
-                title: 'Decentralized Logistics Relays',
-                desc: 'Optimizing cold-chain last-mile telemetry',
+                stage: 'Prototype',
+                title: 'Cold-Chain Telemetry',
+                desc: 'Low-cost temperature logging sensors for last-mile pharmaceutical distribution.',
                 color: '#11AFC1',
               },
               {
-                stage: 'STUDYING',
-                title: 'Portable Digital Credentials',
-                desc: 'Cross-institutional academic verifications',
+                stage: 'Exploration',
+                title: 'Verifiable Student Credentials',
+                desc: 'Portable academic verification for inter-campus activities.',
                 color: '#008FC4',
               },
               {
-                stage: 'THINKING ABOUT',
-                title: 'Circular Resource Networks',
-                desc: 'Incentivizing community environmental stewardship',
+                stage: 'Research',
+                title: 'Community Recycling Incentives',
+                desc: 'Local tokenized rewards for pre-sorted household plastic collection.',
                 color: '#006EAA',
               },
             ].map((item) => (
@@ -796,11 +854,11 @@ export default function HomePage() {
                 key={item.title}
                 className="p-5 rounded-xl bg-white/5 border border-white/10 space-y-2 card-premium-dark hover:bg-white/8 hover:border-white/20 transition-all duration-300"
               >
-                <span className="text-[9px] tracking-wider" style={{ color: item.color }}>
+                <span className="text-xs font-bold tracking-wide" style={{ color: item.color }}>
                   {item.stage}
                 </span>
                 <div className="font-bold text-white text-sm">{item.title}</div>
-                <p className="text-[11px] text-slate-400 font-sans leading-relaxed">{item.desc}</p>
+                <p className="text-xs text-slate-400 font-sans leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -808,46 +866,38 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* 09 — IMPACT METRICS */}
+      {/* 09 — HONEST COMMITMENTS */}
       {/* ============================================================ */}
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#F7FAFC] border-y border-[#DDE8EC]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#11AFC1] font-semibold">
-              PLATFORM IMPACT
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#11AFC1]">
+              Operational Pillars
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#002F5B] tracking-tight mt-3">
-              THE NUMBERS BEHIND THE SYSTEM
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#002F5B] tracking-tight mt-2">
+              How We Build &amp; Operate
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { metric: 4, suffix: '', label: 'Active Platforms', sub: 'Across 4 sectors', color: '#11AFC1' },
-              { metric: 0, suffix: 'Ghana', label: 'HQ Location', sub: 'Accra, West Africa', color: '#008FC4' },
-              { metric: 1, suffix: ' Vision', label: 'Unified Mission', sub: 'Technology for life', color: '#006EAA' },
-              { metric: 0, suffix: 'Global', label: 'Market Reach', sub: 'Pan-African & beyond', color: '#42D6C5' },
-            ].map((item, i) => (
+              { title: 'Accra, Ghana', label: 'Engineering Hub', sub: 'Home base for core architecture & research', color: '#11AFC1' },
+              { title: '4 Focus Domains', label: 'Everyday Systems', sub: 'Campus, Health, Sanitation, Freelance Rails', color: '#008FC4' },
+              { title: 'Zero Data Reselling', label: 'Strict Privacy', sub: 'Student and patient records remain private', color: '#006EAA' },
+              { title: 'Offline Resilience', label: 'Network-Aware', sub: 'Engineered for intermittent connectivity & low data overhead', color: '#42D6C5' },
+            ].map((item) => (
               <div
                 key={item.label}
                 className="p-6 rounded-2xl bg-white border border-[#DDE8EC] text-center space-y-2 card-premium"
-                style={{ animationDelay: `${i * 100}ms` }}
               >
                 <div
-                  className="text-4xl sm:text-5xl font-black tracking-tight"
+                  className="text-2xl sm:text-3xl font-extrabold tracking-tight"
                   style={{ color: item.color }}
                 >
-                  {item.metric > 0 ? (
-                    <>
-                      <AnimatedCounter target={item.metric} />
-                      {item.suffix}
-                    </>
-                  ) : (
-                    item.suffix
-                  )}
+                  {item.title}
                 </div>
                 <div className="text-sm font-bold text-[#002F5B]">{item.label}</div>
-                <div className="text-xs text-[#687A86]">{item.sub}</div>
+                <div className="text-xs text-[#687A86] leading-relaxed">{item.sub}</div>
               </div>
             ))}
           </div>
@@ -857,22 +907,22 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 10 — LATEST INSIGHTS */}
       {/* ============================================================ */}
-      <section className="py-28 sm:py-36 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#DDE8EC]">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#DDE8EC]">
+        <div className="max-w-7xl mx-auto space-y-14">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <div className="space-y-3">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-[#006EAA] font-semibold">
-                PERSPECTIVE &amp; RESEARCH
+            <div className="space-y-2">
+              <span className="text-xs font-semibold tracking-wider uppercase text-[#006EAA]">
+                Perspective &amp; Research
               </span>
               <h2 className="text-3xl sm:text-5xl font-extrabold text-[#002F5B] tracking-tight">
-                LATEST INSIGHTS
+                Latest Insights
               </h2>
             </div>
             <Link
               href="/insights"
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-wider uppercase text-[#006EAA] hover:text-[#002F5B] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-[#006EAA] hover:text-[#002F5B] transition-colors"
             >
-              <span>VIEW PUBLICATION</span>
+              <span>View Publication</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -881,17 +931,17 @@ export default function HomePage() {
             {INSIGHTS_ARTICLES.map((article, idx) => (
               <article
                 key={article.id}
-                className={`p-7 rounded-2xl bg-white border border-[#DDE8EC] hover:border-[#11AFC1] shadow-sm transition-all duration-300 flex flex-col justify-between space-y-6 group card-premium ${
+                className={`p-7 rounded-2xl bg-white border border-[#DDE8EC] hover:border-[#11AFC1] shadow-xs transition-all duration-300 flex flex-col justify-between space-y-6 group card-premium ${
                   idx === 0 ? 'lg:col-span-2' : ''
                 }`}
               >
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between text-xs font-mono text-[#687A86]">
-                    <span className="text-[#006EAA] uppercase font-bold">{article.category}</span>
+                  <div className="flex items-center justify-between text-xs text-[#687A86]">
+                    <span className="text-[#006EAA] uppercase font-bold tracking-wider">{article.category}</span>
                     <span>{article.readTime}</span>
                   </div>
                   <h3
-                    className={`font-bold text-[#06131D] group-hover:text-[#006EAA] transition-colors ${
+                    className={`font-bold text-[#06131D] group-hover:text-[#006EAA] transition-colors leading-snug ${
                       idx === 0 ? 'text-2xl sm:text-3xl' : 'text-xl'
                     }`}
                   >
@@ -902,14 +952,14 @@ export default function HomePage() {
 
                 <div className="pt-4 border-t border-[#DDE8EC] flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#003E72] to-[#11AFC1] flex items-center justify-center text-white text-[8px] font-bold">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#003E72] to-[#11AFC1] flex items-center justify-center text-white text-[9px] font-bold">
                       {article.author.name.charAt(0)}
                     </div>
-                    <span className="font-mono text-[#687A86]">{article.author.name}</span>
+                    <span className="text-[#687A86] font-medium">{article.author.name}</span>
                   </div>
                   <Link
                     href={`/insights/${article.slug}`}
-                    className="inline-flex items-center gap-1 font-bold text-[#002F5B] group-hover:text-[#11AFC1] transition-colors"
+                    className="inline-flex items-center gap-1 font-semibold text-[#002F5B] group-hover:text-[#11AFC1] transition-colors"
                   >
                     <span>Read article</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -926,38 +976,35 @@ export default function HomePage() {
       {/* ============================================================ */}
       <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#F7FAFC]">
         <div className="max-w-7xl mx-auto space-y-12">
-          <div className="rounded-3xl p-8 sm:p-14 bg-gradient-to-br from-[#002F5B] via-[#003E72] to-[#071C2B] text-white shadow-2xl relative overflow-hidden space-y-8">
-            <div className="absolute inset-0 braxvio-grid-dark opacity-35 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#11AFC1]/15 blur-[100px] pointer-events-none" />
+          <div className="rounded-3xl p-8 sm:p-14 bg-gradient-to-br from-[#002F5B] via-[#003E72] to-[#071C2B] text-white shadow-xl relative overflow-hidden space-y-8">
+            <div className="absolute inset-0 braxvio-grid-dark opacity-20 pointer-events-none" />
 
             <div className="relative z-10 max-w-3xl space-y-5">
-              <span className="text-xs font-mono tracking-widest uppercase text-[#42D6C5] font-bold">
-                PARTNER WITH BRAXVIO
+              <span className="text-xs font-semibold tracking-wider uppercase text-[#42D6C5]">
+                Partner With Braxvio
               </span>
               <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                GREAT TECHNOLOGY <br />
-                <span className="text-[#42D6C5]">ISN&apos;T BUILT ALONE.</span>
+                Great technology <br />
+                <span className="text-[#42D6C5]">isn&apos;t built in isolation.</span>
               </h2>
               <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
-                We&apos;re open to conversations with organizations, institutions, technology
-                partners and potential financial partners interested in building meaningful
-                systems with Braxvio.
+                We work directly with higher education institutions, healthcare distributors, municipal assemblies, and technology infrastructure partners to build durable solutions.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-4">
+              <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
                   href="/partners"
-                  className="px-7 py-4 rounded-xl bg-gradient-to-r from-[#11AFC1] to-[#42D6C5] text-[#002F5B] text-xs font-mono font-bold tracking-wider uppercase hover:opacity-95 shadow-md transition-all flex items-center gap-2 group"
+                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#11AFC1] to-[#42D6C5] text-[#002F5B] text-xs font-bold tracking-wider uppercase hover:opacity-95 shadow-md transition-all flex items-center gap-2 group"
                 >
-                  <span>EXPLORE PARTNERSHIPS</span>
+                  <span>Explore Partnerships</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
 
                 <Link
                   href="/partners/investment-interest"
-                  className="px-7 py-4 rounded-xl bg-white/10 border border-white/20 text-white text-xs font-mono font-bold tracking-wider uppercase hover:bg-white/20 transition-all flex items-center gap-2 group"
+                  className="px-7 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white text-xs font-semibold tracking-wider uppercase hover:bg-white/20 transition-all flex items-center gap-2 group"
                 >
-                  <span>INVESTMENT INTEREST</span>
+                  <span>Investment Inquiries</span>
                   <ArrowRight className="w-4 h-4 text-[#42D6C5] group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
@@ -974,25 +1021,24 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 12 — FINAL HOMEPAGE CTA */}
       {/* ============================================================ */}
-      <section className="py-28 sm:py-36 px-4 sm:px-6 lg:px-8 bg-white border-t border-[#DDE8EC]">
-        <div className="max-w-5xl mx-auto text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F2FAFC] border border-[#DDE8EC]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#11AFC1] animate-pulse" />
-            <span className="text-[10px] font-mono uppercase tracking-widest font-bold text-[#006EAA]">
-              ONE DIRECTION FORWARD
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-white border-t border-[#DDE8EC]">
+        <div className="max-w-5xl mx-auto text-center space-y-7">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F2FAFC] border border-[#DDE8EC]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#11AFC1]" />
+            <span className="text-xs font-semibold tracking-wide text-[#006EAA]">
+              Building What Matters
             </span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl font-extrabold text-[#002F5B] tracking-tight">
-            WE&apos;RE BUILDING <br />
-            <span className="braxvio-gradient-text">WHAT COMES NEXT.</span>
+            Building what comes <span className="braxvio-gradient-text">next.</span>
           </h2>
 
           <p className="text-base text-[#687A86] max-w-lg mx-auto leading-relaxed">
-            Whether you&apos;re a student, a healthcare professional, a city administrator, or a developer — there&apos;s a Braxvio product designed around your reality.
+            Whether you&apos;re a university student, a licensed pharmacy operator, or an African software engineer — we build tools designed around your reality.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-xs font-mono uppercase tracking-wider font-semibold">
+          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2 text-xs font-semibold uppercase tracking-wider">
             <Link
               href="/products"
               className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#003E72] via-[#006EAA] to-[#11AFC1] text-white hover:opacity-95 transition-all shadow-md inline-flex items-center gap-2"
@@ -1003,17 +1049,17 @@ export default function HomePage() {
 
             <Link
               href="/contact"
-              className="px-6 py-3.5 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] text-[#002F5B] hover:bg-white hover:border-[#11AFC1]/50 transition-all inline-flex items-center gap-2"
+              className="px-6 py-3.5 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] text-[#002F5B] hover:bg-white hover:border-[#11AFC1]/50 transition-all inline-flex items-center gap-2 shadow-xs"
             >
-              <span>Work With Braxvio</span>
+              <span>Contact Us</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
 
             <Link
               href="/careers"
-              className="px-6 py-3.5 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] text-[#002F5B] hover:bg-white hover:border-[#11AFC1]/50 transition-all inline-flex items-center gap-2"
+              className="px-6 py-3.5 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] text-[#002F5B] hover:bg-white hover:border-[#11AFC1]/50 transition-all inline-flex items-center gap-2 shadow-xs"
             >
-              <span>Join Braxvio</span>
+              <span>Join the Team</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

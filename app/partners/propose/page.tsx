@@ -763,7 +763,7 @@ function ProposeFormContent() {
 
 export default function ProposePage() {
   return (
-    <div className="pt-24 pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
+    <div className="pt-28 sm:pt-32 pb-24 sm:pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
       <Suspense fallback={<div className="max-w-4xl mx-auto py-12 text-center text-xs font-mono text-[#687A86]">Loading proposal workflow...</div>}>
         <ProposeFormContent />
       </Suspense>

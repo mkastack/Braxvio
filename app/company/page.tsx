@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 export default function CompanyPage() {
   return (
-    <div className="pt-28 pb-36 px-6 sm:px-8 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto space-y-28">
+    <div className="pt-28 sm:pt-32 pb-24 sm:pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto space-y-20 sm:space-y-28">
         {/* 01: BOLD OPENING HERO */}
         <section className="max-w-4xl space-y-6 border-b border-[#DDE8EC] pb-16">
           <div className="text-xs font-mono tracking-widest uppercase text-[#006EAA] font-semibold">
@@ -39,7 +39,7 @@ export default function CompanyPage() {
 
         {/* 02: EDITORIAL STORYTELLING: WHY BRAXVIO EXISTS */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border-b border-[#DDE8EC] pb-24">
-          <div className="lg:col-span-4 space-y-3 sticky top-28">
+          <div className="lg:col-span-4 space-y-3 lg:sticky lg:top-28">
             <span className="text-xs font-mono tracking-widest uppercase text-[#006EAA] font-semibold">
               ORIGIN & RATIONALE
             </span>

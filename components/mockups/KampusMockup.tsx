@@ -1,47 +1,68 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Building2, ShoppingBag, Calendar, ShieldCheck, MapPin, Search, ArrowRight, UserCheck, Check, QrCode } from 'lucide-react';
+import {
+  Building2,
+  ShoppingBag,
+  ShieldCheck,
+  MapPin,
+  Search,
+  ArrowRight,
+  Check,
+  Star,
+  Zap,
+  Wifi,
+  Lock,
+  Sparkles,
+  QrCode,
+  UserCheck,
+} from 'lucide-react';
 
 export default function KampusMockup() {
-  const [activeTab, setActiveTab] = useState<'housing' | 'marketplace' | 'id'>('housing');
-  const [booked, setBooked] = useState(false);
+  const [activeTab, setActiveTab] = useState<'housing' | 'marketplace' | 'pass'>('housing');
+  const [reserved, setReserved] = useState(false);
 
   return (
-    <div className="relative w-full max-w-xl mx-auto rounded-3xl bg-white border border-[#DDE8EC] shadow-[0_20px_50px_rgba(0,47,91,0.08)] overflow-hidden transition-all duration-500 hover:shadow-[0_25px_60px_rgba(17,175,193,0.18)] group">
-      {/* App Bar / Status */}
-      <div className="bg-[#F7FAFC] border-b border-[#DDE8EC] px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#11AFC1] animate-pulse" />
-          <span className="text-xs font-bold tracking-tight text-[#002F5B]">KAMPUS</span>
-          <span className="text-[10px] font-mono text-[#687A86]">/ UNIVERSITY ECOSYSTEM</span>
+    <div className="relative w-full max-w-xl mx-auto rounded-2xl bg-white border border-[#DDE8EC] shadow-[0_12px_40px_rgba(0,47,91,0.06)] overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(17,175,193,0.12)]">
+      {/* App Window Chrome */}
+      <div className="bg-[#F8FAFC] border-b border-[#E2E8F0] px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E2E8F0]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E2E8F0]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E2E8F0]" />
+          </div>
+          <div className="h-4 w-px bg-[#CBD5E1]" />
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-[#002F5B]">kampus.app</span>
+            <span className="text-[11px] text-[#687A86] hidden sm:inline">/ Legon Campus</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 shadow-xs">
-            <ShieldCheck className="w-3 h-3 text-emerald-600" />
-            Verified Student ID #KMP-892
-          </span>
+
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-medium">
+          <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+          <span>Verified Student Housing</span>
         </div>
       </div>
 
-      {/* Interactive Tabs Header */}
-      <div className="bg-[#F2FAFC] px-4 pt-2.5 pb-0 flex gap-2 border-b border-[#DDE8EC]">
+      {/* Navigation Tabs */}
+      <div className="bg-[#F0F7FA] px-4 pt-2 flex items-center gap-1 border-b border-[#E2E8F0]">
         <button
           onClick={() => setActiveTab('housing')}
-          className={`pb-2.5 px-3 text-xs font-semibold flex items-center gap-1.5 border-b-2 transition-all ${
+          className={`pb-2.5 px-3 text-xs font-semibold flex items-center gap-2 border-b-2 transition-all ${
             activeTab === 'housing'
-              ? 'border-[#11AFC1] text-[#002F5B]'
+              ? 'border-[#006EAA] text-[#002F5B]'
               : 'border-transparent text-[#687A86] hover:text-[#002F5B]'
           }`}
         >
           <Building2 className="w-3.5 h-3.5" />
-          <span>Verified Housing</span>
+          <span>Hostel Search</span>
         </button>
         <button
           onClick={() => setActiveTab('marketplace')}
-          className={`pb-2.5 px-3 text-xs font-semibold flex items-center gap-1.5 border-b-2 transition-all ${
+          className={`pb-2.5 px-3 text-xs font-semibold flex items-center gap-2 border-b-2 transition-all ${
             activeTab === 'marketplace'
-              ? 'border-[#008FC4] text-[#002F5B]'
+              ? 'border-[#006EAA] text-[#002F5B]'
               : 'border-transparent text-[#687A86] hover:text-[#002F5B]'
           }`}
         >
@@ -49,10 +70,10 @@ export default function KampusMockup() {
           <span>Peer Trade</span>
         </button>
         <button
-          onClick={() => setActiveTab('id')}
-          className={`pb-2.5 px-3 text-xs font-semibold flex items-center gap-1.5 border-b-2 transition-all ${
-            activeTab === 'id'
-              ? 'border-[#002F5B] text-[#002F5B]'
+          onClick={() => setActiveTab('pass')}
+          className={`pb-2.5 px-3 text-xs font-semibold flex items-center gap-2 border-b-2 transition-all ${
+            activeTab === 'pass'
+              ? 'border-[#006EAA] text-[#002F5B]'
               : 'border-transparent text-[#687A86] hover:text-[#002F5B]'
           }`}
         >
@@ -61,158 +82,174 @@ export default function KampusMockup() {
         </button>
       </div>
 
-      {/* Main Container */}
+      {/* Main Content Area */}
       <div className="p-5 space-y-4">
         {activeTab === 'housing' && (
-          <div className="space-y-3 animate-in fade-in duration-300">
-            {/* Search Bar */}
-            <div className="flex items-center gap-2.5 bg-[#F7FAFC] border border-[#DDE8EC] rounded-xl px-3.5 py-2 text-xs text-[#687A86]">
-              <Search className="w-4 h-4 text-[#11AFC1]" />
-              <span className="flex-1">Filter by campus walking distance & air conditioning...</span>
-              <span className="font-mono text-[10px] bg-white px-2 py-0.5 rounded border border-[#DDE8EC] text-[#002F5B]">Legon Campus</span>
+          <div className="space-y-3.5 animate-in fade-in duration-200">
+            {/* Search Input Bar */}
+            <div className="flex items-center gap-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3.5 py-2.5 text-xs text-[#687A86]">
+              <Search className="w-4 h-4 text-[#006EAA] shrink-0" />
+              <span className="flex-1 truncate">Filter by distance to lecture halls, AC, private bath...</span>
+              <span className="text-[11px] font-semibold text-[#002F5B] bg-white px-2 py-0.5 rounded border border-[#E2E8F0] shrink-0">
+                Main Campus
+              </span>
             </div>
 
-            {/* Featured Hostel Unit */}
-            <div className="p-4 rounded-2xl border border-[#DDE8EC] bg-white hover:border-[#11AFC1] transition-all space-y-3 shadow-xs">
-              <div className="flex items-start justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-extrabold text-[#002F5B]">Bani Hall Suites • Block C</span>
-                    <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      Vetted Manager
+            {/* Featured Listing Card */}
+            <div className="rounded-xl border border-[#E2E8F0] bg-white p-4 space-y-3 shadow-xs">
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h4 className="text-sm font-bold text-[#002F5B]">Bani Hall Suites • Block C</h4>
+                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-sky-800 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-200">
+                      <ShieldCheck className="w-3 h-3 text-sky-600" />
+                      Direct Manager
                     </span>
                   </div>
-                  <div className="text-[11px] text-[#687A86] flex items-center gap-1 mt-1">
-                    <MapPin className="w-3 h-3 text-[#11AFC1]" /> 250m to Law Faculty & Main Library
+                  <div className="flex items-center gap-1 text-xs text-[#687A86]">
+                    <MapPin className="w-3.5 h-3.5 text-[#006EAA] shrink-0" />
+                    <span>300m to Law Faculty &amp; Balme Library</span>
                   </div>
                 </div>
-                <div className="text-right">
+
+                <div className="text-right shrink-0">
                   <div className="text-base font-extrabold text-[#002F5B]">GH₵ 2,800</div>
                   <div className="text-[10px] text-[#687A86]">per semester</div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono py-1">
-                <div className="p-1.5 rounded-lg bg-[#F7FAFC] border border-[#DDE8EC] text-[#002F5B]">⚡ 24/7 Generator</div>
-                <div className="p-1.5 rounded-lg bg-[#F7FAFC] border border-[#DDE8EC] text-[#002F5B]">📶 High-speed Wi-Fi</div>
-                <div className="p-1.5 rounded-lg bg-[#F7FAFC] border border-[#DDE8EC] text-[#002F5B]">🛡️ Biometric Gate</div>
+              {/* Amenities */}
+              <div className="grid grid-cols-3 gap-2 text-xs text-[#002F5B]">
+                <div className="p-2 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-center gap-1.5 text-[11px]">
+                  <Zap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  <span className="truncate">24/7 Generator</span>
+                </div>
+                <div className="p-2 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-center gap-1.5 text-[11px]">
+                  <Wifi className="w-3.5 h-3.5 text-[#006EAA] shrink-0" />
+                  <span className="truncate">Fiber Wi-Fi</span>
+                </div>
+                <div className="p-2 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-center gap-1.5 text-[11px]">
+                  <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span className="truncate">Biometric Entry</span>
+                </div>
               </div>
 
-              <div className="pt-2 border-t border-[#DDE8EC] flex items-center justify-between">
-                <span className="text-[11px] text-amber-700 font-medium">⚠️ Only 2 rooms remaining for Fall semester</span>
+              {/* Student Review & Action */}
+              <div className="pt-2 border-t border-[#E2E8F0] flex items-center justify-between gap-3">
+                <div className="flex items-center gap-1 text-xs text-[#687A86]">
+                  <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  <span className="font-bold text-[#002F5B]">4.9</span>
+                  <span className="text-[11px]">(142 verified student stays)</span>
+                </div>
+
                 <button
-                  onClick={() => setBooked(!booked)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm ${
-                    booked
+                  onClick={() => setReserved(!reserved)}
+                  className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs ${
+                    reserved
                       ? 'bg-emerald-600 text-white'
-                      : 'bg-gradient-to-r from-[#003E72] to-[#11AFC1] text-white hover:opacity-95'
+                      : 'bg-[#002F5B] hover:bg-[#003E72] text-white'
                   }`}
                 >
-                  {booked ? (
+                  {reserved ? (
                     <>
                       <Check className="w-3.5 h-3.5" />
-                      <span>Reserved! Escrow Active</span>
+                      <span>Reserved • Escrow Active</span>
                     </>
                   ) : (
                     <>
-                      <span>Reserve with Escrow</span>
+                      <span>Check Room Availability</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </>
                   )}
                 </button>
               </div>
             </div>
+
+            {/* Anti-Scam Protection Guarantee */}
+            <div className="p-3 rounded-xl bg-[#F0F7FA] border border-[#D2E7EE] flex items-start gap-2.5 text-xs text-[#005B8C]">
+              <ShieldCheck className="w-4 h-4 text-[#006EAA] shrink-0 mt-0.5" />
+              <p className="leading-relaxed">
+                <strong className="text-[#002F5B]">Zero Middleman Extortion:</strong> Connect directly with vetted managers. Your reservation deposit is held safely in escrow until you verify your room in person.
+              </p>
+            </div>
           </div>
         )}
 
         {activeTab === 'marketplace' && (
-          <div className="space-y-3 animate-in fade-in duration-300">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="p-3.5 rounded-2xl border border-[#DDE8EC] bg-[#F7FAFC] space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#008FC4] font-bold">Textbook Exchange</span>
-                  <ShoppingBag className="w-4 h-4 text-[#008FC4]" />
+          <div className="space-y-3 animate-in fade-in duration-200">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="p-3.5 rounded-xl border border-[#E2E8F0] bg-white space-y-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#006EAA]">Textbook Exchange</span>
+                  <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">ID Verified</span>
                 </div>
-                <div className="text-xs font-bold text-[#06131D]">Organic Chemistry (4th Edition)</div>
+                <div className="text-xs font-bold text-[#002F5B]">Organic Chemistry (4th Edition)</div>
                 <div className="text-[11px] text-[#687A86] flex items-center gap-1">
-                  <UserCheck className="w-3 h-3 text-emerald-600" /> By Kwame (Level 300)
+                  <UserCheck className="w-3 h-3 text-[#006EAA]" /> By Kwame M. (Level 300)
                 </div>
-                <div className="flex items-center justify-between pt-2 border-t border-[#DDE8EC] text-[11px]">
-                  <span className="font-extrabold text-[#002F5B]">GH₵ 140</span>
-                  <span className="text-[10px] font-medium text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">Escrow Hold</span>
+                <div className="flex items-center justify-between pt-2 border-t border-[#E2E8F0] text-xs">
+                  <span className="font-bold text-[#002F5B]">GH₵ 140</span>
+                  <span className="text-[11px] text-[#006EAA] font-medium hover:underline cursor-pointer">Request Item →</span>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl border border-[#DDE8EC] bg-[#F7FAFC] space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#11AFC1] font-bold">Gadget Verified</span>
-                  <ShoppingBag className="w-4 h-4 text-[#11AFC1]" />
+              <div className="p-3.5 rounded-xl border border-[#E2E8F0] bg-white space-y-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#006EAA]">Campus Gadgets</span>
+                  <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">ID Verified</span>
                 </div>
-                <div className="text-xs font-bold text-[#06131D]">TI-84 Plus CE Graphing Calc</div>
+                <div className="text-xs font-bold text-[#002F5B]">TI-84 Plus Graphing Calculator</div>
                 <div className="text-[11px] text-[#687A86] flex items-center gap-1">
-                  <UserCheck className="w-3 h-3 text-emerald-600" /> By Sarah (Level 200)
+                  <UserCheck className="w-3 h-3 text-[#006EAA]" /> By Sarah D. (Level 200)
                 </div>
-                <div className="flex items-center justify-between pt-2 border-t border-[#DDE8EC] text-[11px]">
-                  <span className="font-extrabold text-[#002F5B]">GH₵ 350</span>
-                  <span className="text-[10px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Tested Working</span>
+                <div className="flex items-center justify-between pt-2 border-t border-[#E2E8F0] text-xs">
+                  <span className="font-bold text-[#002F5B]">GH₵ 320</span>
+                  <span className="text-[11px] text-[#006EAA] font-medium hover:underline cursor-pointer">Request Item →</span>
                 </div>
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" />
-              <span>Zero stranger danger: buyers & sellers must verify student ID before meeting at designated campus trade points.</span>
+            <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-[#687A86] flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#006EAA] shrink-0" />
+              <span>Campus trades are restricted to verified university emails with on-campus handoff zones.</span>
             </div>
           </div>
         )}
 
-        {activeTab === 'id' && (
-          <div className="p-5 rounded-2xl bg-gradient-to-br from-[#002F5B] to-[#071C2B] text-white space-y-4 animate-in fade-in duration-300">
+        {activeTab === 'pass' && (
+          <div className="p-5 rounded-xl bg-gradient-to-br from-[#002F5B] to-[#003E72] text-white space-y-4 animate-in fade-in duration-200">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <div className="space-y-0.5">
-                <span className="text-[10px] font-mono text-[#42D6C5] uppercase tracking-widest">KAMPUS SOVEREIGN PASS</span>
-                <div className="text-sm font-bold">University of Ghana, Legon</div>
+              <div>
+                <span className="text-xs font-semibold text-[#42D6C5]">Digital Student Credential</span>
+                <div className="text-sm font-bold mt-0.5">University of Ghana, Legon</div>
               </div>
-              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#42D6C5]">
+              <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-[#42D6C5]">
                 <QrCode className="w-5 h-5" />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-xs font-mono">
+            <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
-                <span className="text-slate-400 block text-[10px]">STUDENT NAME</span>
-                <span className="text-white font-bold text-sm">Kwame Mensah</span>
+                <span className="text-slate-300 block text-[11px]">Student</span>
+                <span className="text-white font-bold">Kwame Mensah</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[10px]">PROGRAM</span>
-                <span className="text-white font-bold text-sm">BSc Computer Engineering</span>
+                <span className="text-slate-300 block text-[11px]">Department</span>
+                <span className="text-white font-bold">BSc Computer Engineering</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[10px]">VERIFICATION HASH</span>
-                <span className="text-[#42D6C5] font-mono text-[11px]">0x89f...2d19</span>
+                <span className="text-slate-300 block text-[11px]">Academic Year</span>
+                <span className="text-slate-200">2025 / 2026</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[10px]">PERKS UNLOCKED</span>
-                <span className="text-emerald-400 font-bold">Bus 40% Off • Gym Access</span>
+                <span className="text-slate-300 block text-[11px]">Status</span>
+                <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                  <Check className="w-3 h-3" /> Active &amp; Verified
+                </span>
               </div>
             </div>
           </div>
         )}
-
-        {/* Live Campus Feed Micro-ticker */}
-        <div className="rounded-xl p-3 bg-gradient-to-r from-[#002F5B] to-[#003E72] text-white flex items-center justify-between">
-          <div className="space-y-0.5">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#42D6C5] animate-pulse" />
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#42D6C5]">Campus Live Mesh</span>
-            </div>
-            <div className="text-xs font-semibold">Engineering Faculty Career Expo</div>
-            <div className="text-[11px] text-slate-300">Great Hall Complex • Starts 14:00 GMT</div>
-          </div>
-          <span className="px-2.5 py-1 rounded-lg bg-white/10 text-white text-[10px] font-mono">
-            LIVE NOW
-          </span>
-        </div>
       </div>
     </div>
   );

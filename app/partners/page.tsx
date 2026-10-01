@@ -30,13 +30,13 @@ export const metadata: Metadata = {
 
 export default function PartnersPage() {
   return (
-    <div className="pt-24 pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto space-y-28 sm:space-y-36">
+    <div className="pt-28 sm:pt-32 pb-24 sm:pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto space-y-20 sm:space-y-28">
 
         {/* ============================================================ */}
         {/* 02 — HERO SECTION */}
         {/* ============================================================ */}
-        <section className="pt-6 sm:pt-12 border-b border-[#DDE8EC] pb-20 space-y-12">
+        <section className="border-b border-[#DDE8EC] pb-16 sm:pb-20 space-y-12">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F2FAFC] border border-[#11AFC1]/30">
               <span className="w-2 h-2 rounded-full bg-[#11AFC1] animate-pulse" />

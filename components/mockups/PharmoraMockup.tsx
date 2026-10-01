@@ -1,169 +1,184 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Pill, ThermometerSnowflake, CheckCircle2, Truck, FileCheck, ShieldAlert, Search, RefreshCw } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  Pill,
+  ThermometerSnowflake,
+  CheckCircle2,
+  Truck,
+  FileCheck,
+  Search,
+  ShieldCheck,
+  MapPin,
+  Check,
+  ArrowRight,
+} from 'lucide-react';
 
-const MEDICINES = [
+const MEDICATIONS = [
   {
-    name: 'Insulin Glargine (100 units/mL)',
-    pharmacy: 'Apex Care Pharmacy • Ridge Branch',
+    id: 'insulin',
+    name: 'Insulin Glargine (100 IU/mL)',
+    specs: 'Sanofi • 10mL Vial • Cold-Chain (2°C – 8°C)',
+    pharmacy: 'Ridge Community Pharmacy',
+    license: 'Licensed Dispensary #PH-402',
     distance: '1.2 km away',
-    temp: '3.4°C',
+    eta: '20 min delivery',
+    price: 'GH₵ 185.00',
+    temp: '4.1°C',
     batch: 'BATCH-2025-091A',
-    units: 14,
-    status: 'IN STOCK'
+    inStock: true,
   },
   {
+    id: 'amox',
     name: 'Amoxicillin / Clavulanate (625mg)',
-    pharmacy: 'Osu Community Licensed Dispensary',
-    distance: '2.8 km away',
-    temp: '21.0°C',
+    specs: 'GlaxoSmithKline • 14 Tablets • Room Temp',
+    pharmacy: 'Osu Licensed Care Dispensary',
+    license: 'Licensed Dispensary #PH-188',
+    distance: '2.4 km away',
+    eta: '30 min delivery',
+    price: 'GH₵ 95.00',
+    temp: '20.5°C',
     batch: 'BATCH-2025-412C',
-    units: 32,
-    status: 'IN STOCK'
+    inStock: true,
   },
   {
+    id: 'ventolin',
     name: 'Ventolin Inhaler (100mcg)',
-    pharmacy: 'Airport City Health Vault',
-    distance: '3.4 km away',
-    temp: '19.5°C',
+    specs: 'GSK • 200 Metered Actuations',
+    pharmacy: 'Airport Residential Pharmacy',
+    license: 'Licensed Dispensary #PH-077',
+    distance: '3.1 km away',
+    eta: '35 min delivery',
+    price: 'GH₵ 65.00',
+    temp: '19.8°C',
     batch: 'BATCH-2025-881E',
-    units: 8,
-    status: 'CRITICAL STOCK'
-  }
+    inStock: true,
+  },
 ];
 
 export default function PharmoraMockup() {
-  const [selectedMed, setSelectedMed] = useState(0);
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [verified, setVerified] = useState(true);
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [dispatched, setDispatched] = useState(false);
 
-  const med = MEDICINES[selectedMed];
-
-  const handleAuditToggle = () => {
-    setIsVerifying(true);
-    setTimeout(() => {
-      setIsVerifying(false);
-      setVerified(!verified);
-    }, 600);
-  };
+  const med = MEDICATIONS[selectedIdx];
 
   return (
-    <div className="relative w-full max-w-xl mx-auto rounded-3xl bg-white border border-[#DDE8EC] shadow-[0_20px_50px_rgba(0,110,170,0.08)] overflow-hidden transition-all duration-500 hover:shadow-[0_25px_60px_rgba(0,143,196,0.18)] group">
-      {/* App Bar */}
-      <div className="bg-[#F2FAFC] border-b border-[#DDE8EC] px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#008FC4] animate-pulse" />
-          <span className="text-xs font-bold tracking-tight text-[#002F5B]">PHARMORA</span>
-          <span className="text-[10px] font-mono text-[#687A86]">/ REGULATED PHARMACY MESH</span>
+    <div className="relative w-full max-w-xl mx-auto rounded-2xl bg-white border border-[#DDE8EC] shadow-[0_12px_40px_rgba(0,110,170,0.06)] overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,143,196,0.12)]">
+      {/* App Window Chrome */}
+      <div className="bg-[#F8FAFC] border-b border-[#E2E8F0] px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E2E8F0]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E2E8F0]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E2E8F0]" />
+          </div>
+          <div className="h-4 w-px bg-[#CBD5E1]" />
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-[#002F5B]">pharmora.health</span>
+            <span className="text-[11px] text-[#687A86] hidden sm:inline">/ Accra Network</span>
+          </div>
         </div>
-        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-sky-800 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">
-          <FileCheck className="w-3 h-3 text-[#008FC4]" />
-          FDA Regulated Dispensary Network
-        </span>
+
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-50 border border-sky-200 text-sky-800 text-[11px] font-medium">
+          <FileCheck className="w-3.5 h-3.5 text-[#008FC4] shrink-0" />
+          <span>42 Licensed Pharmacies Active</span>
+        </div>
       </div>
 
       <div className="p-5 space-y-4">
-        {/* Medicine Selector Carousel Buttons */}
+        {/* Medication Selector */}
         <div className="space-y-1.5">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-[#687A86]">
-            LIVE PHARMACY INVENTORY QUERY
-          </div>
+          <div className="text-xs font-semibold text-[#687A86]">Quick Stock Search</div>
           <div className="grid grid-cols-3 gap-2">
-            {MEDICINES.map((item, idx) => (
+            {MEDICATIONS.map((item, idx) => (
               <button
-                key={item.name}
-                onClick={() => setSelectedMed(idx)}
-                className={`p-2 rounded-xl text-left border transition-all text-xs ${
-                  selectedMed === idx
+                key={item.id}
+                onClick={() => {
+                  setSelectedIdx(idx);
+                  setDispatched(false);
+                }}
+                className={`p-2.5 rounded-xl text-left border transition-all text-xs ${
+                  selectedIdx === idx
                     ? 'bg-[#002F5B] text-white border-[#002F5B] shadow-xs'
-                    : 'bg-[#F7FAFC] border-[#DDE8EC] text-[#06131D] hover:bg-white hover:border-[#008FC4]'
+                    : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#002F5B] hover:bg-white hover:border-[#008FC4]'
                 }`}
               >
                 <div className="font-bold truncate text-[11px]">{item.name.split(' ')[0]}</div>
-                <div className={`text-[9px] font-mono mt-0.5 ${selectedMed === idx ? 'text-[#42D6C5]' : 'text-emerald-600'}`}>
-                  {item.units} available
+                <div className={`text-[10px] mt-0.5 ${selectedIdx === idx ? 'text-[#42D6C5]' : 'text-emerald-700'}`}>
+                  In Stock Nearby
                 </div>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Selected Medicine Live Card */}
-        <div className="p-4 rounded-2xl border border-[#DDE8EC] bg-white space-y-3 shadow-xs">
-          <div className="flex items-start justify-between">
+        {/* Selected Medication Card */}
+        <div className="rounded-xl border border-[#E2E8F0] bg-white p-4 space-y-3 shadow-xs">
+          <div className="flex items-start justify-between gap-4">
             <div className="space-y-1">
-              <h4 className="text-sm font-extrabold text-[#002F5B]">{med.name}</h4>
-              <p className="text-xs text-[#687A86]">{med.pharmacy}</p>
-              <div className="flex items-center gap-2 text-[10px] font-mono text-[#008FC4]">
-                <span>📍 {med.distance}</span>
-                <span>•</span>
-                <span>Batch: {med.batch}</span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h4 className="text-sm font-bold text-[#002F5B]">{med.name}</h4>
+                <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                  Verified Batch
+                </span>
+              </div>
+              <div className="text-xs text-[#687A86]">{med.specs}</div>
+              <div className="flex items-center gap-2 text-xs text-[#006EAA] pt-1">
+                <MapPin className="w-3.5 h-3.5 shrink-0" />
+                <span className="font-medium text-[#002F5B]">{med.pharmacy}</span>
+                <span className="text-[#687A86]">({med.distance})</span>
               </div>
             </div>
-            <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-md border border-emerald-200">
-              {med.status}
-            </span>
+
+            <div className="text-right shrink-0">
+              <div className="text-base font-extrabold text-[#002F5B]">{med.price}</div>
+              <div className="text-[10px] text-emerald-600 font-medium">Standard Regulated Price</div>
+            </div>
           </div>
 
-          <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-            <div
-              className="bg-gradient-to-r from-[#008FC4] to-[#42D6C5] h-full rounded-full transition-all duration-500"
-              style={{ width: `${Math.min(100, (med.units / 35) * 100)}%` }}
-            />
+          {/* Action Row */}
+          <div className="pt-2 border-t border-[#E2E8F0] flex items-center justify-between gap-3">
+            <div className="text-xs text-[#687A86]">
+              ETA: <span className="font-semibold text-[#002F5B]">{med.eta}</span>
+            </div>
+
+            <button
+              onClick={() => setDispatched(!dispatched)}
+              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs ${
+                dispatched
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-[#002F5B] hover:bg-[#003E72] text-white'
+              }`}
+            >
+              {dispatched ? (
+                <>
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Dispatched • Courier Assigned</span>
+                </>
+              ) : (
+                <>
+                  <span>Order for Verified Dispatch</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </>
+              )}
+            </button>
           </div>
         </div>
 
-        {/* Prescription Verification Status Bar with Interactive Audit Trigger */}
-        <div className="p-3.5 rounded-xl bg-[#F7FAFC] border border-[#DDE8EC] flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-sky-100 flex items-center justify-center text-[#006EAA]">
-              <Pill className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-[#06131D]">Clinical Prescription Audit Protocol</div>
-              <div className="text-[11px] text-[#687A86]">
-                {verified ? 'Audited & digitally signed by certified pharmacist' : 'Pending clinical review'}
-              </div>
-            </div>
-          </div>
-          <button
-            onClick={handleAuditToggle}
-            disabled={isVerifying}
-            className="px-2.5 py-1.5 rounded-lg bg-white border border-[#DDE8EC] hover:border-[#008FC4] text-xs font-mono text-[#002F5B] flex items-center gap-1.5 transition-colors"
-          >
-            <RefreshCw className={`w-3 h-3 ${isVerifying ? 'animate-spin text-[#008FC4]' : ''}`} />
-            <span>{verified ? 'Re-verify' : 'Verify'}</span>
-          </button>
-        </div>
-
-        {/* Cold-Chain Dispatch Live Tracking */}
-        <div className="p-4 rounded-2xl bg-gradient-to-br from-[#071C2B] to-[#002F5B] text-white space-y-3 shadow-md">
-          <div className="flex items-center justify-between">
+        {/* Cold-Chain & Pharmacist Verification Telemetry */}
+        <div className="p-3.5 rounded-xl bg-[#F0F7FA] border border-[#D2E7EE] space-y-2">
+          <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
-              <ThermometerSnowflake className="w-4 h-4 text-[#42D6C5]" />
-              <span className="text-xs font-bold">Monitored Cold-Chain Courier</span>
+              <ThermometerSnowflake className="w-4 h-4 text-[#008FC4]" />
+              <span className="font-bold text-[#002F5B]">Cold-Chain Monitored Transit</span>
             </div>
-            <span className="text-[10px] font-mono text-[#42D6C5] flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#42D6C5] animate-ping" />
-              IN TRANSIT • 18 MIN ETA
+            <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 text-[10px]">
+              {med.temp} Controlled
             </span>
           </div>
-
-          <div className="grid grid-cols-3 gap-2 pt-1 border-t border-white/10 text-center">
-            <div className="p-2 rounded-xl bg-white/5">
-              <div className="text-[10px] text-slate-300 font-mono">Sensors</div>
-              <div className="text-xs font-bold text-[#42D6C5]">{med.temp} Normal</div>
-            </div>
-            <div className="p-2 rounded-xl bg-white/5">
-              <div className="text-[10px] text-slate-300 font-mono">Courier</div>
-              <div className="text-xs font-bold text-white">PX-882 (Vetted)</div>
-            </div>
-            <div className="p-2 rounded-xl bg-white/5">
-              <div className="text-[10px] text-slate-300 font-mono">Seal Status</div>
-              <div className="text-xs font-bold text-emerald-400">Cryptolocked</div>
-            </div>
-          </div>
+          <p className="text-xs text-[#005B8C] leading-relaxed">
+            Every temperature-sensitive delivery is tracked in insulated carrier boxes. Prescriptions are checked by licensed pharmacists before dispatch.
+          </p>
         </div>
       </div>
     </div>

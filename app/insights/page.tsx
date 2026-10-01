@@ -14,8 +14,8 @@ export default function InsightsPage() {
   const secondary = INSIGHTS_ARTICLES.slice(1);
 
   return (
-    <div className="pt-28 pb-36 px-6 sm:px-8 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto space-y-20">
+    <div className="pt-28 sm:pt-32 pb-24 sm:pb-36 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto space-y-16 sm:space-y-20">
         {/* Header */}
         <div className="max-w-3xl space-y-4 border-b border-[#DDE8EC] pb-12">
           <div className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#006EAA] font-semibold">

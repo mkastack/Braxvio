@@ -1,126 +1,137 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Truck, Navigation, Recycle, Activity, MapPin, Gauge, Play, CheckCircle2 } from 'lucide-react';
+import {
+  Truck,
+  Navigation,
+  Recycle,
+  MapPin,
+  Check,
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+  Banknote,
+} from 'lucide-react';
 
 export default function EcoliftMockup() {
-  const [isOptimizing, setIsOptimizing] = useState(false);
-  const [fuelSaved, setFuelSaved] = useState('34.8%');
-  const [tokens, setTokens] = useState(52);
   const [claimed, setClaimed] = useState(false);
+  const [activeStop, setActiveStop] = useState(1);
 
-  const handleOptimize = () => {
-    setIsOptimizing(true);
-    setTimeout(() => {
-      setIsOptimizing(false);
-      setFuelSaved((prev) => (prev === '34.8%' ? '41.2%' : '34.8%'));
-    }, 700);
-  };
-
-  const handleClaimReward = () => {
-    if (!claimed) {
-      setTokens((prev) => prev + 25);
-      setClaimed(true);
-    }
-  };
+  const stops = [
+    { name: 'Cantonments Transfer Station', time: '08:30 AM', status: 'Completed', done: true },
+    { name: 'Oxford Street Commercial Bins', time: '09:15 AM', status: 'In Progress (85% Fill)', done: false, current: true },
+    { name: 'Ring Road Commercial Hub', time: '10:00 AM', status: 'Scheduled Next', done: false },
+  ];
 
   return (
-    <div className="relative w-full max-w-xl mx-auto rounded-3xl bg-[#071C2B] border border-[#11AFC1]/30 shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden text-white transition-all duration-500 hover:border-[#42D6C5]/60 group">
-      {/* Background System Grid */}
-      <div className="absolute inset-0 braxvio-grid-dark opacity-30 pointer-events-none" />
-
-      {/* Top Header */}
-      <div className="relative z-10 bg-[#06131D]/90 border-b border-white/10 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#42D6C5] animate-pulse" />
-          <span className="text-xs font-bold tracking-tight text-white">ECOLIFT</span>
-          <span className="text-[10px] font-mono text-[#42D6C5]">/ MUNICIPAL LOGISTICS MESH</span>
+    <div className="relative w-full max-w-xl mx-auto rounded-2xl bg-[#071C2B] border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.3)] overflow-hidden text-white transition-all duration-300 hover:border-[#42D6C5]/40">
+      {/* App Window Chrome */}
+      <div className="bg-[#051420] border-b border-white/10 px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+          </div>
+          <div className="h-4 w-px bg-white/10" />
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-white">ecolift.city</span>
+            <span className="text-[11px] text-slate-400 hidden sm:inline">/ Osu &amp; Cantonments Route</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2 font-mono text-[10px] text-slate-400">
-          <Activity className="w-3.5 h-3.5 text-[#42D6C5]" />
-          <span>ROUTE OPTIMIZER V2.4</span>
+
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#42D6C5]/10 border border-[#42D6C5]/20 text-[#42D6C5] text-[11px] font-medium">
+          <span className="w-2 h-2 rounded-full bg-[#42D6C5] animate-pulse" />
+          <span>Active Route #409</span>
         </div>
       </div>
 
-      <div className="relative z-10 p-5 space-y-4">
-        {/* Dynamic Route Telemetry Panel with live recalculate trigger */}
-        <div className="rounded-2xl bg-white/5 border border-white/10 p-4 space-y-3">
+      <div className="p-5 space-y-4">
+        {/* Fleet Route Metrics */}
+        <div className="rounded-xl bg-white/5 border border-white/10 p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Truck className="w-4 h-4 text-[#42D6C5]" />
-              <span className="text-xs font-bold text-white">Fleet Unit #EL-409 • Osu Sector</span>
+              <span className="text-xs font-bold text-white">Hauler Unit #EL-409 • Osu District</span>
             </div>
-            <button
-              onClick={handleOptimize}
-              disabled={isOptimizing}
-              className="text-[10px] font-mono px-2.5 py-1 rounded-lg bg-[#42D6C5]/20 text-[#42D6C5] border border-[#42D6C5]/30 hover:bg-[#42D6C5]/30 transition-all flex items-center gap-1.5"
-            >
-              <Navigation className={`w-3 h-3 ${isOptimizing ? 'animate-spin' : ''}`} />
-              <span>{isOptimizing ? 'Recalculating...' : 'Optimize Waypoints'}</span>
-            </button>
+            <span className="text-[11px] font-mono text-[#42D6C5] bg-[#42D6C5]/15 px-2 py-0.5 rounded">
+              Route 82% Completed
+            </span>
           </div>
 
-          <div className="grid grid-cols-3 gap-2">
-            <div className="p-2.5 rounded-xl bg-black/40 border border-white/5">
-              <div className="text-[10px] font-mono text-slate-400">Fuel Saved</div>
-              <div className="text-sm font-extrabold text-[#42D6C5] font-mono transition-all">
-                -{fuelSaved}
-              </div>
+          <div className="grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+              <div className="text-[10px] text-slate-400">Total Tonnage</div>
+              <div className="text-sm font-bold text-white mt-0.5">4.2 Tons</div>
             </div>
-            <div className="p-2.5 rounded-xl bg-black/40 border border-white/5">
-              <div className="text-[10px] font-mono text-slate-400">Payload Vol</div>
-              <div className="text-sm font-bold text-white">4.2 Tons</div>
+            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+              <div className="text-[10px] text-slate-400">Transit Idle Cut</div>
+              <div className="text-sm font-bold text-[#42D6C5] mt-0.5">-34% Fuel</div>
             </div>
-            <div className="p-2.5 rounded-xl bg-black/40 border border-white/5">
-              <div className="text-[10px] font-mono text-slate-400">Waypoints</div>
-              <div className="text-sm font-bold text-white">18/22 Cleared</div>
+            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+              <div className="text-[10px] text-slate-400">Pickups Remaining</div>
+              <div className="text-sm font-bold text-white mt-0.5">4 of 22</div>
             </div>
           </div>
         </div>
 
-        {/* Dynamic Simulated Map / Waypoints */}
-        <div className="rounded-2xl border border-white/10 bg-black/50 p-4 space-y-3">
-          <div className="flex items-center justify-between text-xs">
-            <span className="font-mono text-[11px] text-slate-300 flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-[#11AFC1]" /> Next: Ring Road Commercial Hub
-            </span>
-            <span className="text-[10px] font-mono text-[#42D6C5] bg-[#42D6C5]/10 px-2 py-0.5 rounded border border-[#42D6C5]/20">
-              Bin Telemetry: 94% Full
-            </span>
-          </div>
-
-          {/* Graphical Path Visualizer with Animated Pulse */}
-          <div className="relative h-14 w-full flex items-center px-4 rounded-xl bg-white/5 border border-white/5 overflow-hidden">
-            <div className="absolute inset-x-4 h-1 bg-slate-800 rounded-full">
-              <div className="h-full bg-gradient-to-r from-[#008FC4] via-[#11AFC1] to-[#42D6C5] w-[78%] rounded-full transition-all duration-700" />
-            </div>
-            <div className="relative flex justify-between w-full z-10">
-              <div className="w-3.5 h-3.5 rounded-full bg-[#11AFC1] ring-4 ring-[#071C2B] shadow-md" />
-              <div className="w-3.5 h-3.5 rounded-full bg-[#11AFC1] ring-4 ring-[#071C2B] shadow-md" />
-              <div className="w-5 h-5 rounded-full bg-[#42D6C5] ring-4 ring-[#071C2B] animate-pulse flex items-center justify-center shadow-lg">
-                <div className="w-2 h-2 rounded-full bg-[#071C2B]" />
+        {/* Dynamic Route Waypoints */}
+        <div className="rounded-xl border border-white/10 bg-black/40 p-4 space-y-2.5">
+          <div className="text-xs font-semibold text-slate-300">Live Collection Waypoints</div>
+          <div className="space-y-2">
+            {stops.map((stop, i) => (
+              <div
+                key={stop.name}
+                onClick={() => setActiveStop(i)}
+                className={`p-2.5 rounded-lg border text-xs flex items-center justify-between transition-all cursor-pointer ${
+                  stop.current
+                    ? 'bg-[#11AFC1]/15 border-[#11AFC1]/50 text-white'
+                    : stop.done
+                    ? 'bg-white/5 border-white/5 text-slate-300'
+                    : 'bg-white/5 border-white/5 text-slate-400'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                    stop.done ? 'bg-emerald-500/20 text-emerald-400' : stop.current ? 'bg-[#42D6C5] text-[#071C2B]' : 'bg-white/10 text-slate-400'
+                  }`}>
+                    {stop.done ? <Check className="w-3 h-3" /> : i + 1}
+                  </div>
+                  <div>
+                    <div className="font-medium text-white">{stop.name}</div>
+                    <div className="text-[10px] text-slate-400">{stop.status}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 text-[11px] text-slate-400">
+                  <Clock className="w-3 h-3 text-[#42D6C5]" />
+                  <span>{stop.time}</span>
+                </div>
               </div>
-              <div className="w-3.5 h-3.5 rounded-full bg-slate-600 ring-4 ring-[#071C2B]" />
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Citizen Circular Reward Tokenization with Interactive Claim */}
-        <div className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-[#002F5B] to-[#071C2B] border border-[#11AFC1]/30 shadow-md">
+        {/* Citizen Recycling Reward Payout */}
+        <div className="p-3.5 rounded-xl bg-gradient-to-r from-emerald-950/60 to-[#071C2B] border border-emerald-500/30 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#42D6C5]/20 flex items-center justify-center text-[#42D6C5]">
+            <div className="w-9 h-9 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
               <Recycle className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-bold text-white">Household Recyclable Credits</div>
-              <div className="text-[10px] text-slate-300">14.2 kg sorted PET plastics validated</div>
+              <div className="text-xs font-bold text-white">Household Recycling Cashback</div>
+              <div className="text-[11px] text-slate-300">14.2 kg sorted plastics collected today</div>
             </div>
           </div>
+
           <button
-            onClick={handleClaimReward}
-            className="text-xs font-mono font-bold text-[#42D6C5] bg-[#42D6C5]/15 hover:bg-[#42D6C5]/25 px-3 py-1.5 rounded-lg border border-[#42D6C5]/30 transition-all cursor-pointer shadow-xs"
+            onClick={() => setClaimed(!claimed)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 shadow-xs ${
+              claimed
+                ? 'bg-emerald-600 text-white'
+                : 'bg-emerald-500 hover:bg-emerald-400 text-[#071C2B]'
+            }`}
           >
-            {claimed ? '✓ Claimed' : `+${tokens} EcoTokens`}
+            {claimed ? 'GH₵ 42.50 Sent to MoMo' : 'Claim GH₵ 42.50 to MoMo'}
           </button>
         </div>
       </div>
