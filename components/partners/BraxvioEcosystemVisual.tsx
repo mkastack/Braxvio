@@ -45,7 +45,7 @@ const INPUT_NODES: BranchNode[] = [
     name: 'Core Technology Rails',
     category: 'Architecture & APIs',
     tier: 'input',
-    description: 'High-throughput cloud backbones, proprietary telecommunications APIs, and enterprise AI engines.',
+    description: 'High-throughput cloud backbones, proprietary telecommunications APIs, and enterprise computational platforms.',
     Icon: Cpu,
     accent: '#11AFC1',
     metrics: 'Unified APIs',
@@ -123,18 +123,18 @@ export default function BraxvioEcosystemVisual() {
         <div className="flex items-center gap-3">
           <div className="w-2.5 h-2.5 rounded-full bg-[#11AFC1] animate-pulse" />
           <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#006EAA] dark:text-[#42D6C5]">
-            SYSTEM ARCHITECTURE // CONVERGENCE PIPELINE
+            SYSTEM ARCHITECTURE & VALUE CREATION
           </span>
         </div>
         <div className="flex items-center gap-4 text-[11px] font-mono text-[#687A86] dark:text-slate-400">
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#42D6C5]" />
-            7 Operational Branches
+            7 Strategic Pillars
           </span>
           <span>•</span>
-          <span>Zero Radial Gimmicks</span>
+          <span>Integrated Value Chain</span>
           <span>•</span>
-          <span className="text-[#006EAA] dark:text-[#11AFC1] font-semibold">Active Topology</span>
+          <span className="text-[#006EAA] dark:text-[#11AFC1] font-semibold">Active Ecosystem</span>
         </div>
       </div>
 
@@ -149,18 +149,18 @@ export default function BraxvioEcosystemVisual() {
         <div className="absolute -top-24 left-1/4 w-96 h-96 rounded-full bg-[#11AFC1]/5 blur-[90px] pointer-events-none" />
         <div className="absolute -bottom-24 right-1/4 w-96 h-96 rounded-full bg-[#006EAA]/5 blur-[90px] pointer-events-none" />
 
-        {/* Corner blueprint crosshairs */}
+        {/* Corner architecture crosshairs */}
         <div className="absolute top-3 left-3 text-[10px] font-mono text-[#DDE8EC] dark:text-white/20 select-none">
-          + 01.SYS.IN
+          FOUNDATIONAL INPUTS
         </div>
         <div className="absolute top-3 right-3 text-[10px] font-mono text-[#DDE8EC] dark:text-white/20 select-none">
-          + 02.SYS.OUT
+          STRATEGIC OUTCOMES
         </div>
         <div className="absolute bottom-3 left-3 text-[10px] font-mono text-[#DDE8EC] dark:text-white/20 select-none">
-          + BRAXVIO.ENG
+          BRAXVIO CORE
         </div>
         <div className="absolute bottom-3 right-3 text-[10px] font-mono text-[#DDE8EC] dark:text-white/20 select-none">
-          + VERIFIED.RAILS
+          ENTERPRISE INFRASTRUCTURE
         </div>
 
         {/* 3-Column Branch Architecture */}
@@ -169,7 +169,7 @@ export default function BraxvioEcosystemVisual() {
           <div className="col-span-4 flex flex-col justify-between h-full py-2 space-y-4">
             <div className="flex items-center justify-between pb-1 border-b border-[#DDE8EC] dark:border-white/10">
               <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-[#006EAA] dark:text-[#42D6C5]">
-                Stage 01 // Foundation Inputs
+                01 — Foundational Inputs
               </span>
               <span className="text-[9px] font-mono text-[#687A86] dark:text-slate-400">
                 3 Vectors
@@ -330,11 +330,11 @@ export default function BraxvioEcosystemVisual() {
               <div className="relative space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-[#42D6C5] font-bold">
-                    CORE KERNEL
+                    PLATFORM ENGINE
                   </span>
                   <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#11AFC1]/20 border border-[#11AFC1]/40 text-[9px] font-mono text-[#42D6C5]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#42D6C5] animate-pulse" />
-                    SYNCED
+                    LIVE
                   </div>
                 </div>
 
@@ -366,7 +366,7 @@ export default function BraxvioEcosystemVisual() {
                 </div>
 
                 <div className="pt-2 text-[10px] font-mono text-slate-300 bg-white/5 rounded-lg p-2 border border-white/10 flex items-center justify-between">
-                  <span>DEPLOYED NODES</span>
+                  <span>ACTIVE VENTURES</span>
                   <span className="text-[#42D6C5] font-bold">4 PLATFORMS</span>
                 </div>
               </div>
@@ -377,7 +377,7 @@ export default function BraxvioEcosystemVisual() {
           <div className="col-span-4 flex flex-col justify-between h-full py-2 space-y-3">
             <div className="flex items-center justify-between pb-1 border-b border-[#DDE8EC] dark:border-white/10">
               <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-[#006EAA] dark:text-[#42D6C5]">
-                Stage 02 // Deployment Verticals
+                02 — Strategic Verticals
               </span>
               <span className="text-[9px] font-mono text-[#687A86] dark:text-slate-400">
                 4 Verticals
@@ -468,7 +468,7 @@ export default function BraxvioEcosystemVisual() {
           <div className="flex items-center gap-2 pb-1 border-b border-[#DDE8EC] dark:border-white/10">
             <span className="w-2 h-2 rounded-full bg-[#11AFC1]" />
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#006EAA] dark:text-[#42D6C5]">
-              01 // Foundation Inputs
+              01 — Foundational Inputs
             </span>
           </div>
 
@@ -521,7 +521,7 @@ export default function BraxvioEcosystemVisual() {
           <div className="w-0.5 h-6 bg-gradient-to-b from-[#11AFC1] to-[#42D6C5]" />
           <div className="w-full max-w-sm p-4 rounded-2xl bg-gradient-to-br from-[#002F5B] to-[#071C2B] text-white border border-[#11AFC1]/40 text-center shadow-md">
             <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#42D6C5] font-bold">
-              ORCHESTRATION KERNEL
+              ORCHESTRATION PLATFORM
             </span>
             <h4 className="text-lg font-black text-white mt-0.5">BRAXVIO CORE</h4>
             <p className="text-xs text-slate-300 mt-1">
@@ -536,7 +536,7 @@ export default function BraxvioEcosystemVisual() {
           <div className="flex items-center gap-2 pb-1 border-b border-[#DDE8EC] dark:border-white/10">
             <span className="w-2 h-2 rounded-full bg-[#42D6C5]" />
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#006EAA] dark:text-[#42D6C5]">
-              02 // Deployment Verticals
+              02 — Strategic Verticals
             </span>
           </div>
 
