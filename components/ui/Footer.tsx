@@ -49,21 +49,6 @@ export default function Footer() {
               Braxvio is the parent technology company building digital products, platforms, and infrastructure designed around meaningful human needs across Africa and the world.
             </p>
 
-            {/* Live operational status indicator */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#42D6C5] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#42D6C5]" />
-              </span>
-              <span className="text-[11px] font-medium tracking-wide text-slate-200">
-                4 Active Platforms
-              </span>
-              <span className="w-1 h-1 rounded-full bg-slate-500" />
-              <span className="text-[10px] font-mono text-[#42D6C5] uppercase tracking-wider">
-                Operational
-              </span>
-            </div>
-
             <div className="flex items-center gap-4 pt-1 text-slate-400">
               <a href="https://linkedin.com/company/braxvio" target="_blank" rel="noreferrer" className="hover:text-[#42D6C5] transition-colors text-xs font-mono">LinkedIn</a>
               <span>•</span>
